@@ -163,8 +163,8 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-base font-bold text-slate-900">Modul Pembelian & Hutang</h2>
-          <p className="text-xs text-slate-500 font-medium font-semibold">Buat invoice pembelian, tambahkan stok, dan catat hutang supplier secara otomatis</p>
+          <h2 className="text-base font-bold text-zinc-100">Modul Pembelian & Hutang</h2>
+          <p className="text-xs text-zinc-500 font-medium font-semibold">Buat invoice pembelian, tambahkan stok, dan catat hutang supplier secara otomatis</p>
         </div>
         <button
           id="btn-new-purchase-invoice"
@@ -182,15 +182,15 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* List Table */}
-        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden flex flex-col">
-          <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/70">
-            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wide">Daftar Purchase Invoice</h3>
+        <div className="lg:col-span-2 bg-white border border-white/[0.06] rounded-xl shadow-sm overflow-hidden flex flex-col">
+          <div className="px-5 py-4 border-b border-white/[0.04] bg-white/[0.03]">
+            <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wide">Daftar Purchase Invoice</h3>
           </div>
           
           <div className="overflow-x-auto flex-1">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50/30 border-b border-slate-200 text-xs font-bold text-slate-500">
+                <tr className="bg-white/[0.01] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
                   <th className="px-5 py-3">No. Invoice</th>
                   <th className="px-5 py-3">Tanggal</th>
                   <th className="px-5 py-3">Supplier</th>
@@ -200,29 +200,29 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                   <th className="px-5 py-3 text-center">Aksi</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-xs text-slate-700 font-semibold">
+              <tbody className="divide-y divide-white/[0.04] text-xs text-zinc-300 font-semibold">
                 {invoices.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="text-center py-8 text-slate-400 font-medium">Belum ada invoice pembelian.</td>
+                    <td colSpan={7} className="text-center py-8 text-zinc-500 font-medium">Belum ada invoice pembelian.</td>
                   </tr>
                 ) : (
                   invoices.map((inv) => (
                     <tr 
                       key={inv.id} 
-                      className={`hover:bg-slate-50/30 cursor-pointer transition-colors ${
-                        selectedInvoice?.id === inv.id ? 'bg-slate-50/70 border-l-4 border-l-slate-900' : ''
+                      className={`hover:bg-white/[0.01] cursor-pointer transition-colors ${
+                        selectedInvoice?.id === inv.id ? 'bg-white/[0.03] border-l-4 border-l-slate-900' : ''
                       }`}
                       onClick={() => setSelectedInvoice(inv)}
                     >
                       <td className="px-5 py-4 font-bold text-slate-950">{inv.invoiceNo}</td>
-                      <td className="px-5 py-4 text-slate-500">{inv.date}</td>
-                      <td className="px-5 py-4 text-slate-800">{getSupplierName(inv.supplierId)}</td>
+                      <td className="px-5 py-4 text-zinc-500">{inv.date}</td>
+                      <td className="px-5 py-4 text-zinc-200">{getSupplierName(inv.supplierId)}</td>
                       <td className="px-5 py-4">
                         <span className={`px-2 py-0.5 rounded text-[10px] font-extrabold ${inv.paymentMethod === 'CASH' ? 'bg-emerald-50 text-emerald-800' : 'bg-amber-50 text-amber-800'}`}>
                           {inv.paymentMethod}
                         </span>
                       </td>
-                      <td className="px-5 py-4 text-right font-extrabold text-slate-900">
+                      <td className="px-5 py-4 text-right font-extrabold text-zinc-100">
                         {formatCurrency(inv.total, db.activeCurrency)}
                       </td>
                       <td className="px-5 py-4 text-center">
@@ -233,7 +233,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                       <td className="px-5 py-4 text-center space-x-2" onClick={(e) => e.stopPropagation()}>
                         <button
                           onClick={() => setSelectedInvoice(inv)}
-                          className="p-1 hover:bg-slate-100 text-slate-600 hover:text-slate-900 rounded-lg inline-flex items-center"
+                          className="p-1 hover:bg-white/[0.03] text-zinc-400 hover:text-zinc-100 rounded-lg inline-flex items-center"
                         >
                           <Eye className="w-4 h-4" />
                         </button>
@@ -261,26 +261,26 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
         </div>
 
         {/* Invoice Audit Panel */}
-        <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6 flex flex-col space-y-6">
+        <div className="bg-white border border-white/[0.06] rounded-xl shadow-sm p-6 flex flex-col space-y-6">
           {selectedInvoice ? (
             <>
               {/* PDF Mock Receipt */}
-              <div className="border border-slate-200 rounded-lg p-5 space-y-4 shadow-sm bg-slate-50/20">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="border border-white/[0.06] rounded-lg p-5 space-y-4 shadow-sm bg-white/[0.02]/20">
+                <div className="flex items-center justify-between border-b border-white/[0.04] pb-3">
                   <div>
-                    <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wide">Faktur Pembelian</h4>
-                    <p className="text-[10px] font-bold text-slate-500 mt-0.5">{selectedInvoice.invoiceNo}</p>
+                    <h4 className="text-xs font-bold text-zinc-200 uppercase tracking-wide">Faktur Pembelian</h4>
+                    <p className="text-[10px] font-bold text-zinc-500 mt-0.5">{selectedInvoice.invoiceNo}</p>
                   </div>
-                  <Receipt className="w-5 h-5 text-slate-400" />
+                  <Receipt className="w-5 h-5 text-zinc-500" />
                 </div>
 
-                <div className="text-[11px] grid grid-cols-2 gap-y-1.5 text-slate-600 font-semibold">
+                <div className="text-[11px] grid grid-cols-2 gap-y-1.5 text-zinc-400 font-semibold">
                   <span>Supplier:</span>
-                  <span className="text-slate-900 font-bold text-right">{getSupplierName(selectedInvoice.supplierId)}</span>
+                  <span className="text-zinc-100 font-bold text-right">{getSupplierName(selectedInvoice.supplierId)}</span>
                   <span>Tanggal:</span>
-                  <span className="text-slate-900 text-right">{selectedInvoice.date}</span>
+                  <span className="text-zinc-100 text-right">{selectedInvoice.date}</span>
                   <span>Pembayaran:</span>
-                  <span className="text-slate-900 text-right font-bold">{selectedInvoice.paymentMethod}</span>
+                  <span className="text-zinc-100 text-right font-bold">{selectedInvoice.paymentMethod}</span>
                   <span>Status:</span>
                   <span className="text-right">
                     <span className={`px-1.5 py-0.5 rounded font-extrabold ${selectedInvoice.status === 'Paid' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`}>
@@ -289,28 +289,28 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                   </span>
                 </div>
 
-                <div className="border-t border-b border-slate-100 py-2.5 my-1.5 space-y-2">
+                <div className="border-t border-b border-white/[0.04] py-2.5 my-1.5 space-y-2">
                   {selectedInvoice.items.map((item, idx) => (
-                    <div key={idx} className="flex justify-between text-[11px] font-medium text-slate-700">
+                    <div key={idx} className="flex justify-between text-[11px] font-medium text-zinc-300">
                       <div className="max-w-[140px] truncate">
-                        <span className="font-bold text-slate-900">{getProductName(item.productId)}</span>
-                        <p className="text-[10px] text-slate-400 font-semibold">{item.qty} Pcs @ {formatCurrency(item.price, db.activeCurrency)}</p>
+                        <span className="font-bold text-zinc-100">{getProductName(item.productId)}</span>
+                        <p className="text-[10px] text-zinc-500 font-semibold">{item.qty} Pcs @ {formatCurrency(item.price, db.activeCurrency)}</p>
                       </div>
-                      <span className="font-bold text-slate-900">{formatCurrency(item.subtotal, db.activeCurrency)}</span>
+                      <span className="font-bold text-zinc-100">{formatCurrency(item.subtotal, db.activeCurrency)}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="text-[11px] space-y-1 text-slate-600 font-semibold">
+                <div className="text-[11px] space-y-1 text-zinc-400 font-semibold">
                   <div className="flex justify-between">
                     <span>Subtotal:</span>
-                    <span className="text-slate-900">{formatCurrency(selectedInvoice.subtotal, db.activeCurrency)}</span>
+                    <span className="text-zinc-100">{formatCurrency(selectedInvoice.subtotal, db.activeCurrency)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>PPN Masukkan:</span>
-                    <span className="text-slate-900">{formatCurrency(selectedInvoice.tax, db.activeCurrency)}</span>
+                    <span className="text-zinc-100">{formatCurrency(selectedInvoice.tax, db.activeCurrency)}</span>
                   </div>
-                  <div className="flex justify-between border-t border-slate-100 pt-1.5 text-xs font-bold text-slate-900">
+                  <div className="flex justify-between border-t border-white/[0.04] pt-1.5 text-xs font-bold text-zinc-100">
                     <span>Total Tagihan:</span>
                     <span className="text-slate-950 font-extrabold">{formatCurrency(selectedInvoice.total, db.activeCurrency)}</span>
                   </div>
@@ -326,36 +326,36 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
               {/* Dynamic Journal Display */}
               {selectedJournal && (
                 <div className="space-y-3">
-                  <h4 className="text-xs font-bold text-slate-800 flex items-center">
+                  <h4 className="text-xs font-bold text-zinc-200 flex items-center">
                     <CheckCircle className="w-4 h-4 text-indigo-600 mr-1.5" />
                     Double-Entry Journal Postings (Otomatis)
                   </h4>
-                  <div className="border border-slate-100 rounded-lg overflow-hidden shadow-sm bg-slate-50/10">
+                  <div className="border border-white/[0.04] rounded-lg overflow-hidden shadow-sm bg-white/[0.02]/10">
                     <div className="bg-slate-950 text-white px-3 py-1.5 flex items-center justify-between text-[10px] font-bold">
                       <span>No Jurnal: {selectedJournal.journalNo}</span>
                       <span>{selectedJournal.date}</span>
                     </div>
                     <table className="w-full text-left text-[10px] border-collapse">
                       <thead>
-                        <tr className="bg-slate-100 text-slate-600 border-b border-slate-200 font-bold">
+                        <tr className="bg-white/[0.03] text-zinc-400 border-b border-white/[0.06] font-bold">
                           <th className="px-3 py-1.5">Kode / Akun</th>
                           <th className="px-3 py-1.5 text-right">Debit</th>
                           <th className="px-3 py-1.5 text-right">Kredit</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-slate-700 font-semibold">
+                      <tbody className="divide-y divide-white/[0.04] text-zinc-300 font-semibold">
                         {selectedJournal.details.map((detail, idx) => {
                           const acc = db.coa.find(a => a.id === detail.coaId);
                           return (
                             <tr key={idx}>
-                              <td className={`px-3 py-2 ${detail.credit > 0 ? 'pl-6 text-slate-500' : 'text-slate-900 font-bold'}`}>
-                                <span className="font-mono text-slate-400 mr-1">[{acc?.code}]</span>
+                              <td className={`px-3 py-2 ${detail.credit > 0 ? 'pl-6 text-zinc-500' : 'text-zinc-100 font-bold'}`}>
+                                <span className="font-mono text-zinc-500 mr-1">[{acc?.code}]</span>
                                 {acc?.name}
                               </td>
-                              <td className="px-3 py-2 text-right font-bold text-slate-800">
+                              <td className="px-3 py-2 text-right font-bold text-zinc-200">
                                 {detail.debit > 0 ? formatCurrency(detail.debit, db.activeCurrency) : '-'}
                               </td>
-                              <td className="px-3 py-2 text-right font-bold text-slate-800">
+                              <td className="px-3 py-2 text-right font-bold text-zinc-200">
                                 {detail.credit > 0 ? formatCurrency(detail.credit, db.activeCurrency) : '-'}
                               </td>
                             </tr>
@@ -369,8 +369,8 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
             </>
           ) : (
             <div className="flex flex-col items-center justify-center h-full text-center py-16 space-y-3">
-              <FileText className="w-8 h-8 text-slate-300" />
-              <p className="text-xs text-slate-500 font-medium">Pilih invoice untuk melihat rincian serta posting jurnal ledger otomatis.</p>
+              <FileText className="w-8 h-8 text-zinc-600" />
+              <p className="text-xs text-zinc-500 font-medium">Pilih invoice untuk melihat rincian serta posting jurnal ledger otomatis.</p>
             </div>
           )}
         </div>
@@ -379,11 +379,11 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
       {/* Invoice Creator Modal */}
       {isCreateOpen && (
         <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col max-h-[90vh]">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">Faktur Pembelian Baru</h3>
-              <button onClick={() => setIsCreateOpen(false)} className="p-1 hover:bg-slate-200/60 rounded-lg">
-                <X className="w-4 h-4 text-slate-500" />
+          <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
+              <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide">Faktur Pembelian Baru</h3>
+              <button onClick={() => setIsCreateOpen(false)} className="p-1 hover:bg-white/[0.06]/60 rounded-lg">
+                <X className="w-4 h-4 text-zinc-500" />
               </button>
             </div>
 
@@ -396,9 +396,9 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
 
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Supplier *</label>
+                  <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Supplier *</label>
                   <select
-                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white"
+                    className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white"
                     value={supplierId}
                     onChange={(e) => setSupplierId(e.target.value)}
                   >
@@ -409,16 +409,16 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Tanggal Transaksi</label>
+                  <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Tanggal Transaksi</label>
                   <DatePicker
                     value={invoiceDate}
                     onChange={(val) => setInvoiceDate(val)}
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Metode Pembayaran</label>
+                  <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Metode Pembayaran</label>
                   <select
-                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white"
+                    className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white"
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value as any)}
                   >
@@ -427,9 +427,9 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Pajak (PPN)</label>
+                  <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Pajak (PPN)</label>
                   <select
-                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white font-bold"
+                    className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white font-bold"
                     value={taxRate}
                     onChange={(e) => setTaxRate(Number(e.target.value))}
                   >
@@ -440,13 +440,13 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
               </div>
 
               {/* Line Items */}
-              <div className="space-y-2 border-t border-slate-100 pt-4">
+              <div className="space-y-2 border-t border-white/[0.04] pt-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wide">Rincian Barang</h4>
+                  <h4 className="text-xs font-bold text-zinc-200 uppercase tracking-wide">Rincian Barang</h4>
                   <button
                     type="button"
                     onClick={addLineItem}
-                    className="text-[10px] font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 px-2.5 py-1.5 rounded"
+                    className="text-[10px] font-bold text-zinc-100 bg-white/[0.03] hover:bg-white/[0.06] px-2.5 py-1.5 rounded"
                   >
                     + Tambah Baris
                   </button>
@@ -454,11 +454,11 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
 
                 <div className="space-y-3">
                   {lineItems.map((item, index) => (
-                    <div key={index} className="grid grid-cols-12 gap-3 items-center border border-slate-100 p-3 rounded-lg bg-slate-50/30">
+                    <div key={index} className="grid grid-cols-12 gap-3 items-center border border-white/[0.04] p-3 rounded-lg bg-white/[0.01]">
                       <div className="col-span-5">
-                        <label className="block text-[9px] font-bold text-slate-400 uppercase mb-0.5">Produk</label>
+                        <label className="block text-[9px] font-bold text-zinc-500 uppercase mb-0.5">Produk</label>
                         <select
-                          className="w-full text-xs px-2.5 py-1.5 border border-slate-200 rounded focus:outline-none bg-white"
+                          className="w-full text-xs px-2.5 py-1.5 border border-white/[0.06] rounded focus:outline-none bg-white"
                           value={item.productId}
                           onChange={(e) => handleProductChange(index, e.target.value)}
                         >
@@ -468,33 +468,33 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                         </select>
                       </div>
                       <div className="col-span-2">
-                        <label className="block text-[9px] font-bold text-slate-400 uppercase mb-0.5">Qty</label>
+                        <label className="block text-[9px] font-bold text-zinc-500 uppercase mb-0.5">Qty</label>
                         <input
                           type="number"
                           min="1"
-                          className="w-full text-xs px-2.5 py-1.5 border border-slate-200 rounded focus:outline-none text-center font-bold"
+                          className="w-full text-xs px-2.5 py-1.5 border border-white/[0.06] rounded focus:outline-none text-center font-bold"
                           value={item.qty}
                           onChange={(e) => handleQtyChange(index, Number(e.target.value))}
                         />
                       </div>
                       <div className="col-span-3">
-                        <label className="block text-[9px] font-bold text-slate-400 uppercase mb-0.5">Harga Beli Satuan (Rp)</label>
+                        <label className="block text-[9px] font-bold text-zinc-500 uppercase mb-0.5">Harga Beli Satuan (Rp)</label>
                         <input
                           type="number"
-                          className="w-full text-xs px-2.5 py-1.5 border border-slate-200 rounded focus:outline-none font-bold text-right"
+                          className="w-full text-xs px-2.5 py-1.5 border border-white/[0.06] rounded focus:outline-none font-bold text-right"
                           value={item.price}
                           onChange={(e) => handlePriceChange(index, Number(e.target.value))}
                         />
                       </div>
                       <div className="col-span-2 flex items-center justify-end space-x-2 pt-4">
-                        <span className="text-[11px] font-bold text-slate-700">
+                        <span className="text-[11px] font-bold text-zinc-300">
                           {formatCurrency(item.qty * item.price, db.activeCurrency)}
                         </span>
                         <button
                           type="button"
                           onClick={() => removeLineItem(index)}
                           disabled={lineItems.length === 1}
-                          className="p-1 hover:bg-rose-50 text-slate-400 hover:text-rose-600 rounded disabled:opacity-40"
+                          className="p-1 hover:bg-rose-50 text-zinc-500 hover:text-rose-600 rounded disabled:opacity-40"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -505,26 +505,26 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
               </div>
 
               {/* Totals */}
-              <div className="border-t border-slate-100 pt-4 flex flex-col items-end text-xs font-semibold text-slate-600 space-y-1">
+              <div className="border-t border-white/[0.04] pt-4 flex flex-col items-end text-xs font-semibold text-zinc-400 space-y-1">
                 <div className="flex justify-between w-48">
                   <span>Subtotal:</span>
-                  <span className="text-slate-900">{formatCurrency(draftSubtotal, db.activeCurrency)}</span>
+                  <span className="text-zinc-100">{formatCurrency(draftSubtotal, db.activeCurrency)}</span>
                 </div>
                 <div className="flex justify-between w-48">
                   <span>PPN Masukkan:</span>
-                  <span className="text-slate-900">{formatCurrency(draftTax, db.activeCurrency)}</span>
+                  <span className="text-zinc-100">{formatCurrency(draftTax, db.activeCurrency)}</span>
                 </div>
-                <div className="flex justify-between w-48 border-t border-slate-100 pt-1.5 font-bold text-slate-950 text-sm">
+                <div className="flex justify-between w-48 border-t border-white/[0.04] pt-1.5 font-bold text-slate-950 text-sm">
                   <span>Grand Total:</span>
                   <span className="font-extrabold">{formatCurrency(draftTotal, db.activeCurrency)}</span>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end space-x-3 bg-slate-50 -mx-6 -mb-6 px-6 py-4">
+              <div className="pt-4 border-t border-white/[0.04] flex items-center justify-end space-x-3 bg-white/[0.02] -mx-6 -mb-6 px-6 py-4">
                 <button
                   type="button"
                   onClick={() => setIsCreateOpen(false)}
-                  className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 bg-white rounded-lg"
+                  className="px-4 py-2 text-xs font-bold text-zinc-400 hover:text-zinc-200 border border-white/[0.06] bg-white rounded-lg"
                 >
                   Batal
                 </button>
@@ -543,11 +543,11 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
       {/* Payment Processing Modal */}
       {isPayOpen && selectedInvoice && (
         <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-md overflow-hidden flex flex-col">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">Pembayaran Hutang Supplier</h3>
-              <button onClick={() => setIsPayOpen(false)} className="p-1 hover:bg-slate-200/60 rounded-lg">
-                <X className="w-4 h-4 text-slate-500" />
+          <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-md overflow-hidden flex flex-col">
+            <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
+              <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide">Pembayaran Hutang Supplier</h3>
+              <button onClick={() => setIsPayOpen(false)} className="p-1 hover:bg-white/[0.06]/60 rounded-lg">
+                <X className="w-4 h-4 text-zinc-500" />
               </button>
             </div>
 
@@ -558,7 +558,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                 </div>
               )}
 
-              <div className="bg-slate-50 border border-slate-100 p-3.5 rounded-lg text-xs space-y-1.5 text-slate-600 font-semibold">
+              <div className="bg-white/[0.02] border border-white/[0.04] p-3.5 rounded-lg text-xs space-y-1.5 text-zinc-400 font-semibold">
                 <div className="flex justify-between">
                   <span>Invoice No:</span>
                   <span className="text-slate-950 font-bold">{selectedInvoice.invoiceNo}</span>
@@ -574,9 +574,9 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Bayar Menggunakan (Kas/Bank) *</label>
+                <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Bayar Menggunakan (Kas/Bank) *</label>
                 <select
-                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white"
+                  className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white"
                   value={payBankCoa}
                   onChange={(e) => setPayBankCoa(e.target.value)}
                 >
@@ -591,7 +591,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Tanggal Bayar</label>
+                <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Tanggal Bayar</label>
                 <DatePicker
                   value={payDate}
                   onChange={(val) => setPayDate(val)}
@@ -599,21 +599,21 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Jumlah Bayar (Rp) *</label>
+                <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Jumlah Bayar (Rp) *</label>
                 <input
                   type="number"
-                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 font-bold"
+                  className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 font-bold"
                   value={payAmount}
                   onChange={(e) => setPayAmount(Number(e.target.value))}
                   max={selectedInvoice.total - selectedInvoice.amountPaid}
                 />
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end space-x-3 bg-slate-50 -mx-6 -mb-6 px-6 py-4">
+              <div className="pt-4 border-t border-white/[0.04] flex items-center justify-end space-x-3 bg-white/[0.02] -mx-6 -mb-6 px-6 py-4">
                 <button
                   type="button"
                   onClick={() => setIsPayOpen(false)}
-                  className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 bg-white rounded-lg"
+                  className="px-4 py-2 text-xs font-bold text-zinc-400 hover:text-zinc-200 border border-white/[0.06] bg-white rounded-lg"
                 >
                   Batal
                 </button>
@@ -630,27 +630,27 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
       )}
       {invoiceToDelete && (
         <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
-          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide flex items-center gap-2">
+          <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
+            <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
+              <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" /> Konfirmasi Hapus Invoice
               </h3>
-              <button onClick={() => setInvoiceToDelete(null)} className="p-1 hover:bg-slate-200/60 rounded-lg">
-                <X className="w-4 h-4 text-slate-500" />
+              <button onClick={() => setInvoiceToDelete(null)} className="p-1 hover:bg-white/[0.06]/60 rounded-lg">
+                <X className="w-4 h-4 text-zinc-500" />
               </button>
             </div>
-            <div className="p-6 text-xs text-slate-600 space-y-3">
+            <div className="p-6 text-xs text-zinc-400 space-y-3">
               <p>Apakah Anda yakin ingin menghapus invoice pembelian ini?</p>
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-100 font-bold text-slate-900">
+              <div className="bg-white/[0.02] p-3 rounded-lg border border-white/[0.04] font-bold text-zinc-100">
                 {invoices.find(inv => inv.id === invoiceToDelete)?.invoiceNo || 'Invoice'}
               </div>
-              <p className="text-[10px] text-slate-400">Tindakan ini tidak dapat dibatalkan.</p>
+              <p className="text-[10px] text-zinc-500">Tindakan ini tidak dapat dibatalkan.</p>
             </div>
-            <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-end space-x-3 bg-slate-50">
+            <div className="px-6 py-4 border-t border-white/[0.04] flex items-center justify-end space-x-3 bg-white/[0.02]">
               <button
                 type="button"
                 onClick={() => setInvoiceToDelete(null)}
-                className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 bg-white rounded-lg"
+                className="px-4 py-2 text-xs font-bold text-zinc-400 hover:text-zinc-200 border border-white/[0.06] bg-white rounded-lg"
               >
                 Batal
               </button>

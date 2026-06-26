@@ -26,7 +26,7 @@ export const TransaksiTab: React.FC<TransaksiTabProps> = ({ db, onUpdateDb }) =>
   return (
     <div className="space-y-5">
       {/* Header & Sub-Tab Navigation */}
-      <div className="relative bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 rounded-2xl p-5 border border-zinc-800/80 shadow-xl overflow-hidden">
+      <div className="relative bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 rounded-2xl p-5 border border-white/[0.08] shadow-xl overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-72 h-72 bg-indigo-500/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
         <div className="absolute bottom-0 left-0 w-56 h-56 bg-emerald-500/5 rounded-full blur-3xl -ml-12 -mb-12"></div>
@@ -50,11 +50,11 @@ export const TransaksiTab: React.FC<TransaksiTabProps> = ({ db, onUpdateDb }) =>
 
             {/* Stats summary */}
             <div className="flex items-center gap-3 shrink-0">
-              <div className="text-center px-4 py-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800/80">
+              <div className="text-center px-4 py-2.5 bg-[#06060f]/80 rounded-xl border border-white/[0.08]">
                 <p className="text-[9px] font-black text-zinc-500 uppercase tracking-wider">Penjualan</p>
                 <p className="text-sm font-black text-emerald-400">{db.salesInvoices.length}</p>
               </div>
-              <div className="text-center px-4 py-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800/80">
+              <div className="text-center px-4 py-2.5 bg-[#06060f]/80 rounded-xl border border-white/[0.08]">
                 <p className="text-[9px] font-black text-zinc-500 uppercase tracking-wider">Pembelian</p>
                 <p className="text-sm font-black text-blue-400">{db.purchaseInvoices.length}</p>
               </div>
@@ -62,7 +62,7 @@ export const TransaksiTab: React.FC<TransaksiTabProps> = ({ db, onUpdateDb }) =>
           </div>
 
           {/* Sub-Tab Switcher */}
-          <div className="flex bg-zinc-950/80 p-1 rounded-xl border border-zinc-800 w-full sm:w-auto sm:inline-flex shadow-inner">
+          <div className="flex bg-[#06060f]/80 p-1 rounded-xl border border-white/[0.08] w-full sm:w-auto sm:inline-flex shadow-inner">
             {subTabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeSubTab === tab.id;
@@ -76,7 +76,7 @@ export const TransaksiTab: React.FC<TransaksiTabProps> = ({ db, onUpdateDb }) =>
                       ? tab.id === 'sales'
                         ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/20'
                         : 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
-                      : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/60'
+                      : 'text-zinc-500 hover:text-zinc-300 hover:bg-[#0a0a1a]'
                   }`}
                 >
                   <Icon className="w-4 h-4" />

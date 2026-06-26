@@ -265,8 +265,8 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
   return (
     <div className="space-y-6">
       {/* Sub Navigation Bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-200 pb-4 gap-4">
-        <div className="flex space-x-2 bg-slate-100 p-1.5 rounded-xl border border-slate-200/60 shadow-sm">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-white/[0.06] pb-4 gap-4">
+        <div className="flex space-x-2 bg-white/[0.03] p-1.5 rounded-xl border border-white/[0.06]/60 shadow-sm">
           {[
             { id: 'customers', label: 'Customers', icon: Users },
             { id: 'suppliers', label: 'Suppliers', icon: Truck },
@@ -285,8 +285,8 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                 }}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
                   active
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50/50'
+                    ? 'bg-white text-zinc-100 shadow-sm'
+                    : 'text-zinc-500 hover:text-zinc-100 hover:bg-white/[0.02]/50'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -299,14 +299,14 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
         {/* Search and Add Buttons */}
         <div className="flex items-center space-x-3 w-full sm:w-auto">
           <div className="relative flex-1 sm:flex-initial">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               id="search-master"
               type="text"
               placeholder={`Cari ${activeSubTab}...`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 pr-4 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white shadow-sm w-full sm:w-48"
+              className="pl-9 pr-4 py-2 text-xs border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white shadow-sm w-full sm:w-48"
             />
           </div>
           <button
@@ -321,12 +321,12 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
       </div>
 
       {/* Tabular Content Renderers */}
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-white border border-white/[0.06] rounded-xl shadow-sm overflow-hidden">
         {activeSubTab === 'customers' && (
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50/70 border-b border-slate-200 text-xs font-bold text-slate-500">
+                <tr className="bg-white/[0.03] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
                   <th className="px-6 py-3.5">Kode</th>
                   <th className="px-6 py-3.5">Nama Customer</th>
                   <th className="px-6 py-3.5">Telepon</th>
@@ -336,15 +336,15 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                   <th className="px-6 py-3.5 text-center">Aksi</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-xs text-slate-700 font-medium">
+              <tbody className="divide-y divide-white/[0.04] text-xs text-zinc-300 font-medium">
                 {db.customers
                   .filter((c) => c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.code.toLowerCase().includes(searchQuery.toLowerCase()))
                   .map((cust) => (
-                    <tr key={cust.id} className="hover:bg-slate-50/30 transition-colors">
-                      <td className="px-6 py-4 font-bold text-slate-900">{cust.code}</td>
-                      <td className="px-6 py-4 font-semibold text-slate-800">{cust.name}</td>
+                    <tr key={cust.id} className="hover:bg-white/[0.01] transition-colors">
+                      <td className="px-6 py-4 font-bold text-zinc-100">{cust.code}</td>
+                      <td className="px-6 py-4 font-semibold text-zinc-200">{cust.name}</td>
                       <td className="px-6 py-4">{cust.phone || '-'}</td>
-                      <td className="px-6 py-4 text-slate-500">{cust.email || '-'}</td>
+                      <td className="px-6 py-4 text-zinc-500">{cust.email || '-'}</td>
                       <td className="px-6 py-4 max-w-xs truncate">{cust.address || '-'}</td>
                       <td className="px-6 py-4 text-right font-bold text-emerald-600">
                         {formatCurrency(cust.balance, db.activeCurrency)}
@@ -352,7 +352,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                       <td className="px-6 py-4 text-center space-x-2 whitespace-nowrap">
                         <button
                           onClick={() => handleStartEdit('customers', cust)}
-                          className="px-2.5 py-1 text-[10px] font-bold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-md shadow-sm transition-colors"
+                          className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-colors"
                         >
                           Edit
                         </button>
@@ -374,7 +374,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50/70 border-b border-slate-200 text-xs font-bold text-slate-500">
+                <tr className="bg-white/[0.03] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
                   <th className="px-6 py-3.5">Kode</th>
                   <th className="px-6 py-3.5">Nama Supplier</th>
                   <th className="px-6 py-3.5">Telepon</th>
@@ -384,15 +384,15 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                   <th className="px-6 py-3.5 text-center">Aksi</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-xs text-slate-700 font-medium">
+              <tbody className="divide-y divide-white/[0.04] text-xs text-zinc-300 font-medium">
                 {db.suppliers
                   .filter((s) => s.name.toLowerCase().includes(searchQuery.toLowerCase()) || s.code.toLowerCase().includes(searchQuery.toLowerCase()))
                   .map((supp) => (
-                    <tr key={supp.id} className="hover:bg-slate-50/30 transition-colors">
-                      <td className="px-6 py-4 font-bold text-slate-900">{supp.code}</td>
-                      <td className="px-6 py-4 font-semibold text-slate-800">{supp.name}</td>
+                    <tr key={supp.id} className="hover:bg-white/[0.01] transition-colors">
+                      <td className="px-6 py-4 font-bold text-zinc-100">{supp.code}</td>
+                      <td className="px-6 py-4 font-semibold text-zinc-200">{supp.name}</td>
                       <td className="px-6 py-4">{supp.phone || '-'}</td>
-                      <td className="px-6 py-4 text-slate-500">{supp.email || '-'}</td>
+                      <td className="px-6 py-4 text-zinc-500">{supp.email || '-'}</td>
                       <td className="px-6 py-4 max-w-xs truncate">{supp.address || '-'}</td>
                       <td className="px-6 py-4 text-right font-bold text-rose-600">
                         {formatCurrency(supp.balance, db.activeCurrency)}
@@ -400,7 +400,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                       <td className="px-6 py-4 text-center space-x-2 whitespace-nowrap">
                         <button
                           onClick={() => handleStartEdit('suppliers', supp)}
-                          className="px-2.5 py-1 text-[10px] font-bold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-md shadow-sm transition-colors"
+                          className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-colors"
                         >
                           Edit
                         </button>
@@ -422,7 +422,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50/70 border-b border-slate-200 text-xs font-bold text-slate-500">
+                <tr className="bg-white/[0.03] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
                   <th className="px-6 py-3.5">SKU</th>
                   <th className="px-6 py-3.5">Nama Produk</th>
                   <th className="px-6 py-3.5">Kategori</th>
@@ -433,15 +433,15 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                   <th className="px-6 py-3.5 text-center">Aksi</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-xs text-slate-700 font-medium">
+              <tbody className="divide-y divide-white/[0.04] text-xs text-zinc-300 font-medium">
                 {db.products
                   .filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.sku.toLowerCase().includes(searchQuery.toLowerCase()))
                   .map((p) => (
-                    <tr key={p.id} className="hover:bg-slate-50/30 transition-colors">
-                      <td className="px-6 py-4 font-bold text-slate-900">{p.sku}</td>
-                      <td className="px-6 py-4 font-semibold text-slate-800">{p.name}</td>
+                    <tr key={p.id} className="hover:bg-white/[0.01] transition-colors">
+                      <td className="px-6 py-4 font-bold text-zinc-100">{p.sku}</td>
+                      <td className="px-6 py-4 font-semibold text-zinc-200">{p.name}</td>
                       <td className="px-6 py-4">
-                        <span className="bg-slate-100 text-slate-800 px-2.5 py-0.5 rounded text-[10px] font-bold">
+                        <span className="bg-white/[0.03] text-zinc-200 px-2.5 py-0.5 rounded text-[10px] font-bold">
                           {p.category}
                         </span>
                       </td>
@@ -452,15 +452,15 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                         {formatCurrency(p.sellingPrice, db.activeCurrency)}
                       </td>
                       <td className="px-6 py-4 text-center">
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${p.stock < 10 ? 'bg-rose-100 text-rose-800' : 'bg-slate-100 text-slate-800'}`}>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${p.stock < 10 ? 'bg-rose-100 text-rose-800' : 'bg-white/[0.03] text-zinc-200'}`}>
                           {p.stock} {p.unit}
                         </span>
                       </td>
-                      <td className="px-6 py-4 font-semibold text-slate-500">{p.warehouse}</td>
+                      <td className="px-6 py-4 font-semibold text-zinc-500">{p.warehouse}</td>
                       <td className="px-6 py-4 text-center space-x-2 whitespace-nowrap">
                         <button
                           onClick={() => handleStartEdit('products', p)}
-                          className="px-2.5 py-1 text-[10px] font-bold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-md shadow-sm transition-colors"
+                          className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-colors"
                         >
                           Edit
                         </button>
@@ -482,7 +482,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50/70 border-b border-slate-200 text-xs font-bold text-slate-500">
+                <tr className="bg-white/[0.03] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
                   <th className="px-6 py-3.5">Kode Akun</th>
                   <th className="px-6 py-3.5">Nama Rekening COA</th>
                   <th className="px-6 py-3.5">Kategori</th>
@@ -491,15 +491,15 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                   <th className="px-6 py-3.5 text-center">Aksi</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-xs text-slate-700 font-medium">
+              <tbody className="divide-y divide-white/[0.04] text-xs text-zinc-300 font-medium">
                 {db.coa
                   .filter((c) => c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.code.includes(searchQuery))
                   .map((acc) => {
                     const isDebit = acc.normalBalance === 'Debit';
                     return (
-                      <tr key={acc.id} className="hover:bg-slate-50/30 transition-colors">
-                        <td className="px-6 py-4 font-bold text-slate-900">{acc.code}</td>
-                        <td className="px-6 py-4 font-semibold text-slate-800 pl-4">{acc.name}</td>
+                      <tr key={acc.id} className="hover:bg-white/[0.01] transition-colors">
+                        <td className="px-6 py-4 font-bold text-zinc-100">{acc.code}</td>
+                        <td className="px-6 py-4 font-semibold text-zinc-200 pl-4">{acc.name}</td>
                         <td className="px-6 py-4">
                           <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                             acc.category === 'Asset' ? 'bg-blue-50 text-blue-800' :
@@ -511,14 +511,14 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                             {acc.category}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-slate-500 font-semibold">{acc.normalBalance}</td>
-                        <td className="px-6 py-4 text-right font-extrabold text-slate-900">
+                        <td className="px-6 py-4 text-zinc-500 font-semibold">{acc.normalBalance}</td>
+                        <td className="px-6 py-4 text-right font-extrabold text-zinc-100">
                           {formatCurrency(acc.balance, db.activeCurrency)}
                         </td>
                         <td className="px-6 py-4 text-center space-x-2 whitespace-nowrap">
                           <button
                             onClick={() => handleStartEdit('coa', acc)}
-                            className="px-2.5 py-1 text-[10px] font-bold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-md shadow-sm transition-colors"
+                            className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-colors"
                           >
                             Edit
                           </button>
@@ -541,13 +541,13 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
       {/* Slide-over / Modal for Adding Record */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
-          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-lg overflow-hidden flex flex-col">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
+          <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-lg overflow-hidden flex flex-col">
+            <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
+              <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide">
                 {editingItem ? 'Edit' : 'Tambah'} {activeSubTab === 'coa' ? 'COA Account' : activeSubTab.slice(0, -1)} {editingItem ? '' : 'Baru'}
               </h3>
-              <button onClick={() => setIsModalOpen(false)} className="p-1 hover:bg-slate-200/60 rounded-lg">
-                <X className="w-4 h-4 text-slate-500" />
+              <button onClick={() => setIsModalOpen(false)} className="p-1 hover:bg-white/[0.06]/60 rounded-lg">
+                <X className="w-4 h-4 text-zinc-500" />
               </button>
             </div>
 
@@ -568,39 +568,39 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
               {activeSubTab === 'customers' && (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Nama Customer *</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Nama Customer *</label>
                     <input
                       type="text"
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                       value={custForm.name}
                       onChange={(e) => setCustForm({ ...custForm, name: e.target.value })}
                       placeholder="e.g. PT Jaya Sentosa"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Telepon</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Telepon</label>
                     <input
                       type="text"
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                       value={custForm.phone}
                       onChange={(e) => setCustForm({ ...custForm, phone: e.target.value })}
                       placeholder="e.g. 021-555432"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Email</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Email</label>
                     <input
                       type="email"
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                       value={custForm.email}
                       onChange={(e) => setCustForm({ ...custForm, email: e.target.value })}
                       placeholder="e.g. customer@domain.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Alamat</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Alamat</label>
                     <textarea
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                       value={custForm.address}
                       onChange={(e) => setCustForm({ ...custForm, address: e.target.value })}
                       rows={3}
@@ -614,39 +614,39 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
               {activeSubTab === 'suppliers' && (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Nama Supplier *</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Nama Supplier *</label>
                     <input
                       type="text"
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                       value={suppForm.name}
                       onChange={(e) => setSuppForm({ ...suppForm, name: e.target.value })}
                       placeholder="e.g. CV Makmur Distribusi"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Telepon</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Telepon</label>
                     <input
                       type="text"
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                       value={suppForm.phone}
                       onChange={(e) => setSuppForm({ ...suppForm, phone: e.target.value })}
                       placeholder="e.g. 021-999888"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Email</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Email</label>
                     <input
                       type="email"
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                       value={suppForm.email}
                       onChange={(e) => setSuppForm({ ...suppForm, email: e.target.value })}
                       placeholder="e.g. supplier@domain.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Alamat</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Alamat</label>
                     <textarea
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                       value={suppForm.address}
                       onChange={(e) => setSuppForm({ ...suppForm, address: e.target.value })}
                       rows={3}
@@ -661,20 +661,20 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">SKU Code *</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">SKU Code *</label>
                       <input
                         type="text"
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 font-bold"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 font-bold"
                         value={prodForm.sku}
                         onChange={(e) => setProdForm({ ...prodForm, sku: e.target.value })}
                         placeholder="e.g. PRD-005"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Nama Produk *</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Nama Produk *</label>
                       <input
                         type="text"
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                         value={prodForm.name}
                         onChange={(e) => setProdForm({ ...prodForm, name: e.target.value })}
                         placeholder="e.g. Macbook Air M3"
@@ -684,20 +684,20 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Kategori</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Kategori</label>
                       <input
                         type="text"
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                         value={prodForm.category}
                         onChange={(e) => setProdForm({ ...prodForm, category: e.target.value })}
                         placeholder="e.g. Laptop"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Satuan</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Satuan</label>
                       <input
                         type="text"
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                         value={prodForm.unit}
                         onChange={(e) => setProdForm({ ...prodForm, unit: e.target.value })}
                         placeholder="Pcs"
@@ -707,28 +707,28 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
 
                   <div className="grid grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Harga Pokok (Rp)</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Harga Pokok (Rp)</label>
                       <input
                         type="number"
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                         value={prodForm.costPrice}
                         onChange={(e) => setProdForm({ ...prodForm, costPrice: Number(e.target.value) })}
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Harga Jual (Rp)</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Harga Jual (Rp)</label>
                       <input
                         type="number"
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                         value={prodForm.sellingPrice}
                         onChange={(e) => setProdForm({ ...prodForm, sellingPrice: Number(e.target.value) })}
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Stok Awal</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Stok Awal</label>
                       <input
                         type="number"
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                         value={prodForm.stock}
                         onChange={(e) => setProdForm({ ...prodForm, stock: Number(e.target.value) })}
                       />
@@ -736,9 +736,9 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Lokasi Gudang</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Lokasi Gudang</label>
                     <select
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                       value={prodForm.warehouse}
                       onChange={(e) => setProdForm({ ...prodForm, warehouse: e.target.value })}
                     >
@@ -755,20 +755,20 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Kode Rekening *</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Kode Rekening *</label>
                       <input
                         type="text"
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 font-bold"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 font-bold"
                         value={coaForm.code}
                         onChange={(e) => setCoaForm({ ...coaForm, code: e.target.value })}
                         placeholder="e.g. 6500"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Nama Rekening COA *</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Nama Rekening COA *</label>
                       <input
                         type="text"
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                         value={coaForm.name}
                         onChange={(e) => setCoaForm({ ...coaForm, name: e.target.value })}
                         placeholder="e.g. Beban Promosi & Iklan"
@@ -778,9 +778,9 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Kategori Laporan</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Kategori Laporan</label>
                       <select
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                         value={coaForm.category}
                         onChange={(e) => setCoaForm({ ...coaForm, category: e.target.value as any })}
                       >
@@ -792,9 +792,9 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                       </select>
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Saldo Normal</label>
+                      <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Saldo Normal</label>
                       <select
-                        className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                        className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                         value={coaForm.normalBalance}
                         onChange={(e) => setCoaForm({ ...coaForm, normalBalance: e.target.value as any })}
                       >
@@ -806,11 +806,11 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                 </div>
               )}
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end space-x-3 bg-slate-50 -mx-6 -mb-6 px-6 py-4">
+              <div className="pt-4 border-t border-white/[0.04] flex items-center justify-end space-x-3 bg-white/[0.02] -mx-6 -mb-6 px-6 py-4">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 bg-white rounded-lg"
+                  className="px-4 py-2 text-xs font-bold text-zinc-400 hover:text-zinc-200 border border-white/[0.06] bg-white rounded-lg"
                 >
                   Batal
                 </button>
@@ -828,27 +828,27 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
 
       {itemToDelete && (
         <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
-          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide flex items-center gap-2">
+          <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
+            <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
+              <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" /> Konfirmasi Hapus
               </h3>
-              <button onClick={() => setItemToDelete(null)} className="p-1 hover:bg-slate-200/60 rounded-lg">
-                <X className="w-4 h-4 text-slate-500" />
+              <button onClick={() => setItemToDelete(null)} className="p-1 hover:bg-white/[0.06]/60 rounded-lg">
+                <X className="w-4 h-4 text-zinc-500" />
               </button>
             </div>
-            <div className="p-6 text-xs text-slate-600 space-y-3">
+            <div className="p-6 text-xs text-zinc-400 space-y-3">
               <p>Apakah Anda yakin ingin menghapus data berikut?</p>
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-100 font-bold text-slate-900">
+              <div className="bg-white/[0.02] p-3 rounded-lg border border-white/[0.04] font-bold text-zinc-100">
                 {itemToDelete.name}
               </div>
-              <p className="text-[10px] text-slate-400">Tindakan ini tidak dapat dibatalkan.</p>
+              <p className="text-[10px] text-zinc-500">Tindakan ini tidak dapat dibatalkan.</p>
             </div>
-            <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-end space-x-3 bg-slate-50">
+            <div className="px-6 py-4 border-t border-white/[0.04] flex items-center justify-end space-x-3 bg-white/[0.02]">
               <button
                 type="button"
                 onClick={() => setItemToDelete(null)}
-                className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 bg-white rounded-lg"
+                className="px-4 py-2 text-xs font-bold text-zinc-400 hover:text-zinc-200 border border-white/[0.06] bg-white rounded-lg"
               >
                 Batal
               </button>

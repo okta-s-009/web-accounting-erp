@@ -103,7 +103,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen flex flex-col font-sans antialiased transition-colors duration-300 bg-[#09090b] text-zinc-100 overflow-hidden">
+    <div className="h-screen flex flex-col font-sans antialiased transition-colors duration-300 bg-[#06060f] text-zinc-100 overflow-hidden">
       {/* Navigation Top Header */}
       <Header 
         db={db} 
@@ -117,7 +117,7 @@ export default function App() {
       <div className="flex-1 flex overflow-hidden">
         
         {/* Persistent Desktop Sidebar (Visible only on Laptop/Desktop) */}
-        <aside id="erp-sidebar" className="w-64 p-5 flex-col justify-between hidden lg:flex shadow-sm transition-colors duration-300 bg-zinc-950 border-r border-zinc-900 text-zinc-300 shadow-zinc-950/40 overflow-y-auto">
+        <aside id="erp-sidebar" className="w-64 p-5 flex-col justify-between hidden lg:flex shadow-sm transition-colors duration-300 bg-[#06060f] border-r border-white/[0.06] text-zinc-300 shadow-black/40 overflow-y-auto">
           <div className="space-y-2">
             <p className="text-[10px] font-extrabold uppercase tracking-wider px-3 mb-2.5 text-zinc-500">Menu Navigasi</p>
             {menuItems.map((item) => {
@@ -132,8 +132,8 @@ export default function App() {
                   onClick={() => setActiveTab(item.id)}
                   className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-bold transition-all ${
                     active
-                      ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'
-                      : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/60'
+                      ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-lg shadow-cyan-500/10'
+                      : 'text-zinc-400 hover:text-zinc-100 hover:bg-[#0a0a1a]'
                   }`}
                 >
                   <div className="flex items-center space-x-3">
@@ -153,7 +153,7 @@ export default function App() {
           </div>
 
           {/* Sidebar Footer */}
-          <div className="border rounded-xl p-3.5 text-center shadow-sm transition-all duration-300 bg-zinc-900/40 border-zinc-800/80 text-zinc-300">
+          <div className="border rounded-xl p-3.5 text-center shadow-sm transition-all duration-300 bg-[#0a0a1a]/80 border-white/[0.08] text-zinc-300">
             <p className="text-[10px] font-black uppercase tracking-wide">Web ERP Accounting</p>
             <p className="text-[9px] font-bold mt-0.5 text-zinc-500">Versi MVP v1.0.0 (Stable)</p>
           </div>
@@ -178,18 +178,18 @@ export default function App() {
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-                className="fixed top-0 left-0 bottom-0 w-80 bg-zinc-950 shadow-2xl z-50 p-5 overflow-y-auto flex flex-col justify-between lg:hidden border-r border-zinc-900 text-zinc-100"
+                className="fixed top-0 left-0 bottom-0 w-80 bg-[#06060f] shadow-2xl z-50 p-5 overflow-y-auto flex flex-col justify-between lg:hidden border-r border-white/[0.06] text-zinc-100"
               >
                 <div className="space-y-6">
                   {/* Close button and branding */}
-                  <div className="flex items-center justify-between pb-4 border-b border-zinc-900">
+                  <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
                     <div>
                       <h2 className="text-sm font-black text-zinc-100 uppercase tracking-wide">Web ERP Menu</h2>
                       <p className="text-[10px] text-zinc-500 font-bold">Aplikasi Mobile & Tablet</p>
                     </div>
                     <button
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-1.5 hover:bg-zinc-900 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors"
+                      className="p-1.5 hover:bg-white/[0.04] rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors"
                     >
                       <X className="w-5 h-5" />
                     </button>
@@ -213,8 +213,8 @@ export default function App() {
                           }}
                           className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs font-bold transition-all ${
                             active
-                              ? 'bg-indigo-600 text-white shadow-md'
-                              : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900/75'
+                              ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 shadow-lg shadow-cyan-500/10'
+                              : 'text-zinc-400 hover:text-zinc-100 hover:bg-white/[0.04]'
                           }`}
                         >
                           <div className="flex items-center space-x-3">
@@ -230,7 +230,7 @@ export default function App() {
                   </div>
 
                   {/* Global Setup Selectors inside Mobile Drawer */}
-                  <div className="space-y-4 pt-4 border-t border-zinc-900">
+                  <div className="space-y-4 pt-4 border-t border-white/[0.06]">
                     <p className="text-[9px] font-extrabold text-zinc-500 uppercase tracking-wider px-3">Konfigurasi Sistem</p>
                     
                     {/* Currency */}
@@ -241,12 +241,12 @@ export default function App() {
                       </label>
                       <select
                         id="mob-currency-selector"
-                        className="w-full text-xs font-bold text-zinc-300 bg-zinc-900 border border-zinc-800 rounded-lg p-2.5 focus:outline-none"
+                        className="w-full text-xs font-bold text-zinc-300 bg-zinc-900 border border-white/[0.08] rounded-lg p-2.5 focus:outline-none"
                         value={db.activeCurrency}
                         onChange={(e) => handleCurrencyChange(e.target.value as any)}
                       >
                         {CURRENCIES.map((c) => (
-                          <option key={c} value={c} className="bg-zinc-950 text-zinc-200">{c}</option>
+                          <option key={c} value={c} className="bg-[#06060f] text-zinc-200">{c}</option>
                         ))}
                       </select>
                     </div>
@@ -259,12 +259,12 @@ export default function App() {
                       </label>
                       <select
                         id="mob-role-selector"
-                        className="w-full text-xs font-bold text-zinc-300 bg-zinc-900 border border-zinc-800 rounded-lg p-2.5 focus:outline-none"
+                        className="w-full text-xs font-bold text-zinc-300 bg-zinc-900 border border-white/[0.08] rounded-lg p-2.5 focus:outline-none"
                         value={ROLES.findIndex((r) => r.role === db.userSession.role)}
                         onChange={(e) => handleRoleChange(ROLES[Number(e.target.value)].role)}
                       >
                         {ROLES.map((r, i) => (
-                          <option key={r.role} value={i} className="bg-zinc-950 text-zinc-200">{r.role} ({r.name})</option>
+                          <option key={r.role} value={i} className="bg-[#06060f] text-zinc-200">{r.role} ({r.name})</option>
                         ))}
                       </select>
                     </div>
@@ -273,7 +273,7 @@ export default function App() {
                 </div>
 
                 {/* Sidebar Mobile Footer */}
-                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 text-center shadow-sm mt-6">
+                <div className="bg-zinc-900 border border-white/[0.08] rounded-xl p-3 text-center shadow-sm mt-6">
                   <p className="text-[9px] font-black text-zinc-300 uppercase tracking-wide">Web ERP Accounting</p>
                   <p className="text-[8px] text-zinc-500 font-bold mt-0.5">Mobile-Optimized Layout</p>
                 </div>

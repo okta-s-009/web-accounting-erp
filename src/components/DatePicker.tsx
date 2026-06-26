@@ -142,7 +142,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
       <button
         type="button"
         onClick={() => { setIsOpen(!isOpen); setViewMode('days'); }}
-        className={`w-full flex items-center justify-between text-xs px-3 py-2 border border-zinc-700 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 font-bold bg-zinc-900 text-zinc-100 hover:border-zinc-600 transition-colors cursor-pointer ${className || ''}`}
+        className={`w-full flex items-center justify-between text-xs px-3 py-2 border border-white/[0.1] rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 font-bold bg-zinc-900 text-zinc-100 hover:border-zinc-600 transition-colors cursor-pointer ${className || ''}`}
       >
         <span className={value ? 'text-zinc-100' : 'text-zinc-500'}>
           {value ? formatDisplay(value) : 'Pilih tanggal...'}
@@ -159,7 +159,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className={`absolute z-[100] left-0 right-0 sm:left-auto sm:right-auto sm:w-[280px] bg-zinc-900 border border-zinc-700 rounded-xl shadow-2xl shadow-black/40 p-3 ${
+            className={`absolute z-[100] left-0 right-0 sm:left-auto sm:right-auto sm:w-[280px] bg-zinc-900 border border-white/[0.1] rounded-xl shadow-2xl shadow-black/40 p-3 ${
               popoverPosition === 'below' ? 'mt-1.5 top-full' : 'mb-1.5 bottom-full'
             }`}
           >
@@ -170,21 +170,21 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
                   <button
                     type="button"
                     onClick={() => navigateMonth(-1)}
-                    className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
+                    className="p-1 hover:bg-white/[0.06] rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <button
                     type="button"
                     onClick={() => setViewMode('months')}
-                    className="text-xs font-black text-zinc-100 hover:bg-zinc-800 px-3 py-1 rounded-lg transition-colors cursor-pointer uppercase tracking-wide"
+                    className="text-xs font-black text-zinc-100 hover:bg-white/[0.06] px-3 py-1 rounded-lg transition-colors cursor-pointer uppercase tracking-wide"
                   >
                     {MONTH_NAMES[viewMonth]} {viewYear}
                   </button>
                   <button
                     type="button"
                     onClick={() => navigateMonth(1)}
-                    className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
+                    className="p-1 hover:bg-white/[0.06] rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>
@@ -196,21 +196,21 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
                   <button
                     type="button"
                     onClick={() => setViewYear(viewYear - 1)}
-                    className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
+                    className="p-1 hover:bg-white/[0.06] rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <button
                     type="button"
                     onClick={() => setViewMode('years')}
-                    className="text-xs font-black text-zinc-100 hover:bg-zinc-800 px-3 py-1 rounded-lg transition-colors cursor-pointer uppercase tracking-wide"
+                    className="text-xs font-black text-zinc-100 hover:bg-white/[0.06] px-3 py-1 rounded-lg transition-colors cursor-pointer uppercase tracking-wide"
                   >
                     {viewYear}
                   </button>
                   <button
                     type="button"
                     onClick={() => setViewYear(viewYear + 1)}
-                    className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
+                    className="p-1 hover:bg-white/[0.06] rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>
@@ -222,7 +222,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
                   <button
                     type="button"
                     onClick={() => setYearRangeStart(yearRangeStart - 12)}
-                    className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
+                    className="p-1 hover:bg-white/[0.06] rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
                   >
                     <ChevronsLeft className="w-4 h-4" />
                   </button>
@@ -232,7 +232,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
                   <button
                     type="button"
                     onClick={() => setYearRangeStart(yearRangeStart + 12)}
-                    className="p-1 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
+                    className="p-1 hover:bg-white/[0.06] rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer"
                   >
                     <ChevronsRight className="w-4 h-4" />
                   </button>
@@ -264,7 +264,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
                               ? 'bg-indigo-600 text-white font-black shadow-md shadow-indigo-500/30'
                               : isToday(day)
                               ? 'bg-zinc-800 text-indigo-400 font-black ring-1 ring-indigo-500/50'
-                              : 'text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100'
+                              : 'text-zinc-300 hover:bg-white/[0.06] hover:text-zinc-100'
                           }`}
                         >
                           {day}
@@ -275,7 +275,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
                 </div>
 
                 {/* Today shortcut */}
-                <div className="mt-2.5 pt-2 border-t border-zinc-800">
+                <div className="mt-2.5 pt-2 border-t border-white/[0.08]">
                   <button
                     type="button"
                     onClick={() => {
@@ -285,7 +285,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
                       setViewMonth(t.getMonth());
                       setIsOpen(false);
                     }}
-                    className="w-full text-[10px] font-black text-indigo-400 hover:text-indigo-300 hover:bg-zinc-800 py-1.5 rounded-lg transition-colors uppercase tracking-wider cursor-pointer"
+                    className="w-full text-[10px] font-black text-indigo-400 hover:text-indigo-300 hover:bg-white/[0.06] py-1.5 rounded-lg transition-colors uppercase tracking-wider cursor-pointer"
                   >
                     Hari Ini — {today.getDate()} {MONTH_NAMES[today.getMonth()]} {today.getFullYear()}
                   </button>
@@ -309,7 +309,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
                           ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/30'
                           : isTodayMonth
                           ? 'bg-zinc-800 text-indigo-400 ring-1 ring-indigo-500/50'
-                          : 'text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100'
+                          : 'text-zinc-300 hover:bg-white/[0.06] hover:text-zinc-100'
                       }`}
                     >
                       {name.substring(0, 3)}
@@ -335,7 +335,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({ value, onChange, classNa
                           ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/30'
                           : isTodayYear
                           ? 'bg-zinc-800 text-indigo-400 ring-1 ring-indigo-500/50'
-                          : 'text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100'
+                          : 'text-zinc-300 hover:bg-white/[0.06] hover:text-zinc-100'
                       }`}
                     >
                       {year}

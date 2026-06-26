@@ -460,10 +460,10 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
           >
             <div className={`p-4 rounded-xl shadow-xl border flex items-start gap-3 text-left ${
               notification.type === 'success' 
-                ? 'bg-zinc-950 border-emerald-500/30 text-emerald-300' 
+                ? 'bg-[#06060f] border-emerald-500/30 text-emerald-300' 
                 : notification.type === 'error'
-                  ? 'bg-zinc-950 border-rose-500/30 text-rose-300'
-                  : 'bg-zinc-950 border-indigo-500/30 text-indigo-300'
+                  ? 'bg-[#06060f] border-rose-500/30 text-rose-300'
+                  : 'bg-[#06060f] border-indigo-500/30 text-indigo-300'
             }`}>
               <div className="mt-0.5">
                 {notification.type === 'success' && <CheckCircle2 className="w-5 h-5 text-emerald-400" />}
@@ -482,7 +482,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
       </AnimatePresence>
 
       {/* Top Banner Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between bg-gradient-to-r from-zinc-950 to-zinc-900 border border-zinc-800/80 rounded-2xl p-5 gap-4 shadow-lg">
+      <div className="flex flex-col md:flex-row md:items-center justify-between bg-gradient-to-r from-zinc-950 to-zinc-900 border border-white/[0.08] rounded-2xl p-5 gap-4 shadow-lg">
         <div className="text-left">
           <div className="flex items-center gap-2">
             <span className="p-2 bg-amber-500/10 text-amber-400 rounded-lg">
@@ -503,7 +503,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={handleExportCSV}
-            className="px-4 py-2 bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 rounded-xl text-xs font-black uppercase text-amber-400 tracking-wider flex items-center gap-2 transition-all cursor-pointer"
+            className="px-4 py-2 bg-zinc-900 hover:bg-zinc-850 border border-white/[0.08] rounded-xl text-xs font-black uppercase text-amber-400 tracking-wider flex items-center gap-2 transition-all cursor-pointer"
           >
             <FileSpreadsheet className="w-4 h-4" /> Ekspor ke Excel (CSV)
           </button>
@@ -514,7 +514,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Total Paid */}
-        <div className="bg-zinc-950/70 border border-zinc-800/80 rounded-xl p-4 shadow-lg hover:border-zinc-700 transition-all border-l-emerald-500/40">
+        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-emerald-500/40">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">Total Pajak Disetor</span>
             <div className="p-1.5 bg-emerald-500/10 text-emerald-400 rounded-lg">
@@ -524,14 +524,14 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
           <p className="text-base lg:text-lg font-black font-mono text-emerald-400 mt-2">
             {formatCurrency(depositsSummary.total, currency)}
           </p>
-          <div className="flex items-center justify-between border-t border-zinc-900 pt-2 mt-2 text-[9px] font-bold">
+          <div className="flex items-center justify-between border-t border-white/[0.06] pt-2 mt-2 text-[9px] font-bold">
             <span className="text-zinc-500">Masa Pajak 2026</span>
             <span className="text-emerald-400 font-extrabold uppercase">Terverifikasi DJP</span>
           </div>
         </div>
 
         {/* PPh Badan */}
-        <div className="bg-zinc-950/70 border border-zinc-800/80 rounded-xl p-4 shadow-lg hover:border-zinc-700 transition-all border-l-amber-500/40">
+        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-amber-500/40">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">Angsuran PPh Badan</span>
             <div className="p-1.5 bg-amber-500/10 text-amber-400 rounded-lg">
@@ -541,14 +541,14 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
           <p className="text-base lg:text-lg font-black font-mono text-amber-400 mt-2">
             {formatCurrency(depositsSummary.pphBadan, currency)}
           </p>
-          <div className="flex items-center justify-between border-t border-zinc-900 pt-2 mt-2 text-[9px] font-bold">
+          <div className="flex items-center justify-between border-t border-white/[0.06] pt-2 mt-2 text-[9px] font-bold">
             <span className="text-zinc-500">PPh Pasal 25 & 29</span>
             <span className="text-amber-500 font-extrabold uppercase">MAP 411125</span>
           </div>
         </div>
 
         {/* PPN Masukan/Keluaran */}
-        <div className="bg-zinc-950/70 border border-zinc-800/80 rounded-xl p-4 shadow-lg hover:border-zinc-700 transition-all border-l-indigo-500/40">
+        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-indigo-500/40">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">PPN Dalam Negeri</span>
             <div className="p-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
@@ -558,14 +558,14 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
           <p className="text-base lg:text-lg font-black font-mono text-indigo-400 mt-2">
             {formatCurrency(depositsSummary.ppn, currency)}
           </p>
-          <div className="flex items-center justify-between border-t border-zinc-900 pt-2 mt-2 text-[9px] font-bold">
+          <div className="flex items-center justify-between border-t border-white/[0.06] pt-2 mt-2 text-[9px] font-bold">
             <span className="text-zinc-500">Setoran Kurang Bayar</span>
             <span className="text-indigo-400 font-extrabold uppercase">MAP 411211</span>
           </div>
         </div>
 
         {/* Verified Status */}
-        <div className="bg-zinc-950/70 border border-zinc-800/80 rounded-xl p-4 shadow-lg hover:border-zinc-700 transition-all border-l-violet-500/40">
+        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-violet-500/40">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">Kualitas Kepatuhan</span>
             <div className="p-1.5 bg-violet-500/10 text-violet-400 rounded-lg">
@@ -575,7 +575,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
           <p className="text-base lg:text-lg font-black font-mono text-violet-400 mt-2">
             {depositsSummary.verified} / {depositsSummary.count} Slip Sah
           </p>
-          <div className="flex items-center justify-between border-t border-zinc-900 pt-2 mt-2 text-[9px] font-bold">
+          <div className="flex items-center justify-between border-t border-white/[0.06] pt-2 mt-2 text-[9px] font-bold">
             <span className="text-zinc-500">Menunggu: {depositsSummary.pending} draft</span>
             <span className="text-violet-400 font-extrabold uppercase">100% Valid</span>
           </div>
@@ -587,8 +587,8 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Visual Charts (8 cols) */}
-        <div className="lg:col-span-8 bg-zinc-950 border border-zinc-800/90 rounded-2xl p-5 shadow-xl space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-900 pb-3 gap-3">
+        <div className="lg:col-span-8 bg-[#06060f] border border-white/[0.08]/90 rounded-2xl p-5 shadow-xl space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.06] pb-3 gap-3">
             <div className="text-left">
               <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest flex items-center gap-2">
                 <BarChart3 className="w-4.5 h-4.5 text-amber-500" />
@@ -600,7 +600,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
             </div>
 
             {/* Toggle visual charts style */}
-            <div className="flex bg-zinc-900 p-1 rounded-lg border border-zinc-800 shrink-0">
+            <div className="flex bg-zinc-900 p-1 rounded-lg border border-white/[0.08] shrink-0">
               <button
                 onClick={() => setActiveVisualView('chart')}
                 className={`py-1 px-2.5 text-[9px] font-black uppercase rounded-md transition-colors cursor-pointer ${
@@ -690,9 +690,9 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
         </div>
 
         {/* Quick Help Guide Panel (4 cols) */}
-        <div className="lg:col-span-4 bg-zinc-950 border border-zinc-800 rounded-2xl p-5 shadow-xl flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-[#06060f] border border-white/[0.08] rounded-2xl p-5 shadow-xl flex flex-col justify-between">
           <div className="space-y-3">
-            <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest flex items-center gap-1.5 border-b border-zinc-900 pb-2.5">
+            <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest flex items-center gap-1.5 border-b border-white/[0.06] pb-2.5">
               <Info className="w-4 h-4 text-amber-500" />
               Panduan Rekonsiliasi Pajak
             </h3>
@@ -730,8 +730,8 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
             </div>
           </div>
 
-          <div className="pt-4 border-t border-zinc-900/80">
-            <div className="p-3 bg-zinc-900/60 rounded-xl border border-zinc-800/60 flex items-start gap-2.5 text-left">
+          <div className="pt-4 border-t border-white/[0.06]/80">
+            <div className="p-3 bg-[#0a0a1a] rounded-xl border border-white/[0.06] flex items-start gap-2.5 text-left">
               <ShieldCheck className="w-4.5 h-4.5 text-emerald-400 shrink-0 mt-0.5" />
               <div>
                 <p className="text-[9px] font-black text-zinc-200 uppercase leading-none">Otentikasi Aman MPN G3</p>
@@ -750,8 +750,8 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
         
         {/* Form Column (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
-          <div id="ssp-form-container" className="bg-zinc-950 border border-zinc-800 rounded-2xl p-5 shadow-xl space-y-4">
-            <div className="border-b border-zinc-900 pb-3 flex items-center justify-between">
+          <div id="ssp-form-container" className="bg-[#06060f] border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4">
+            <div className="border-b border-white/[0.06] pb-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 {editingDepositId ? (
                   <Edit2 className="w-5 h-5 text-amber-500 animate-pulse" />
@@ -787,7 +787,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                   <select
                     value={depMonth}
                     onChange={(e) => setDepMonth(e.target.value)}
-                    className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                    className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                   >
                     {MONTHS_ORDER.map(m => (
                       <option key={m} value={m}>{m}</option>
@@ -800,7 +800,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                   <select
                     value={depYear}
                     onChange={(e) => setDepYear(Number(e.target.value))}
-                    className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                    className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                   >
                     {[2025, 2026, 2027].map(y => (
                       <option key={y} value={y}>{y}</option>
@@ -820,7 +820,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                 <select
                   value={depTaxType}
                   onChange={(e) => setDepTaxType(e.target.value)}
-                  className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                  className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
                   <option value="PPh Pasal 25 (Angsuran PPh Badan)">PPh Pasal 25 (Angsuran PPh Badan)</option>
                   <option value="PPh Pasal 29 (PPh Badan Kurang Bayar Tahunan)">PPh Pasal 29 (PPh Badan Kurang Bayar Tahunan)</option>
@@ -839,7 +839,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                   maxLength={15}
                   value={depBillingCode}
                   onChange={(e) => setDepBillingCode(e.target.value.replace(/[^0-9]/g, ''))}
-                  className="w-full text-xs font-mono font-bold text-zinc-100 bg-zinc-900 border border-zinc-800 rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                  className="w-full text-xs font-mono font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
                 />
               </div>
 
@@ -858,7 +858,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                   placeholder="Masukkan 16 Kode NTPN, Contoh: 8271A9283748C6B1"
                   value={depNtpn}
                   onChange={(e) => setDepNtpn(e.target.value.toUpperCase())}
-                  className="w-full text-xs font-mono font-bold text-zinc-100 bg-zinc-900 border border-zinc-800 rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 uppercase"
+                  className="w-full text-xs font-mono font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 uppercase"
                 />
                 {depNtpn.length === 15 && /^\d+$/.test(depNtpn) && (
                   <div className="mt-1.5 p-2.5 bg-amber-500/10 border border-amber-500/20 rounded-lg text-[10px] text-amber-400 font-medium leading-relaxed">
@@ -888,7 +888,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                           setDepAmount('');
                         }
                       }}
-                      className="w-full text-xs font-mono font-black text-zinc-100 bg-zinc-900 border border-zinc-800 rounded-lg pl-9 pr-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                      className="w-full text-xs font-mono font-black text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg pl-9 pr-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
                     />
                   </div>
                 </div>
@@ -908,7 +908,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                 <select
                   value={depBank}
                   onChange={(e) => setDepBank(e.target.value)}
-                  className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                  className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
                   <option value="Bank Mandiri">Bank Mandiri (Persero)</option>
                   <option value="Bank BNI">Bank BNI (Persero)</option>
@@ -926,7 +926,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                   rows={2}
                   value={depNotes}
                   onChange={(e) => setDepNotes(e.target.value)}
-                  className="w-full text-xs font-medium text-zinc-100 bg-zinc-900 border border-zinc-800 rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                  className="w-full text-xs font-medium text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
                 />
               </div>
 
@@ -943,7 +943,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                       ? 'border-amber-500 bg-amber-500/5' 
                       : depAttachmentName 
                         ? 'border-emerald-500/50 bg-emerald-500/5' 
-                        : 'border-zinc-800 bg-zinc-900/40 hover:border-zinc-700 hover:bg-zinc-900/60'
+                        : 'border-white/[0.08] bg-[#0a0a1a]/80 hover:border-white/[0.1] hover:bg-[#0a0a1a]'
                   }`}
                 >
                   <input
@@ -1011,10 +1011,10 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
 
         {/* History Ledger Column (7 cols) */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-5 shadow-xl space-y-4">
+          <div className="bg-[#06060f] border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4">
             
             {/* Table Header Controls */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-900 pb-3 gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.06] pb-3 gap-3">
               <div className="text-left">
                 <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest flex items-center gap-1.5">
                   <FileSpreadsheet className="w-4.5 h-4.5 text-indigo-400" />
@@ -1024,13 +1024,13 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                   Catatan Transaksi Penyetoran yang Tercatat di Database ERP
                 </p>
               </div>
-              <span className="text-[9px] font-black text-zinc-400 bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded-lg shrink-0">
+              <span className="text-[9px] font-black text-zinc-400 bg-zinc-900 border border-white/[0.08] px-2.5 py-1 rounded-lg shrink-0">
                 {filteredDeposits.length} Catatan Pajak
               </span>
             </div>
 
             {/* Filtering Tools Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-zinc-900/30 p-3.5 rounded-xl border border-zinc-800/60">
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-zinc-900/30 p-3.5 rounded-xl border border-white/[0.06]">
               
               {/* Search input (2 cols on sm) */}
               <div className="sm:col-span-2 relative">
@@ -1042,7 +1042,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                   placeholder="Cari NTPN, bank, atau keterangan..."
                   value={filterSearch}
                   onChange={(e) => setFilterSearch(e.target.value)}
-                  className="w-full text-[11px] font-bold text-zinc-200 bg-zinc-950 border border-zinc-800 rounded-lg pl-8.5 pr-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                  className="w-full text-[11px] font-bold text-zinc-200 bg-[#06060f] border border-white/[0.08] rounded-lg pl-8.5 pr-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
                 />
               </div>
 
@@ -1051,7 +1051,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                 <select
                   value={filterMonth}
                   onChange={(e) => setFilterMonth(e.target.value)}
-                  className="w-full text-[11px] font-bold text-zinc-200 bg-zinc-950 border border-zinc-800 rounded-lg px-2.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                  className="w-full text-[11px] font-bold text-zinc-200 bg-[#06060f] border border-white/[0.08] rounded-lg px-2.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
                   <option value="Semua">Masa: Semua</option>
                   {MONTHS_ORDER.map(m => (
@@ -1065,7 +1065,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="w-full text-[11px] font-bold text-zinc-200 bg-zinc-950 border border-zinc-800 rounded-lg px-2.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                  className="w-full text-[11px] font-bold text-zinc-200 bg-[#06060f] border border-white/[0.08] rounded-lg px-2.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
                   <option value="Semua">Jenis: Semua</option>
                   <option value="Pasal 25">PPh Pasal 25</option>
@@ -1093,7 +1093,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                       setFilterMonth('Semua');
                       setFilterType('Semua');
                     }}
-                    className="px-3.5 py-2 bg-zinc-900 border border-zinc-800 hover:bg-zinc-850 rounded-xl text-[9px] font-black uppercase text-amber-400 tracking-wider transition-colors cursor-pointer"
+                    className="px-3.5 py-2 bg-zinc-900 border border-white/[0.08] hover:bg-zinc-850 rounded-xl text-[9px] font-black uppercase text-amber-400 tracking-wider transition-colors cursor-pointer"
                   >
                     Atur Ulang Pencarian
                   </button>
@@ -1104,7 +1104,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                 {sortedFilteredDeposits.map((item) => (
                   <div
                     key={item.id}
-                    className="p-4 bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-750/80 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all"
+                    className="p-4 bg-[#0a0a1a]/80 border border-white/[0.08] hover:border-zinc-750/80 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all"
                   >
                     
                     {/* Primary Info Block left */}
@@ -1122,7 +1122,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                       <div className="space-y-1 text-left">
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className="text-xs font-black text-zinc-100">{item.taxType}</span>
-                          <span className="text-[8px] font-extrabold uppercase bg-zinc-800 border border-zinc-700 text-zinc-300 px-2 py-0.5 rounded">
+                          <span className="text-[8px] font-extrabold uppercase bg-zinc-800 border border-white/[0.1] text-zinc-300 px-2 py-0.5 rounded">
                             MAP {item.mapCode}
                           </span>
                         </div>
@@ -1142,7 +1142,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                     </div>
 
                     {/* Financial Block Right */}
-                    <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center border-t sm:border-t-0 border-zinc-900 pt-3 sm:pt-0 gap-3 shrink-0">
+                    <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center border-t sm:border-t-0 border-white/[0.06] pt-3 sm:pt-0 gap-3 shrink-0">
                       
                       {/* Amount */}
                       <div className="text-left sm:text-right">
@@ -1159,7 +1159,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                         <div 
                           onClick={() => handleCopyNtpn(item.ntpn)}
                           title="Klik untuk menyalin kode NTPN"
-                          className="px-2 py-1 bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 rounded-lg text-[9px] font-mono font-black text-zinc-400 hover:text-zinc-200 cursor-pointer flex items-center gap-1.5 transition-all"
+                          className="px-2 py-1 bg-[#06060f] hover:bg-white/[0.04] border border-white/[0.08] rounded-lg text-[9px] font-mono font-black text-zinc-400 hover:text-zinc-200 cursor-pointer flex items-center gap-1.5 transition-all"
                         >
                           <span>NTPN:</span>
                           <span className="text-zinc-200 font-bold">{item.ntpn.substring(0, 8)}...</span>
@@ -1174,7 +1174,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                         <button
                           onClick={() => setSelectedReceipt(item)}
                           title="Buka Lembar BPN Resmi Negara"
-                          className="p-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-zinc-100 rounded-lg transition-colors cursor-pointer"
+                          className="p-1.5 bg-zinc-900 hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/[0.1] text-zinc-400 hover:text-zinc-100 rounded-lg transition-colors cursor-pointer"
                         >
                           <Eye className="w-3.5 h-3.5" />
                         </button>
@@ -1183,7 +1183,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                         <button
                           onClick={() => handleEditDepositClick(item)}
                           title="Edit Bukti Setor"
-                          className="p-1.5 bg-zinc-900 hover:bg-amber-500/10 border border-zinc-800 hover:border-amber-500/20 text-amber-400 hover:text-amber-300 rounded-lg transition-colors cursor-pointer"
+                          className="p-1.5 bg-zinc-900 hover:bg-amber-500/10 border border-white/[0.08] hover:border-amber-500/20 text-amber-400 hover:text-amber-300 rounded-lg transition-colors cursor-pointer"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>
@@ -1192,7 +1192,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                         <button
                           onClick={() => setDepositToDelete(item)}
                           title="Hapus Bukti Setor"
-                          className="p-1.5 bg-zinc-900 hover:bg-rose-500/10 border border-zinc-800 hover:border-rose-500/20 text-rose-400 hover:text-rose-300 rounded-lg transition-colors cursor-pointer"
+                          className="p-1.5 bg-zinc-900 hover:bg-rose-500/10 border border-white/[0.08] hover:border-rose-500/20 text-rose-400 hover:text-rose-300 rounded-lg transition-colors cursor-pointer"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -1206,7 +1206,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
               </div>
             )}
 
-            <div className="text-[9px] text-zinc-500 font-bold uppercase flex items-center justify-between border-t border-zinc-900 pt-3 tracking-wide text-left">
+            <div className="text-[9px] text-zinc-500 font-bold uppercase flex items-center justify-between border-t border-white/[0.06] pt-3 tracking-wide text-left">
               <span>Seluruh data Penyetoran di atas telah dipasangkan ke rekonsiliasi kas negara</span>
               <span>Kementerian Keuangan RI Ditjen Pajak</span>
             </div>
@@ -1229,7 +1229,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
               initial={{ scale: 0.95, y: 15 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 15 }}
-              className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6 md:p-8 max-w-2xl w-full shadow-2xl relative overflow-hidden text-zinc-200"
+              className="bg-[#06060f] border border-white/[0.08] rounded-3xl p-6 md:p-8 max-w-2xl w-full shadow-2xl relative overflow-hidden text-zinc-200"
             >
               {/* State Seal Watermark in background */}
               <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
@@ -1239,7 +1239,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
               <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-500 via-indigo-500 to-emerald-500"></div>
 
               {/* BPN Header Printout */}
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-zinc-800 pb-5 gap-4 relative z-10">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/[0.08] pb-5 gap-4 relative z-10">
                 <div className="space-y-1 text-left">
                   <p className="text-[9px] font-black text-zinc-500 uppercase tracking-widest leading-none">REPUBLIK INDONESIA</p>
                   <p className="text-[11px] font-black text-zinc-300 uppercase tracking-wider">DIREKTORAT JENDERAL PAJAK</p>
@@ -1264,19 +1264,19 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
               </div>
 
               {/* Receipt Body Ledger Fields */}
-              <div className="bg-zinc-900/40 border border-zinc-800/80 rounded-2xl p-4 md:p-5 space-y-4 font-mono text-[11px] relative z-10">
+              <div className="bg-[#0a0a1a]/80 border border-white/[0.08] rounded-2xl p-4 md:p-5 space-y-4 font-mono text-[11px] relative z-10">
                 
-                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-zinc-800/50 text-left">
+                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-white/[0.06] text-left">
                   <span className="col-span-4 text-zinc-500 font-bold uppercase">WAJIB PAJAK:</span>
                   <span className="col-span-8 text-zinc-200 font-black">CV. TORAS BENAUNT</span>
                 </div>
 
-                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-zinc-800/50 text-left">
+                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-white/[0.06] text-left">
                   <span className="col-span-4 text-zinc-500 font-bold uppercase">NPWP BADAN:</span>
                   <span className="col-span-8 text-zinc-200 font-black">02.485.932.1-402.000</span>
                 </div>
 
-                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-zinc-800/50 text-left">
+                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-white/[0.06] text-left">
                   <span className="col-span-4 text-zinc-500 font-bold uppercase">KAP / KJS:</span>
                   <span className="col-span-8 text-zinc-100 font-black">
                     {selectedReceipt.mapCode} / 100 - {selectedReceipt.taxType.split('(')[0]}
@@ -1284,41 +1284,41 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                 </div>
 
                 {selectedReceipt.billingCode && (
-                  <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-zinc-800/50 text-left">
+                  <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-white/[0.06] text-left">
                     <span className="col-span-4 text-zinc-500 font-bold uppercase">ID BILLING:</span>
                     <span className="col-span-8 text-zinc-200 font-black text-left">{selectedReceipt.billingCode}</span>
                   </div>
                 )}
 
-                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-zinc-800/50 text-left">
+                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-white/[0.06] text-left">
                   <span className="col-span-4 text-zinc-500 font-bold uppercase">MASA / TAHUN:</span>
                   <span className="col-span-8 text-zinc-200 font-black uppercase text-left">
                     {selectedReceipt.month} {selectedReceipt.year}
                   </span>
                 </div>
 
-                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-zinc-800/50 text-left">
+                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-white/[0.06] text-left">
                   <span className="col-span-4 text-zinc-500 font-bold uppercase">NOMINAL SETORAN:</span>
                   <span className="col-span-8 text-emerald-400 font-black text-xs text-left">
                     Rp {selectedReceipt.amount.toLocaleString('id-ID')},00
                   </span>
                 </div>
 
-                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-zinc-800/50 text-left">
+                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-white/[0.06] text-left">
                   <span className="col-span-4 text-zinc-500 font-bold uppercase">TERBILANG:</span>
                   <span className="col-span-8 text-zinc-300 font-bold capitalize leading-normal text-left">
                     # {convertAmountToTerbilang(selectedReceipt.amount)} Rupiah #
                   </span>
                 </div>
 
-                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-zinc-800/50 text-left">
+                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-white/[0.06] text-left">
                   <span className="col-span-4 text-zinc-500 font-bold uppercase">KODE NTPN:</span>
                   <span className="col-span-8 text-amber-400 font-black tracking-widest select-all text-left">
                     {selectedReceipt.ntpn}
                   </span>
                 </div>
 
-                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-zinc-800/50 text-left">
+                <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-white/[0.06] text-left">
                   <span className="col-span-4 text-zinc-500 font-bold uppercase">SALURAN SETOR:</span>
                   <span className="col-span-8 text-zinc-200 font-black text-left">{selectedReceipt.bankName}</span>
                 </div>
@@ -1341,13 +1341,13 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
                   onClick={() => {
                     triggerNotification(`Mengunduh berkas bukti resmi NTPN ${selectedReceipt.ntpn}...`);
                   }}
-                  className="flex-1 py-3 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl text-xs font-black uppercase text-amber-400 tracking-wider flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  className="flex-1 py-3 bg-zinc-900 hover:bg-white/[0.06] border border-white/[0.08] rounded-xl text-xs font-black uppercase text-amber-400 tracking-wider flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <Download className="w-4 h-4" /> Cetak / Unduh BPN PDF
                 </button>
                 <button
                   onClick={() => setSelectedReceipt(null)}
-                  className="flex-1 py-3 bg-zinc-850 hover:bg-zinc-800 text-zinc-300 text-xs font-black uppercase rounded-xl tracking-wider transition-all cursor-pointer"
+                  className="flex-1 py-3 bg-zinc-850 hover:bg-white/[0.06] text-zinc-300 text-xs font-black uppercase rounded-xl tracking-wider transition-all cursor-pointer"
                 >
                   Tutup Rincian
                 </button>
@@ -1368,9 +1368,9 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-zinc-950 border border-zinc-800 rounded-2xl p-6 max-w-sm w-full space-y-4 shadow-2xl"
+              className="bg-[#06060f] border border-white/[0.08] rounded-2xl p-6 max-w-sm w-full space-y-4 shadow-2xl"
             >
-              <div className="flex items-center gap-3 border-b border-zinc-900 pb-3">
+              <div className="flex items-center gap-3 border-b border-white/[0.06] pb-3">
                 <div className="p-2 bg-rose-500/10 text-rose-400 rounded-xl">
                   <Trash2 className="w-5 h-5 animate-bounce" />
                 </div>
@@ -1386,7 +1386,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
 
               <div className="text-left space-y-2 text-xs text-zinc-400 font-bold">
                 <p>Apakah Anda yakin ingin menghapus catatan penyetoran pajak berikut?</p>
-                <div className="p-3 bg-zinc-900/60 border border-zinc-800/80 rounded-xl space-y-1">
+                <div className="p-3 bg-[#0a0a1a] border border-white/[0.08] rounded-xl space-y-1">
                   <p className="text-[10px] text-zinc-500 uppercase">Jenis Setoran:</p>
                   <p className="text-zinc-100 font-black">{depositToDelete.taxType}</p>
                   <p className="text-[10px] text-zinc-500 uppercase mt-2">Jumlah Disetor:</p>
@@ -1402,7 +1402,7 @@ export const TaxPaymentTrackingTab: React.FC<TaxPaymentTrackingTabProps> = ({ db
               <div className="flex gap-2.5 pt-2">
                 <button
                   onClick={() => setDepositToDelete(null)}
-                  className="flex-1 py-2.5 bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 text-zinc-300 text-xs font-black uppercase rounded-xl tracking-wider transition-colors cursor-pointer"
+                  className="flex-1 py-2.5 bg-zinc-900 hover:bg-zinc-850 border border-white/[0.08] text-zinc-300 text-xs font-black uppercase rounded-xl tracking-wider transition-colors cursor-pointer"
                 >
                   Batal
                 </button>

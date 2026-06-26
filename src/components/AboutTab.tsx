@@ -159,8 +159,8 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-          <h2 className="text-lg font-black text-slate-800 mb-6 flex items-center gap-2">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-white/[0.06] shadow-sm hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-black text-zinc-200 mb-6 flex items-center gap-2">
             <Server className="w-5 h-5 text-indigo-600" /> Profil Pengembang
           </h2>
           
@@ -170,40 +170,40 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
                 <span className="text-indigo-700 font-black text-xl">OE</span>
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900">Oktavianus Eko Haryanto</h3>
+                <h3 className="text-base font-bold text-zinc-100">Oktavianus Eko Haryanto</h3>
                 <p className="text-xs font-bold text-indigo-600 uppercase tracking-wider mt-0.5">Full Stack Developer</p>
-                <p className="text-sm text-slate-500 mt-2 leading-relaxed font-medium">
+                <p className="text-sm text-zinc-500 mt-2 leading-relaxed font-medium">
                   Arsitek dan pengembang utama di balik sistem ERP ini. Mengkhususkan diri dalam pengembangan antarmuka web modern, manajemen state aplikasi yang kompleks, dan sistem basis data lokal berbasis peramban (browser-based persistence).
                 </p>
               </div>
             </div>
             
-            <div className="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <a href="mailto:oktavianus.eko11@gmail.com" className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 border border-slate-100 hover:border-slate-200 transition-all group shadow-sm">
+            <div className="pt-4 border-t border-white/[0.04] grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <a href="mailto:oktavianus.eko11@gmail.com" className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.06] transition-all group shadow-sm">
                 <div className="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors shrink-0">
                   <Mail className="w-4 h-4 text-rose-600" />
                 </div>
                 <div className="overflow-hidden">
-                  <p className="text-[10px] font-bold text-slate-400 uppercase">Email</p>
-                  <p className="text-xs font-bold text-slate-700 truncate">oktavianus.eko11@gmail.com</p>
+                  <p className="text-[10px] font-bold text-zinc-500 uppercase">Email</p>
+                  <p className="text-xs font-bold text-zinc-300 truncate">oktavianus.eko11@gmail.com</p>
                 </div>
               </a>
               
-              <a href="https://wa.me/6289665120396" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 border border-slate-100 hover:border-slate-200 transition-all group shadow-sm">
+              <a href="https://wa.me/6289665120396" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.06] transition-all group shadow-sm">
                 <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center group-hover:bg-emerald-100 transition-colors shrink-0">
                   <Phone className="w-4 h-4 text-emerald-600" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase">WhatsApp</p>
-                  <p className="text-xs font-bold text-slate-700">0896-6512-0396</p>
+                  <p className="text-[10px] font-bold text-zinc-500 uppercase">WhatsApp</p>
+                  <p className="text-xs font-bold text-zinc-300">0896-6512-0396</p>
                 </div>
               </a>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-          <h2 className="text-lg font-black text-slate-800 mb-6 flex items-center gap-2">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-white/[0.06] shadow-sm hover:shadow-md transition-shadow">
+          <h2 className="text-lg font-black text-zinc-200 mb-6 flex items-center gap-2">
             <Database className="w-5 h-5 text-indigo-600" /> Teknologi & Infrastruktur
           </h2>
           
@@ -213,8 +213,8 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
                 <div className="w-2 h-2 rounded-full bg-indigo-500"></div>
               </div>
               <div>
-                <p className="text-sm font-bold text-slate-700">React 18 & TypeScript</p>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">Dibangun dengan arsitektur komponen modern berbasis hooks dan pengetikan statis ketat (strict typing) untuk meminimalisasi error.</p>
+                <p className="text-sm font-bold text-zinc-300">React 18 & TypeScript</p>
+                <p className="text-xs text-zinc-500 font-medium mt-0.5">Dibangun dengan arsitektur komponen modern berbasis hooks dan pengetikan statis ketat (strict typing) untuk meminimalisasi error.</p>
               </div>
             </li>
             <li className="flex items-start gap-3">
@@ -222,8 +222,8 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
                 <div className="w-2 h-2 rounded-full bg-indigo-500"></div>
               </div>
               <div>
-                <p className="text-sm font-bold text-slate-700">Vite Build Engine</p>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">Memanfaatkan Vite sebagai bundler super cepat untuk HMR (Hot Module Replacement) dan optimasi build produksi yang ringan.</p>
+                <p className="text-sm font-bold text-zinc-300">Vite Build Engine</p>
+                <p className="text-xs text-zinc-500 font-medium mt-0.5">Memanfaatkan Vite sebagai bundler super cepat untuk HMR (Hot Module Replacement) dan optimasi build produksi yang ringan.</p>
               </div>
             </li>
             <li className="flex items-start gap-3">
@@ -231,8 +231,8 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
                 <div className="w-2 h-2 rounded-full bg-indigo-500"></div>
               </div>
               <div>
-                <p className="text-sm font-bold text-slate-700">Tailwind CSS & Lucide</p>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">Sistem desain utilitas dipadukan dengan ikon SVG dinamis untuk UI yang estetis, rapi, dan responsif di seluruh perangkat.</p>
+                <p className="text-sm font-bold text-zinc-300">Tailwind CSS & Lucide</p>
+                <p className="text-xs text-zinc-500 font-medium mt-0.5">Sistem desain utilitas dipadukan dengan ikon SVG dinamis untuk UI yang estetis, rapi, dan responsif di seluruh perangkat.</p>
               </div>
             </li>
             <li className="flex items-start gap-3">
@@ -240,13 +240,13 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
                 <div className="w-2 h-2 rounded-full bg-indigo-500"></div>
               </div>
               <div>
-                <p className="text-sm font-bold text-slate-700">Client-Side Storage Engine</p>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">Mesin database khusus berbasis LocalStorage yang memproses jurnal double-entry, kalkulasi HPP, dan pajak 100% di peramban tanpa delay server.</p>
+                <p className="text-sm font-bold text-zinc-300">Client-Side Storage Engine</p>
+                <p className="text-xs text-zinc-500 font-medium mt-0.5">Mesin database khusus berbasis LocalStorage yang memproses jurnal double-entry, kalkulasi HPP, dan pajak 100% di peramban tanpa delay server.</p>
               </div>
             </li>
           </ul>
           
-          <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-400 font-medium">
+          <div className="mt-8 pt-6 border-t border-white/[0.04] flex items-center justify-center gap-2 text-xs text-zinc-500 font-medium">
             Sistem dirancang secara khusus untuk kelancaran bisnis Anda
           </div>
         </div>
@@ -261,7 +261,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
             </div>
             <div>
               <h2 className="text-lg font-black text-slate-100 tracking-tight">Manajemen Database (LocalStorage)</h2>
-              <p className="text-slate-400 text-xs mt-0.5 font-medium">Cadangkan atau pulihkan data finansial Anda dengan aman.</p>
+              <p className="text-zinc-500 text-xs mt-0.5 font-medium">Cadangkan atau pulihkan data finansial Anda dengan aman.</p>
             </div>
           </div>
         </div>
@@ -271,8 +271,8 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
             <h3 className="text-slate-200 font-bold text-sm mb-2 flex items-center gap-2">
               <DownloadCloud className="w-4 h-4 text-emerald-400" /> Ekspor (Backup)
             </h3>
-            <p className="text-slate-500 text-xs leading-relaxed mb-4">
-              Unduh seluruh data transaksi, master data, dan pengaturan Anda ke dalam file <code className="text-slate-300">.json</code>. Simpan file ini di tempat yang aman.
+            <p className="text-zinc-500 text-xs leading-relaxed mb-4">
+              Unduh seluruh data transaksi, master data, dan pengaturan Anda ke dalam file <code className="text-zinc-600">.json</code>. Simpan file ini di tempat yang aman.
             </p>
             <button 
               onClick={handleExport}
@@ -286,8 +286,8 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
             <h3 className="text-slate-200 font-bold text-sm mb-2 flex items-center gap-2">
               <UploadCloud className="w-4 h-4 text-rose-400" /> Impor (Restore)
             </h3>
-            <p className="text-slate-500 text-xs leading-relaxed mb-4">
-              Pulihkan data dari file <code className="text-slate-300">.json</code> yang pernah Anda unduh. <span className="text-rose-400 font-bold">Aksi ini akan menimpa seluruh data saat ini!</span>
+            <p className="text-zinc-500 text-xs leading-relaxed mb-4">
+              Pulihkan data dari file <code className="text-zinc-600">.json</code> yang pernah Anda unduh. <span className="text-rose-400 font-bold">Aksi ini akan menimpa seluruh data saat ini!</span>
             </p>
             <input 
               type="file" 
@@ -321,14 +321,14 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
           </div>
           <div>
             <h2 className="text-2xl font-black text-slate-100 tracking-tight">Standard Operating Procedure</h2>
-            <p className="text-slate-400 text-sm mt-1 font-medium">Software Engineering Workflow & Tech Stack</p>
+            <p className="text-zinc-500 text-sm mt-1 font-medium">Software Engineering Workflow & Tech Stack</p>
           </div>
         </div>
 
         <div className="divide-y divide-slate-800/50">
           {WORKFLOW_PHASES.map((w) => (
             <div key={w.phase} className="p-8 sm:p-10 hover:bg-[#0f1525] transition-colors group relative">
-              <div className="absolute top-8 right-10 text-slate-800 font-black text-6xl opacity-30 select-none group-hover:text-indigo-900/40 transition-colors">
+              <div className="absolute top-8 right-10 text-zinc-200 font-black text-6xl opacity-30 select-none group-hover:text-indigo-900/40 transition-colors">
                 0{w.phase}
               </div>
               
@@ -343,7 +343,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
                   </div>
                   {w.title}
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed max-w-2xl font-medium mb-8">
+                <p className="text-zinc-500 text-sm leading-relaxed max-w-2xl font-medium mb-8">
                   {w.desc}
                 </p>
 
@@ -351,7 +351,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
                   {w.techs.map((tech, idx) => (
                     <div key={idx} className="bg-[#131a2b] border border-slate-800/80 rounded-xl p-5 hover:border-slate-700 transition-colors">
                       <h4 className="text-slate-200 font-bold text-sm mb-1">{tech.name}</h4>
-                      <p className="text-slate-500 text-xs leading-relaxed">{tech.desc}</p>
+                      <p className="text-zinc-500 text-xs leading-relaxed">{tech.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -363,9 +363,9 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
                   <Lightbulb className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-[10px] font-black tracking-widest text-emerald-500 uppercase mb-1 block">Pro Tip</span>
-                    <p className="text-slate-300 text-xs leading-relaxed font-medium">{w.tip}</p>
+                    <p className="text-zinc-600 text-xs leading-relaxed font-medium">{w.tip}</p>
                   </div>
-                  <div className="ml-auto shrink-0 self-end opacity-20 text-[10px] font-mono text-slate-500 group-hover:opacity-100 transition-opacity">
+                  <div className="ml-auto shrink-0 self-end opacity-20 text-[10px] font-mono text-zinc-500 group-hover:opacity-100 transition-opacity">
                     @okta's
                   </div>
                 </div>

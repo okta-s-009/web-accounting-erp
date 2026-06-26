@@ -106,8 +106,8 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
       {/* KPI & Controls Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-base font-bold text-slate-900">Kas & Perbankan (Treasury)</h2>
-          <p className="text-xs text-slate-500 font-medium">Rekonsiliasi mutasi kas harian, transfer dana antar-bank, dan catat beban operasional langsung</p>
+          <h2 className="text-base font-bold text-zinc-100">Kas & Perbankan (Treasury)</h2>
+          <p className="text-xs text-zinc-500 font-medium">Rekonsiliasi mutasi kas harian, transfer dana antar-bank, dan catat beban operasional langsung</p>
         </div>
 
         {/* Treasury Action Buttons */}
@@ -131,24 +131,24 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
           <button
             id="btn-cash-transfer"
             onClick={() => handleOpenModal('Transfer')}
-            className="flex items-center space-x-1 px-3 py-2 text-xs font-bold text-slate-800 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg shadow-sm transition-colors"
+            className="flex items-center space-x-1 px-3 py-2 text-xs font-bold text-zinc-200 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-lg shadow-sm transition-colors"
           >
-            <RefreshCw className="w-3.5 h-3.5 text-slate-600" />
+            <RefreshCw className="w-3.5 h-3.5 text-zinc-400" />
             <span>Transfer Bank</span>
           </button>
         </div>
       </div>
 
       {/* Transaction List */}
-      <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-        <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/70">
-          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wide">Buku Transaksi Kas & Bank</h3>
+      <div className="bg-white border border-white/[0.06] rounded-xl shadow-sm overflow-hidden">
+        <div className="px-5 py-4 border-b border-white/[0.04] bg-white/[0.03]">
+          <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wide">Buku Transaksi Kas & Bank</h3>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50/30 border-b border-slate-200 text-xs font-bold text-slate-500">
+              <tr className="bg-white/[0.01] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
                 <th className="px-6 py-3.5">No Transaksi</th>
                 <th className="px-6 py-3.5">Tanggal</th>
                 <th className="px-6 py-3.5">Tipe</th>
@@ -159,18 +159,18 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
                 <th className="px-6 py-3.5 text-center">Aksi</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-xs text-slate-700 font-semibold">
+            <tbody className="divide-y divide-white/[0.04] text-xs text-zinc-300 font-semibold">
               {transactions.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="text-center py-12 text-slate-400 font-medium">
+                  <td colSpan={8} className="text-center py-12 text-zinc-500 font-medium">
                     Belum ada transaksi kas & bank tercatat.
                   </td>
                 </tr>
               ) : (
                 transactions.map((tx) => (
-                  <tr key={tx.id} className="hover:bg-slate-50/30 transition-colors">
-                    <td className="px-6 py-4 font-bold text-slate-900">{tx.transactionNo}</td>
-                    <td className="px-6 py-4 text-slate-500">{tx.date}</td>
+                  <tr key={tx.id} className="hover:bg-white/[0.01] transition-colors">
+                    <td className="px-6 py-4 font-bold text-zinc-100">{tx.transactionNo}</td>
+                    <td className="px-6 py-4 text-zinc-500">{tx.date}</td>
                     <td className="px-6 py-4">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-extrabold ${
                         tx.type === 'In' ? 'bg-emerald-100 text-emerald-800' :
@@ -180,10 +180,10 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
                         {tx.type === 'In' ? 'Masuk' : tx.type === 'Out' ? 'Keluar' : 'Transfer'}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-slate-600">{getCoaName(tx.fromCoaId)}</td>
-                    <td className="px-6 py-4 text-slate-600">{getCoaName(tx.toCoaId)}</td>
-                    <td className="px-6 py-4 text-slate-800 font-medium max-w-xs truncate">{tx.description}</td>
-                    <td className="px-6 py-4 text-right font-extrabold text-slate-900">
+                    <td className="px-6 py-4 text-zinc-400">{getCoaName(tx.fromCoaId)}</td>
+                    <td className="px-6 py-4 text-zinc-400">{getCoaName(tx.toCoaId)}</td>
+                    <td className="px-6 py-4 text-zinc-200 font-medium max-w-xs truncate">{tx.description}</td>
+                    <td className="px-6 py-4 text-right font-extrabold text-zinc-100">
                       {formatCurrency(tx.amount, db.activeCurrency)}
                     </td>
                     <td className="px-6 py-4 text-center">
@@ -205,13 +205,13 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
       {/* Action Dialog / Modal */}
       {modalType && (
         <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-md overflow-hidden flex flex-col">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
+          <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-md overflow-hidden flex flex-col">
+            <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
+              <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide">
                 Catat {modalType === 'In' ? 'Kas Masuk' : modalType === 'Out' ? 'Kas Keluar' : 'Transfer Bank'} Baru
               </h3>
-              <button onClick={() => setModalType(null)} className="p-1 hover:bg-slate-200/60 rounded-lg">
-                <X className="w-4 h-4 text-slate-500" />
+              <button onClick={() => setModalType(null)} className="p-1 hover:bg-white/[0.06]/60 rounded-lg">
+                <X className="w-4 h-4 text-zinc-500" />
               </button>
             </div>
 
@@ -224,17 +224,17 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Tanggal</label>
+                  <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Tanggal</label>
                   <DatePicker
                     value={txDate}
                     onChange={(val) => setTxDate(val)}
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Jumlah Uang (Rp)</label>
+                  <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Jumlah Uang (Rp)</label>
                   <input
                     type="number"
-                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 font-bold"
+                    className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 font-bold"
                     value={amount}
                     onChange={(e) => setAmount(Number(e.target.value))}
                     placeholder="Rp 0"
@@ -246,9 +246,9 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
               {modalType === 'In' && (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Sumber Pendapatan / Modal</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Sumber Pendapatan / Modal</label>
                     <select
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none bg-white font-bold"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none bg-white font-bold"
                       value={fromCoaId}
                       onChange={(e) => setFromCoaId(e.target.value)}
                     >
@@ -262,9 +262,9 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Terima ke Rekening</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Terima ke Rekening</label>
                     <select
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none bg-white font-bold"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none bg-white font-bold"
                       value={toCoaId}
                       onChange={(e) => setToCoaId(e.target.value)}
                     >
@@ -283,9 +283,9 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
               {modalType === 'Out' && (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Keluarkan dari Rekening</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Keluarkan dari Rekening</label>
                     <select
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none bg-white font-bold"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none bg-white font-bold"
                       value={fromCoaId}
                       onChange={(e) => setFromCoaId(e.target.value)}
                     >
@@ -299,9 +299,9 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Pos Beban / Pengeluaran</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Pos Beban / Pengeluaran</label>
                     <select
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none bg-white font-bold"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none bg-white font-bold"
                       value={toCoaId}
                       onChange={(e) => setToCoaId(e.target.value)}
                     >
@@ -320,9 +320,9 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
               {modalType === 'Transfer' && (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Kirim dari Rekening</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Kirim dari Rekening</label>
                     <select
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none bg-white font-bold"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none bg-white font-bold"
                       value={fromCoaId}
                       onChange={(e) => setFromCoaId(e.target.value)}
                     >
@@ -336,9 +336,9 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Terima ke Rekening</label>
+                    <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Terima ke Rekening</label>
                     <select
-                      className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none bg-white font-bold"
+                      className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none bg-white font-bold"
                       value={toCoaId}
                       onChange={(e) => setToCoaId(e.target.value)}
                     >
@@ -355,9 +355,9 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
               )}
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Keterangan / Memo *</label>
+                <label className="block text-[10px] font-bold text-zinc-500 uppercase mb-1">Keterangan / Memo *</label>
                 <textarea
-                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
+                  className="w-full text-xs px-3 py-2 border border-white/[0.06] rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={2}
@@ -365,11 +365,11 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
                 />
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end space-x-3 bg-slate-50 -mx-6 -mb-6 px-6 py-4">
+              <div className="pt-4 border-t border-white/[0.04] flex items-center justify-end space-x-3 bg-white/[0.02] -mx-6 -mb-6 px-6 py-4">
                 <button
                   type="button"
                   onClick={() => setModalType(null)}
-                  className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 bg-white rounded-lg"
+                  className="px-4 py-2 text-xs font-bold text-zinc-400 hover:text-zinc-200 border border-white/[0.06] bg-white rounded-lg"
                 >
                   Batal
                 </button>
@@ -386,27 +386,27 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
       )}
       {txToDelete && (
         <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
-          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide flex items-center gap-2">
+          <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
+            <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
+              <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" /> Konfirmasi Hapus Transaksi
               </h3>
-              <button onClick={() => setTxToDelete(null)} className="p-1 hover:bg-slate-200/60 rounded-lg">
-                <X className="w-4 h-4 text-slate-500" />
+              <button onClick={() => setTxToDelete(null)} className="p-1 hover:bg-white/[0.06]/60 rounded-lg">
+                <X className="w-4 h-4 text-zinc-500" />
               </button>
             </div>
-            <div className="p-6 text-xs text-slate-600 space-y-3">
+            <div className="p-6 text-xs text-zinc-400 space-y-3">
               <p>Apakah Anda yakin ingin menghapus transaksi kas ini?</p>
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-100 font-bold text-slate-900">
+              <div className="bg-white/[0.02] p-3 rounded-lg border border-white/[0.04] font-bold text-zinc-100">
                 {transactions.find(tx => tx.id === txToDelete)?.description || 'Transaksi'}
               </div>
-              <p className="text-[10px] text-slate-400">Tindakan ini tidak dapat dibatalkan.</p>
+              <p className="text-[10px] text-zinc-500">Tindakan ini tidak dapat dibatalkan.</p>
             </div>
-            <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-end space-x-3 bg-slate-50">
+            <div className="px-6 py-4 border-t border-white/[0.04] flex items-center justify-end space-x-3 bg-white/[0.02]">
               <button
                 type="button"
                 onClick={() => setTxToDelete(null)}
-                className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 bg-white rounded-lg"
+                className="px-4 py-2 text-xs font-bold text-zinc-400 hover:text-zinc-200 border border-white/[0.06] bg-white rounded-lg"
               >
                 Batal
               </button>
