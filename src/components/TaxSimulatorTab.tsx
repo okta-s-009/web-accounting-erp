@@ -105,61 +105,7 @@ export const TaxSimulatorTab: React.FC<TaxSimulatorTabProps> = ({ db }) => {
       }
     }
     
-        month: 'April',
-        year: 2026,
-        taxType: 'PPh Pasal 25 (Angsuran PPh Badan)',
-        mapCode: '411125',
-        ntpn: '4918C8291746B3E9',
-        amount: 15000000,
-        paymentDate: '2026-05-14',
-        bankName: 'Bank BRI',
-        status: 'Terverifikasi',
-        notes: 'Angsuran bulanan PPh Badan Masa April (Kenaikan laba)',
-        attachmentName: 'BPN_PPh25_Apr_2026.pdf'
-      },
-      {
-        id: 'TX-1007',
-        month: 'April',
-        year: 2026,
-        taxType: 'PPN Dalam Negeri (Keluaran - Masukan)',
-        mapCode: '411211',
-        ntpn: '3018A8271639D2F3',
-        amount: 48900000,
-        paymentDate: '2026-05-14',
-        bankName: 'Bank BRI',
-        status: 'Terverifikasi',
-        notes: 'Penyetoran PPN Kurang Bayar Masa April 2026',
-        attachmentName: 'BPN_PPN_Apr_2026.pdf'
-      },
-      {
-        id: 'TX-1008',
-        month: 'Mei',
-        year: 2026,
-        taxType: 'PPh Pasal 25 (Angsuran PPh Badan)',
-        mapCode: '411125',
-        ntpn: '1029A8271649D8E1',
-        amount: 15000000,
-        paymentDate: '2026-06-12',
-        bankName: 'Bank Mandiri',
-        status: 'Terverifikasi',
-        notes: 'Angsuran bulanan PPh Badan Masa Mei 2026',
-        attachmentName: 'BPN_PPh25_Mei_2026.pdf'
-      },
-      {
-        id: 'TX-1009',
-        month: 'Juni',
-        year: 2026,
-        taxType: 'PPh Pasal 21 (Pajak Gaji Karyawan)',
-        mapCode: '411121',
-        ntpn: '7392B1928374A921',
-        amount: 3820000,
-        paymentDate: '2026-06-20',
-        bankName: 'Bank BNI',
-        status: 'Menunggu',
-        notes: 'PPh Pasal 21 Masa Juni 2026 - Staff & Direksi',
-        attachmentName: 'BPN_PPh21_Jun_2026_draft.pdf'
-      }
-    ];
+    const seedData: TaxDeposit[] = [];
     localStorage.setItem('tb_tax_deposits_registry', JSON.stringify(seedData));
     return seedData;
   });
