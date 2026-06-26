@@ -1,5 +1,11 @@
-import React from 'react';
-import { Mail, Phone, Code, Server, Database, ShieldCheck, Heart, Lightbulb, Layers, Code2, HardDrive, Monitor, Calculator, ShieldCheck as ShieldCheckIcon, Globe } from 'lucide-react';
+import React, { useRef } from 'react';
+import { Mail, Phone, Code, Server, Database, ShieldCheck, Heart, Lightbulb, Layers, Code2, HardDrive, Monitor, Calculator, ShieldCheck as ShieldCheckIcon, Globe, DownloadCloud, UploadCloud, AlertCircle } from 'lucide-react';
+import { ERPDatabase } from '../data/accountingEngine';
+
+interface AboutTabProps {
+  db?: ERPDatabase;
+  onImportDatabase?: (db: ERPDatabase) => void;
+}
 
 const WORKFLOW_PHASES = [
   {
@@ -82,7 +88,47 @@ const WORKFLOW_PHASES = [
   }
 ];
 
-export const AboutTab: React.FC = () => {
+export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleExport = () => {
+    if (!db) return;
+    const dataStr = JSON.stringify(db, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+    const exportFileDefaultName = `backup-erp-torasbenaunt-${new Date().toISOString().split('T')[0]}.json`;
+
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const json = JSON.parse(event.target?.result as string);
+        if (json && json.userSession && json.chartOfAccounts) {
+          if (window.confirm('Peringatan: Mengimpor database akan menimpa seluruh data yang ada saat ini. Anda yakin?')) {
+            onImportDatabase?.(json);
+          }
+        } else {
+          alert('Format file tidak valid. Pastikan file backup berasal dari sistem ini.');
+        }
+      } catch (err) {
+        alert('Gagal membaca file JSON. File mungkin rusak.');
+      }
+      // Reset input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    };
+    reader.readAsText(file);
+  };
+
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       <div className="bg-gradient-to-br from-indigo-900 via-slate-900 to-zinc-900 rounded-2xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">
@@ -203,6 +249,67 @@ export const AboutTab: React.FC = () => {
           <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-400 font-medium">
             Sistem dirancang secara khusus untuk kelancaran bisnis Anda
           </div>
+        </div>
+      </div>
+
+      {/* Database Management Section */}
+      <div className="bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden mt-6">
+        <div className="p-6 border-b border-slate-800/60 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
+              <Database className="w-5 h-5 text-emerald-400" />
+            </div>
+            <div>
+              <h2 className="text-lg font-black text-slate-100 tracking-tight">Manajemen Database (LocalStorage)</h2>
+              <p className="text-slate-400 text-xs mt-0.5 font-medium">Cadangkan atau pulihkan data finansial Anda dengan aman.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-900/50">
+          <div className="bg-[#131a2b] border border-slate-800/80 rounded-xl p-5 hover:border-emerald-500/50 transition-colors">
+            <h3 className="text-slate-200 font-bold text-sm mb-2 flex items-center gap-2">
+              <DownloadCloud className="w-4 h-4 text-emerald-400" /> Ekspor (Backup)
+            </h3>
+            <p className="text-slate-500 text-xs leading-relaxed mb-4">
+              Unduh seluruh data transaksi, master data, dan pengaturan Anda ke dalam file <code className="text-slate-300">.json</code>. Simpan file ini di tempat yang aman.
+            </p>
+            <button 
+              onClick={handleExport}
+              className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-lg text-sm transition-colors shadow-lg shadow-emerald-500/20"
+            >
+              Unduh Backup Sekarang
+            </button>
+          </div>
+
+          <div className="bg-[#131a2b] border border-slate-800/80 rounded-xl p-5 hover:border-rose-500/50 transition-colors relative">
+            <h3 className="text-slate-200 font-bold text-sm mb-2 flex items-center gap-2">
+              <UploadCloud className="w-4 h-4 text-rose-400" /> Impor (Restore)
+            </h3>
+            <p className="text-slate-500 text-xs leading-relaxed mb-4">
+              Pulihkan data dari file <code className="text-slate-300">.json</code> yang pernah Anda unduh. <span className="text-rose-400 font-bold">Aksi ini akan menimpa seluruh data saat ini!</span>
+            </p>
+            <input 
+              type="file" 
+              accept=".json" 
+              className="hidden" 
+              ref={fileInputRef}
+              onChange={handleFileChange}
+            />
+            <button 
+              onClick={() => fileInputRef.current?.click()}
+              className="w-full py-2.5 bg-slate-800 hover:bg-rose-600 text-slate-200 hover:text-white font-bold rounded-lg text-sm transition-colors border border-slate-700 hover:border-rose-500"
+            >
+              Pilih File Backup (.json)
+            </button>
+          </div>
+        </div>
+        
+        <div className="bg-amber-500/10 border-t border-amber-500/20 p-4 flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-amber-500 shrink-0" />
+          <p className="text-amber-200/80 text-xs font-medium leading-relaxed">
+            Sistem ini menggunakan arsitektur <strong className="text-amber-400">100% Client-Side Engine</strong>. Seluruh data keuangan tersimpan secara eksklusif di memori <em>browser</em> perangkat ini. Pastikan Anda melakukan <strong>Ekspor Backup</strong> secara berkala untuk menghindari kehilangan data jika Anda menghapus riwayat/cache peramban.
+          </p>
         </div>
       </div>
 

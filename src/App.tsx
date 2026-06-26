@@ -74,6 +74,12 @@ export default function App() {
     alert('Seluruh data transaksi berhasil dihapus.');
   };
 
+  const handleImportDatabase = (importedDb: ERPDatabase) => {
+    setDb(importedDb);
+    saveDatabase(importedDb);
+    alert('Database berhasil dipulihkan (Restore)!');
+  };
+
   const handleRoleChange = (role: UserRole) => {
     const selected = ROLES.find((r) => r.role === role);
     if (!selected) return;
@@ -299,7 +305,7 @@ export default function App() {
               {activeTab === 'Reports' && <ReportsTab db={db} onDeleteTransaction={handleDeleteTransaction} onDeleteAllTransactions={handleDeleteAllTransactions} />}
               {activeTab === 'TaxSimulator' && <TaxSimulatorTab db={db} />}
               {activeTab === 'TaxPaymentTracking' && <TaxPaymentTrackingTab db={db} />}
-              {activeTab === 'About' && <AboutTab />}
+              {activeTab === 'About' && <AboutTab db={db} onImportDatabase={handleImportDatabase} />}
             </div>
           )}
         </main>
