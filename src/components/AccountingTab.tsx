@@ -224,7 +224,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
               ]);
               setIsJournalOpen(true);
             }}
-            className="flex items-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow-md transition-colors"
+            className="flex items-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-black/80 backdrop-blur-sm hover:bg-slate-900 rounded-lg shadow-md transition-all duration-200"
           >
             <Plus className="w-4 h-4" />
             <span>Tambah Jurnal Manual</span>
@@ -244,7 +244,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
 
             <div className="divide-y divide-white/[0.04] max-h-[70vh] overflow-y-auto">
               {[...db.journals].sort((a, b) => b.date.localeCompare(a.date)).map((j) => (
-                <div key={j.id} className="p-5 flex flex-col md:flex-row md:items-start justify-between gap-4 hover:bg-white/[0.02]/20 transition-colors">
+                <div key={j.id} className="p-5 flex flex-col md:flex-row md:items-start justify-between gap-4 hover:bg-white/[0.02]/20 transition-all duration-200">
                   <div className="space-y-1.5 flex-1">
                     <div className="flex items-center space-x-2.5">
                       <span className="font-mono text-xs font-bold text-zinc-100 bg-white/[0.03] px-2 py-0.5 rounded">
@@ -252,8 +252,8 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
                       </span>
                       <span className="text-xs font-bold text-zinc-500">{j.date}</span>
                       <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded ${
-                        j.sourceType === 'Sales' ? 'bg-emerald-50 text-emerald-800' :
-                        j.sourceType === 'Purchase' ? 'bg-indigo-50 text-indigo-800' :
+                        j.sourceType === 'Sales' ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/20' :
+                        j.sourceType === 'Purchase' ? 'bg-indigo-500/15 text-indigo-300 border border-indigo-500/20' :
                         'bg-white/[0.03] text-zinc-200'
                       }`}>
                         {j.sourceType}
@@ -263,14 +263,14 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
                     <div className="flex items-center space-x-2 pt-1.5">
                       <button
                         onClick={() => handleEditJournalClick(j)}
-                        className="flex items-center space-x-1 px-2 py-1 text-[10px] font-bold text-zinc-400 hover:text-slate-950 hover:bg-white/[0.03]/80 rounded border border-white/[0.06]/60 transition-colors"
+                        className="flex items-center space-x-1 px-2 py-1 text-[10px] font-bold text-zinc-400 hover:text-slate-950 hover:bg-white/[0.03]/80 rounded border border-white/[0.06]/60 transition-all duration-200"
                       >
                         <Edit2 className="w-3 h-3" />
                         <span>Edit</span>
                       </button>
                       <button
                         onClick={() => setJournalToDelete(j.id)}
-                        className="flex items-center space-x-1 px-2 py-1 text-[10px] font-bold text-rose-600 hover:text-rose-700 hover:bg-rose-50/80 rounded border border-rose-200/40 transition-colors"
+                        className="flex items-center space-x-1 px-2 py-1 text-[10px] font-bold text-rose-600 hover:text-rose-700 hover:bg-rose-50/80 rounded border border-rose-200/40 transition-all duration-200"
                       >
                         <Trash2 className="w-3 h-3" />
                         <span>Hapus</span>
@@ -329,7 +329,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
                     key={acc.id}
                     id={`ledger-coa-${acc.id}`}
                     onClick={() => setSelectedLedgerCoaId(acc.id)}
-                    className={`w-full text-left px-3 py-2 rounded-lg text-xs font-bold flex items-center justify-between transition-colors ${
+                    className={`w-full text-left px-3 py-2 rounded-lg text-xs font-bold flex items-center justify-between transition-all duration-200 ${
                       active ? 'bg-slate-900 text-white shadow' : 'text-zinc-300 hover:bg-white/[0.02]'
                     }`}
                   >
@@ -371,7 +371,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
                     </tr>
                   ) : (
                     ledgerRows.map((row, rIdx) => (
-                      <tr key={rIdx} className="hover:bg-white/[0.01] transition-colors">
+                      <tr key={rIdx} className="hover:bg-white/[0.01] transition-all duration-200">
                         <td className="px-5 py-4 text-zinc-500">{row.date}</td>
                         <td className="px-5 py-4 font-mono font-bold text-zinc-100">{row.jno}</td>
                         <td className="px-5 py-4 text-zinc-200">{row.desc}</td>
@@ -403,7 +403,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
 
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-white/[0.02] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
+              <tr className="bg-gradient-to-r from-white/[0.04] to-white/[0.02] border-b border-white/[0.08] backdrop-blur-sm text-xs font-bold text-zinc-500">
                 <th className="px-6 py-3.5">Kode Rekening</th>
                 <th className="px-6 py-3.5">Nama Akun</th>
                 <th className="px-6 py-3.5 text-right">Debit</th>
@@ -414,7 +414,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
               {db.coa.map((acc) => {
                 const isDebit = acc.normalBalance === 'Debit';
                 return (
-                  <tr key={acc.id} className="hover:bg-white/[0.01] transition-colors">
+                  <tr key={acc.id} className="hover:bg-white/[0.01] transition-all duration-200">
                     <td className="px-6 py-3.5 font-bold text-zinc-100">{acc.code}</td>
                     <td className="px-6 py-3.5 text-zinc-200 pl-4">{acc.name}</td>
                     <td className="px-6 py-3.5 text-right font-bold">
@@ -428,7 +428,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
               })}
               {/* Audit Equilibrium totals */}
               <tr className="bg-slate-55 border-t-2 border-slate-950 font-bold text-slate-950">
-                <td colSpan={2} className="px-6 py-4 text-center uppercase tracking-wider text-xs">Total Equilibrium:</td>
+                <td colSpan={2} className="px-6 py-4 text-center uppercase tracking-[0.1em] text-xs">Total Equilibrium:</td>
                 <td className="px-6 py-4 text-right font-extrabold text-slate-950 border-b-4 border-double border-slate-950 text-sm">
                   {formatCurrency(totalTrialDebit, db.activeCurrency)}
                 </td>
@@ -452,7 +452,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
 
       {/* Manual Journal Modal */}
       {isJournalOpen && (
-        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]">
             <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
               <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide font-semibold">
@@ -592,7 +592,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow"
+                  className="px-4 py-2 text-xs font-bold text-white bg-black/80 backdrop-blur-sm hover:bg-slate-900 rounded-lg shadow"
                 >
                   {editingJournalId ? 'Simpan Perubahan' : 'Post Jurnal Manual'}
                 </button>
@@ -603,7 +603,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
       )}
 
       {journalToDelete && (
-        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
           <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
             <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
               <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide flex items-center gap-2">
@@ -631,7 +631,7 @@ export const AccountingTab: React.FC<AccountingTabProps> = ({ db, onUpdateDb }) 
               <button
                 type="button"
                 onClick={executeDeleteJournal}
-                className="px-4 py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-lg shadow"
+                className="px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 shadow-lg shadow-rose-500/20 rounded-lg shadow"
               >
                 Hapus
               </button>

@@ -115,7 +115,7 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
           <button
             id="btn-cash-in"
             onClick={() => handleOpenModal('In')}
-            className="flex items-center space-x-1 px-3 py-2 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg shadow-sm transition-colors"
+            className="flex items-center space-x-1 px-3 py-2 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg shadow-sm transition-all duration-200"
           >
             <ArrowUpRight className="w-3.5 h-3.5 text-emerald-600" />
             <span>Kas Masuk</span>
@@ -123,7 +123,7 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
           <button
             id="btn-cash-out"
             onClick={() => handleOpenModal('Out')}
-            className="flex items-center space-x-1 px-3 py-2 text-xs font-bold text-rose-800 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-lg shadow-sm transition-colors"
+            className="flex items-center space-x-1 px-3 py-2 text-xs font-bold text-rose-800 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-lg shadow-sm transition-all duration-200"
           >
             <ArrowDownLeft className="w-3.5 h-3.5 text-rose-600" />
             <span>Kas Keluar</span>
@@ -131,7 +131,7 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
           <button
             id="btn-cash-transfer"
             onClick={() => handleOpenModal('Transfer')}
-            className="flex items-center space-x-1 px-3 py-2 text-xs font-bold text-zinc-200 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-lg shadow-sm transition-colors"
+            className="flex items-center space-x-1 px-3 py-2 text-xs font-bold text-zinc-200 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-lg shadow-sm transition-all duration-200"
           >
             <RefreshCw className="w-3.5 h-3.5 text-zinc-400" />
             <span>Transfer Bank</span>
@@ -168,7 +168,7 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
                 </tr>
               ) : (
                 transactions.map((tx) => (
-                  <tr key={tx.id} className="hover:bg-white/[0.01] transition-colors">
+                  <tr key={tx.id} className="hover:bg-white/[0.01] transition-all duration-200">
                     <td className="px-6 py-4 font-bold text-zinc-100">{tx.transactionNo}</td>
                     <td className="px-6 py-4 text-zinc-500">{tx.date}</td>
                     <td className="px-6 py-4">
@@ -204,7 +204,7 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
 
       {/* Action Dialog / Modal */}
       {modalType && (
-        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-md overflow-hidden flex flex-col">
             <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
               <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide">
@@ -375,7 +375,7 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow"
+                  className="px-4 py-2 text-xs font-bold text-white bg-black/80 backdrop-blur-sm hover:bg-slate-900 rounded-lg shadow"
                 >
                   Post Jurnal Kas
                 </button>
@@ -385,7 +385,7 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
         </div>
       )}
       {txToDelete && (
-        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
           <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
             <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
               <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide flex items-center gap-2">
@@ -413,7 +413,7 @@ export const CashBankTab: React.FC<CashBankTabProps> = ({ db, onUpdateDb }) => {
               <button
                 type="button"
                 onClick={executeDeleteTransaction}
-                className="px-4 py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-lg shadow"
+                className="px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 shadow-lg shadow-rose-500/20 rounded-lg shadow"
               >
                 Hapus
               </button>

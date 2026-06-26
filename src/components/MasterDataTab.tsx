@@ -312,7 +312,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
           <button
             id="btn-add-master"
             onClick={handleOpenModal}
-            className="flex items-center space-x-1.5 px-3.5 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow-md transition-colors"
+            className="flex items-center space-x-1.5 px-3.5 py-2 text-xs font-bold text-white bg-black/80 backdrop-blur-sm hover:bg-slate-900 rounded-lg shadow-md transition-all duration-200"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Tambah</span>
@@ -326,7 +326,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-white/[0.03] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
+                <tr className="bg-gradient-to-r from-white/[0.04] to-white/[0.02] border-b border-white/[0.08] backdrop-blur-sm text-xs font-bold text-zinc-500">
                   <th className="px-6 py-3.5">Kode</th>
                   <th className="px-6 py-3.5">Nama Customer</th>
                   <th className="px-6 py-3.5">Telepon</th>
@@ -340,7 +340,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                 {db.customers
                   .filter((c) => c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.code.toLowerCase().includes(searchQuery.toLowerCase()))
                   .map((cust) => (
-                    <tr key={cust.id} className="hover:bg-white/[0.01] transition-colors">
+                    <tr key={cust.id} className="hover:bg-white/[0.01] transition-all duration-200">
                       <td className="px-6 py-4 font-bold text-zinc-100">{cust.code}</td>
                       <td className="px-6 py-4 font-semibold text-zinc-200">{cust.name}</td>
                       <td className="px-6 py-4">{cust.phone || '-'}</td>
@@ -352,13 +352,13 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                       <td className="px-6 py-4 text-center space-x-2 whitespace-nowrap">
                         <button
                           onClick={() => handleStartEdit('customers', cust)}
-                          className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-colors"
+                          className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-all duration-200"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => setItemToDelete({ type: 'customers', id: cust.id, name: cust.name })}
-                          className="px-2.5 py-1 text-[10px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md shadow-sm transition-colors"
+                          className="px-2.5 py-1 text-[10px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md shadow-sm transition-all duration-200"
                         >
                           Hapus
                         </button>
@@ -374,7 +374,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-white/[0.03] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
+                <tr className="bg-gradient-to-r from-white/[0.04] to-white/[0.02] border-b border-white/[0.08] backdrop-blur-sm text-xs font-bold text-zinc-500">
                   <th className="px-6 py-3.5">Kode</th>
                   <th className="px-6 py-3.5">Nama Supplier</th>
                   <th className="px-6 py-3.5">Telepon</th>
@@ -388,7 +388,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                 {db.suppliers
                   .filter((s) => s.name.toLowerCase().includes(searchQuery.toLowerCase()) || s.code.toLowerCase().includes(searchQuery.toLowerCase()))
                   .map((supp) => (
-                    <tr key={supp.id} className="hover:bg-white/[0.01] transition-colors">
+                    <tr key={supp.id} className="hover:bg-white/[0.01] transition-all duration-200">
                       <td className="px-6 py-4 font-bold text-zinc-100">{supp.code}</td>
                       <td className="px-6 py-4 font-semibold text-zinc-200">{supp.name}</td>
                       <td className="px-6 py-4">{supp.phone || '-'}</td>
@@ -400,13 +400,13 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                       <td className="px-6 py-4 text-center space-x-2 whitespace-nowrap">
                         <button
                           onClick={() => handleStartEdit('suppliers', supp)}
-                          className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-colors"
+                          className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-all duration-200"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => setItemToDelete({ type: 'suppliers', id: supp.id, name: supp.name })}
-                          className="px-2.5 py-1 text-[10px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md shadow-sm transition-colors"
+                          className="px-2.5 py-1 text-[10px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md shadow-sm transition-all duration-200"
                         >
                           Hapus
                         </button>
@@ -422,7 +422,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-white/[0.03] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
+                <tr className="bg-gradient-to-r from-white/[0.04] to-white/[0.02] border-b border-white/[0.08] backdrop-blur-sm text-xs font-bold text-zinc-500">
                   <th className="px-6 py-3.5">SKU</th>
                   <th className="px-6 py-3.5">Nama Produk</th>
                   <th className="px-6 py-3.5">Kategori</th>
@@ -437,7 +437,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                 {db.products
                   .filter((p) => p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.sku.toLowerCase().includes(searchQuery.toLowerCase()))
                   .map((p) => (
-                    <tr key={p.id} className="hover:bg-white/[0.01] transition-colors">
+                    <tr key={p.id} className="hover:bg-white/[0.01] transition-all duration-200">
                       <td className="px-6 py-4 font-bold text-zinc-100">{p.sku}</td>
                       <td className="px-6 py-4 font-semibold text-zinc-200">{p.name}</td>
                       <td className="px-6 py-4">
@@ -460,13 +460,13 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                       <td className="px-6 py-4 text-center space-x-2 whitespace-nowrap">
                         <button
                           onClick={() => handleStartEdit('products', p)}
-                          className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-colors"
+                          className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-all duration-200"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => setItemToDelete({ type: 'products', id: p.id, name: p.name })}
-                          className="px-2.5 py-1 text-[10px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md shadow-sm transition-colors"
+                          className="px-2.5 py-1 text-[10px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md shadow-sm transition-all duration-200"
                         >
                           Hapus
                         </button>
@@ -482,7 +482,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-white/[0.03] border-b border-white/[0.06] text-xs font-bold text-zinc-500">
+                <tr className="bg-gradient-to-r from-white/[0.04] to-white/[0.02] border-b border-white/[0.08] backdrop-blur-sm text-xs font-bold text-zinc-500">
                   <th className="px-6 py-3.5">Kode Akun</th>
                   <th className="px-6 py-3.5">Nama Rekening COA</th>
                   <th className="px-6 py-3.5">Kategori</th>
@@ -497,16 +497,16 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                   .map((acc) => {
                     const isDebit = acc.normalBalance === 'Debit';
                     return (
-                      <tr key={acc.id} className="hover:bg-white/[0.01] transition-colors">
+                      <tr key={acc.id} className="hover:bg-white/[0.01] transition-all duration-200">
                         <td className="px-6 py-4 font-bold text-zinc-100">{acc.code}</td>
                         <td className="px-6 py-4 font-semibold text-zinc-200 pl-4">{acc.name}</td>
                         <td className="px-6 py-4">
                           <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                            acc.category === 'Asset' ? 'bg-blue-50 text-blue-800' :
-                            acc.category === 'Liability' ? 'bg-rose-50 text-rose-800' :
-                            acc.category === 'Equity' ? 'bg-purple-50 text-purple-800' :
-                            acc.category === 'Revenue' ? 'bg-emerald-50 text-emerald-800' :
-                            'bg-amber-50 text-amber-800'
+                            acc.category === 'Asset' ? 'bg-blue-500/15 text-blue-300 border border-blue-500/20' :
+                            acc.category === 'Liability' ? 'bg-rose-500/15 text-rose-300 border border-rose-500/20' :
+                            acc.category === 'Equity' ? 'bg-purple-500/15 text-purple-300 border border-purple-500/20' :
+                            acc.category === 'Revenue' ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/20' :
+                            'bg-amber-500/15 text-amber-300 border border-amber-500/20'
                           }`}>
                             {acc.category}
                           </span>
@@ -518,13 +518,13 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                         <td className="px-6 py-4 text-center space-x-2 whitespace-nowrap">
                           <button
                             onClick={() => handleStartEdit('coa', acc)}
-                            className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-colors"
+                            className="px-2.5 py-1 text-[10px] font-bold text-zinc-300 bg-white/[0.02] hover:bg-white/[0.03] border border-white/[0.06] rounded-md shadow-sm transition-all duration-200"
                           >
                             Edit
                           </button>
                           <button
                             onClick={() => setItemToDelete({ type: 'coa', id: acc.id, name: acc.name })}
-                            className="px-2.5 py-1 text-[10px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md shadow-sm transition-colors"
+                            className="px-2.5 py-1 text-[10px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md shadow-sm transition-all duration-200"
                           >
                             Hapus
                           </button>
@@ -540,7 +540,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
 
       {/* Slide-over / Modal for Adding Record */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
           <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-lg overflow-hidden flex flex-col">
             <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
               <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide">
@@ -816,7 +816,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow"
+                  className="px-4 py-2 text-xs font-bold text-white bg-black/80 backdrop-blur-sm hover:bg-slate-900 rounded-lg shadow"
                 >
                   Simpan Record
                 </button>
@@ -827,7 +827,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
       )}
 
       {itemToDelete && (
-        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
           <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
             <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
               <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide flex items-center gap-2">
@@ -855,7 +855,7 @@ export const MasterDataTab: React.FC<MasterDataTabProps> = ({ db, onUpdateDb }) 
               <button
                 type="button"
                 onClick={executeDelete}
-                className="px-4 py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-lg shadow"
+                className="px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 shadow-lg shadow-rose-500/20 rounded-lg shadow"
               >
                 Hapus
               </button>

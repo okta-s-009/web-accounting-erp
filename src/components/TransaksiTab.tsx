@@ -36,7 +36,7 @@ export const TransaksiTab: React.FC<TransaksiTabProps> = ({ db, onUpdateDb }) =>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
-                <span className="text-[9px] font-black uppercase tracking-widest text-indigo-400 bg-indigo-400/10 px-2.5 py-1 rounded border border-indigo-400/20 flex items-center gap-1.5">
+                <span className="text-[9px] font-black uppercase tracking-[0.15em] text-indigo-400 bg-indigo-400/10 px-2.5 py-1 rounded border border-indigo-400/20 flex items-center gap-1.5">
                   <ArrowLeftRight className="w-3 h-3" /> MODUL TRANSAKSI
                 </span>
               </div>
@@ -50,19 +50,19 @@ export const TransaksiTab: React.FC<TransaksiTabProps> = ({ db, onUpdateDb }) =>
 
             {/* Stats summary */}
             <div className="flex items-center gap-3 shrink-0">
-              <div className="text-center px-4 py-2.5 bg-[#06060f]/80 rounded-xl border border-white/[0.08]">
-                <p className="text-[9px] font-black text-zinc-500 uppercase tracking-wider">Penjualan</p>
+              <div className="text-center px-4 py-2.5 bg-[#050510]/80 rounded-xl border border-white/[0.08]">
+                <p className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.1em]">Penjualan</p>
                 <p className="text-sm font-black text-emerald-400">{db.salesInvoices.length}</p>
               </div>
-              <div className="text-center px-4 py-2.5 bg-[#06060f]/80 rounded-xl border border-white/[0.08]">
-                <p className="text-[9px] font-black text-zinc-500 uppercase tracking-wider">Pembelian</p>
+              <div className="text-center px-4 py-2.5 bg-[#050510]/80 rounded-xl border border-white/[0.08]">
+                <p className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.1em]">Pembelian</p>
                 <p className="text-sm font-black text-blue-400">{db.purchaseInvoices.length}</p>
               </div>
             </div>
           </div>
 
           {/* Sub-Tab Switcher */}
-          <div className="flex bg-[#06060f]/80 p-1 rounded-xl border border-white/[0.08] w-full sm:w-auto sm:inline-flex shadow-inner">
+          <div className="flex bg-[#050510]/80 p-1 rounded-xl border border-white/[0.08] w-full sm:w-auto sm:inline-flex shadow-inner">
             {subTabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeSubTab === tab.id;

@@ -517,7 +517,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="fixed top-20 right-6 z-50 flex items-center gap-3 bg-zinc-900 border border-amber-500/30 px-4 py-3 rounded-xl shadow-2xl max-w-sm text-xs"
+            className="fixed top-20 right-6 z-50 flex items-center gap-3 bg-black/40 border border-amber-500/30 px-4 py-3 rounded-xl shadow-2xl max-w-sm text-xs"
           >
             <div className="p-1 bg-amber-500/10 text-amber-400 rounded-lg">
               <CheckCircle2 className="w-4 h-4" />
@@ -539,7 +539,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
         <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6 z-10">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[9px] font-black uppercase tracking-widest text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded border border-amber-400/20 flex items-center gap-1.5 shadow-sm">
+              <span className="text-[9px] font-black uppercase tracking-[0.15em] text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded border border-amber-400/20 flex items-center gap-1.5 shadow-sm">
                 <Receipt className="w-3.5 h-3.5" /> MODUL PERHITUNGAN PAJAK BADAN
               </span>
               <span className="text-[9px] font-bold text-zinc-300 bg-zinc-800/80 px-2.5 py-1 rounded border border-white/[0.1] shadow-sm">
@@ -560,7 +560,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
               <RefreshCw className="w-5 h-5" />
             </div>
             <div className="space-y-0.5">
-              <span className="text-[9px] text-zinc-500 font-extrabold uppercase tracking-wider block">STATUS KONEKSI ERP</span>
+              <span className="text-[9px] text-zinc-500 font-extrabold uppercase tracking-[0.1em] block">STATUS KONEKSI ERP</span>
               <span className="text-xs font-black text-zinc-100 block">SINKRONISASI REAL-TIME</span>
               <span className="text-[9px] text-emerald-400 font-bold uppercase tracking-wide block">● DATABASE SIAP</span>
             </div>
@@ -569,10 +569,10 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
       </div>
 
       {/* Tab Switcher - Premium Sleek Segmented Switch */}
-      <div className="flex bg-[#06060f] p-1.5 rounded-xl border border-white/[0.08] max-w-md shadow-inner">
+      <div className="flex bg-[#050510] p-1.5 rounded-xl border border-white/[0.08] max-w-md shadow-inner">
         <button
           onClick={() => setActiveSubTab('kalkulator')}
-          className={`flex-1 py-2 px-3 text-[10px] font-black uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+          className={`flex-1 py-2 px-3 text-[10px] font-black uppercase tracking-[0.1em] rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
             activeSubTab === 'kalkulator'
               ? 'bg-amber-500 text-zinc-950 font-black shadow-md'
               : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#0a0a1a]'
@@ -583,7 +583,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
         </button>
         <button
           onClick={() => setActiveSubTab('setoran')}
-          className={`flex-1 py-2 px-3 text-[10px] font-black uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+          className={`flex-1 py-2 px-3 text-[10px] font-black uppercase tracking-[0.1em] rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
             activeSubTab === 'setoran'
               ? 'bg-amber-500 text-zinc-950 font-black shadow-md'
               : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#0a0a1a]'
@@ -602,9 +602,9 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Omzet Card */}
-        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all">
+        <div className="bg-[#050510]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">Perjalanan Omzet</span>
+            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.1em]">Perjalanan Omzet</span>
             <div className="p-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
               <TrendingUp className="w-4 h-4" />
             </div>
@@ -619,9 +619,9 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
         </div>
 
         {/* Laba Bersih Fiskal Card */}
-        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all">
+        <div className="bg-[#050510]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">Laba Bersih Fiskal</span>
+            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.1em]">Laba Bersih Fiskal</span>
             <div className="p-1.5 bg-violet-500/10 text-violet-400 rounded-lg">
               <Layers className="w-4 h-4" />
             </div>
@@ -636,9 +636,9 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
         </div>
 
         {/* Tarif Pajak Efektif Card */}
-        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all">
+        <div className="bg-[#050510]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">Tarif PPh Efektif</span>
+            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.1em]">Tarif PPh Efektif</span>
             <div className="p-1.5 bg-amber-500/10 text-amber-400 rounded-lg">
               <Percent className="w-4 h-4" />
             </div>
@@ -653,9 +653,9 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
         </div>
 
         {/* PPh Badan Terutang Card */}
-        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-amber-500/40">
+        <div className="bg-[#050510]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-amber-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">PPh Badan Terutang</span>
+            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.1em]">PPh Badan Terutang</span>
             <div className="p-1.5 bg-rose-500/10 text-rose-400 rounded-lg">
               <Calculator className="w-4 h-4" />
             </div>
@@ -678,12 +678,12 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
         <div className="lg:col-span-5 space-y-6">
           
           {/* Simulator Toggle & Setup Box */}
-          <div className="bg-[#06060f]/80 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4">
+          <div className="bg-[#050510]/80 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4">
             
             <div className="flex items-center justify-between border-b border-white/[0.06] pb-3">
               <div className="space-y-0.5">
-                <span className="text-[9px] text-zinc-500 font-black uppercase tracking-wider block">MODE KONTROL PAJAK</span>
-                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest flex items-center gap-1.5">
+                <span className="text-[9px] text-zinc-500 font-black uppercase tracking-[0.1em] block">MODE KONTROL PAJAK</span>
+                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-[0.15em] flex items-center gap-1.5">
                   {isSimulatorActive ? 'SIMULATOR PAJAK PROYEKSI' : 'REKONSILIASI DATA BUKU RIIL'}
                 </h3>
               </div>
@@ -698,7 +698,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                   }
                   setIsSimulatorActive(!isSimulatorActive);
                 }}
-                className={`relative inline-flex h-6 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                className={`relative inline-flex h-6 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-all duration-200 duration-200 ease-in-out focus:outline-none ${
                   isSimulatorActive ? 'bg-amber-500' : 'bg-zinc-800'
                 }`}
               >
@@ -719,7 +719,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
 
             {/* Sliders Container (Conditional styling based on active state) */}
             <div className={`space-y-4 p-4 rounded-xl border transition-all ${
-              isSimulatorActive ? 'bg-[#0a0a1a]/80 border-white/[0.08]' : 'bg-[#06060f] border-white/[0.06] opacity-60 pointer-events-none'
+              isSimulatorActive ? 'bg-[#0a0a1a]/80 border-white/[0.08]' : 'bg-[#050510] border-white/[0.06] opacity-60 pointer-events-none'
             }`}>
               
               {/* Slider 1: Omzet */}
@@ -728,7 +728,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                   <span className="font-extrabold text-zinc-300 uppercase text-[9px] flex items-center gap-1">
                     <Coins className="w-3.5 h-3.5 text-indigo-400" /> 1. Proyeksi Omzet Pendapatan
                   </span>
-                  <span className="font-mono font-black text-indigo-400 bg-[#06060f] px-2 py-0.5 rounded border border-white/[0.08]">
+                  <span className="font-mono font-black text-indigo-400 bg-[#050510] px-2 py-0.5 rounded border border-white/[0.08]">
                     {formatCurrency(simulatedOmzet, currency).split(',')[0]}
                   </span>
                 </div>
@@ -754,7 +754,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                   <span className="font-extrabold text-zinc-300 uppercase text-[9px] flex items-center gap-1">
                     <Layers className="w-3.5 h-3.5 text-amber-400" /> 2. Harga Pokok Penjualan (HPP)
                   </span>
-                  <span className="font-mono font-black text-amber-400 bg-[#06060f] px-2 py-0.5 rounded border border-white/[0.08]">
+                  <span className="font-mono font-black text-amber-400 bg-[#050510] px-2 py-0.5 rounded border border-white/[0.08]">
                     {formatCurrency(simulatedHpp, currency).split(',')[0]}
                   </span>
                 </div>
@@ -780,7 +780,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                   <span className="font-extrabold text-zinc-300 uppercase text-[9px] flex items-center gap-1">
                     <TrendingDown className="w-3.5 h-3.5 text-rose-400" /> 3. Biaya Operasional / OPEX
                   </span>
-                  <span className="font-mono font-black text-rose-400 bg-[#06060f] px-2 py-0.5 rounded border border-white/[0.08]">
+                  <span className="font-mono font-black text-rose-400 bg-[#050510] px-2 py-0.5 rounded border border-white/[0.08]">
                     {formatCurrency(simulatedBiaya, currency).split(',')[0]}
                   </span>
                 </div>
@@ -803,7 +803,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
               {/* Reset Controller */}
               <button
                 onClick={handleResetToActual}
-                className="w-full py-2 bg-zinc-900 hover:bg-zinc-850 border border-white/[0.08] rounded-xl text-[10px] font-black uppercase text-amber-400 tracking-wider flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                className="w-full py-2 bg-zinc-900 hover:bg-zinc-850 border border-white/[0.08] rounded-xl text-[10px] font-black uppercase text-amber-400 tracking-[0.1em] flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer"
               >
                 <RefreshCw className="w-3.5 h-3.5" /> Ambil Ulang Nilai Buku Aktual
               </button>
@@ -817,11 +817,11 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-[#06060f]/80 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4.5"
+              className="bg-[#050510]/80 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4.5"
             >
               <div className="flex items-center gap-2 border-b border-white/[0.06] pb-2.5">
                 <Save className="w-4.5 h-4.5 text-amber-400" />
-                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest">
+                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-[0.15em]">
                   SIMPAN SKENARIO SIMULASI
                 </h3>
               </div>
@@ -835,7 +835,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                     placeholder="Contoh: Skenario Optimis 2026, HPP Naik 5%"
                     value={simName}
                     onChange={(e) => setSimName(e.target.value)}
-                    className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                    className="w-full text-xs font-bold text-zinc-100 bg-black/40 border border-white/[0.08] rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
                   />
                 </div>
 
@@ -852,7 +852,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
 
                 <button
                   type="submit"
-                  className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-zinc-950 text-[10px] font-black uppercase rounded-xl tracking-wider shadow-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                  className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-zinc-950 text-[10px] font-black uppercase rounded-xl tracking-[0.1em] shadow-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer"
                 >
                   <Save className="w-4 h-4" /> Simpan Skenario Ke Local History
                 </button>
@@ -861,11 +861,11 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
           )}
 
           {/* Simulation History Log Book */}
-          <div className="bg-[#06060f]/80 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4">
+          <div className="bg-[#050510]/80 border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4">
             <div className="flex items-center justify-between border-b border-white/[0.06] pb-2.5">
               <div className="flex items-center gap-2">
                 <FileSpreadsheet className="w-4.5 h-4.5 text-indigo-400" />
-                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest">
+                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-[0.15em]">
                   RIWAYAT PERENCANAAN PAJAK
                 </h3>
               </div>
@@ -885,7 +885,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                 {savedSims.map((sim) => (
                   <div 
                     key={sim.id} 
-                    className="p-3 bg-[#0a0a1a] border border-white/[0.08] hover:border-white/[0.1] rounded-xl flex items-center justify-between gap-3 transition-all"
+                    className="p-3 bg-[#0a0a1a]/80 backdrop-blur-xl border border-white/[0.08] hover:border-white/[0.1] rounded-xl flex items-center justify-between gap-3 transition-all"
                   >
                     <div className="space-y-0.5 min-w-0">
                       <p className="text-xs font-bold text-zinc-200 truncate">{sim.name}</p>
@@ -905,7 +905,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                       <button
                         onClick={() => handleLoadSim(sim)}
                         title="Terapkan Skenario"
-                        className="p-1.5 hover:bg-white/[0.06] text-zinc-400 hover:text-zinc-100 rounded-lg border border-white/[0.08] hover:border-white/[0.1] transition-colors cursor-pointer"
+                        className="p-1.5 hover:bg-white/[0.06] text-zinc-400 hover:text-zinc-100 rounded-lg border border-white/[0.08] hover:border-white/[0.1] transition-all duration-200 cursor-pointer"
                       >
                         <Eye className="w-3.5 h-3.5" />
                       </button>
@@ -913,7 +913,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                       <button
                         onClick={() => handleDeleteSim(sim.id, sim.name)}
                         title="Hapus Skenario"
-                        className="p-1.5 hover:bg-rose-500/10 text-rose-400 hover:text-rose-300 rounded-lg border border-white/[0.08] hover:border-rose-500/20 transition-colors cursor-pointer"
+                        className="p-1.5 hover:bg-rose-500/10 text-rose-400 hover:text-rose-300 rounded-lg border border-white/[0.08] hover:border-rose-500/20 transition-all duration-200 cursor-pointer"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -933,9 +933,9 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             
             {/* Chart A: Distribution Circular Pie Chart of Omzet Allocation */}
-            <div className="bg-[#06060f]/80 border border-white/[0.08] rounded-2xl p-4 shadow-xl flex flex-col justify-between">
+            <div className="bg-[#050510]/80 border border-white/[0.08] rounded-2xl p-4 shadow-xl flex flex-col justify-between">
               <div>
-                <span className="text-[9px] font-black text-amber-400 uppercase tracking-wider block">ALOKASI OMZET PROYEKSI</span>
+                <span className="text-[9px] font-black text-amber-400 uppercase tracking-[0.1em] block">ALOKASI OMZET PROYEKSI</span>
                 <p className="text-[10px] text-zinc-400 font-bold mt-0.5">Distribusi Nilai Omzet ke Komponen Biaya & Laba</p>
               </div>
 
@@ -983,9 +983,9 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
             </div>
 
             {/* Chart B: Comparison Bar Chart actual vs simulated */}
-            <div className="bg-[#06060f]/80 border border-white/[0.08] rounded-2xl p-4 shadow-xl flex flex-col justify-between">
+            <div className="bg-[#050510]/80 border border-white/[0.08] rounded-2xl p-4 shadow-xl flex flex-col justify-between">
               <div>
-                <span className="text-[9px] font-black text-indigo-400 uppercase tracking-wider block">BANDINGKAN HASIL PAJAK</span>
+                <span className="text-[9px] font-black text-indigo-400 uppercase tracking-[0.1em] block">BANDINGKAN HASIL PAJAK</span>
                 <p className="text-[10px] text-zinc-400 font-bold mt-0.5">Realisasi Buku Riil vs Simulasi Perencanaan</p>
               </div>
 
@@ -1019,13 +1019,13 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
           </div>
 
           {/* Form 1771 SPT Ledger Sheet Structure */}
-          <div className="bg-[#06060f] border border-white/[0.08] rounded-2xl shadow-xl overflow-hidden relative group">
+          <div className="bg-[#050510] border border-white/[0.08] rounded-2xl shadow-xl overflow-hidden relative group">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 to-indigo-500"></div>
             
             {/* Ledger Header */}
             <div className="p-4 bg-[#0a0a1a] border-b border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest flex items-center gap-2">
+                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-[0.15em] flex items-center gap-2">
                   <FileText className="w-4 h-4 text-amber-500 animate-pulse" />
                   LEMBAR PERHITUNGAN SPT TAHUNAN PAJAK BADAN (DRAFT 1771)
                 </h3>
@@ -1037,7 +1037,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
               {/* Action: Export to Txt */}
               <button
                 onClick={handleExportTxt}
-                className="px-3.5 py-1.8 text-[10px] font-black text-zinc-950 bg-amber-400 hover:bg-amber-500 rounded-lg shadow-md transition-all flex items-center gap-1.5 uppercase tracking-wider self-start sm:self-auto cursor-pointer"
+                className="px-3.5 py-1.8 text-[10px] font-black text-zinc-950 bg-amber-400 hover:bg-amber-500 rounded-lg shadow-md transition-all flex items-center gap-1.5 uppercase tracking-[0.1em] self-start sm:self-auto cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5" /> Export SPT Draft
               </button>
@@ -1066,7 +1066,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
               <div className="border border-white/[0.08] rounded-xl overflow-hidden">
                 
                 {/* Entry 1 */}
-                <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-[#06060f] border-b border-white/[0.06] text-xs items-center">
+                <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-[#050510] border-b border-white/[0.06] text-xs items-center">
                   <div className="col-span-1 text-zinc-500 font-black">A.1</div>
                   <div className="col-span-7 font-bold text-zinc-300">Peredaran Bruto (Omzet Penjualan Cor Beton)</div>
                   <div className="col-span-4 text-right font-black font-mono text-zinc-100">
@@ -1075,7 +1075,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                 </div>
 
                 {/* Entry 2 */}
-                <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-[#06060f] border-b border-white/[0.06] text-xs items-center">
+                <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-[#050510] border-b border-white/[0.06] text-xs items-center">
                   <div className="col-span-1 text-zinc-500 font-black">A.2</div>
                   <div className="col-span-7 font-bold text-zinc-300">Harga Pokok Penjualan (HPP / Biaya Material Cor)</div>
                   <div className="col-span-4 text-right font-black font-mono text-zinc-400">
@@ -1086,14 +1086,14 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                 {/* Gross Margin Row */}
                 <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-zinc-900/20 border-b border-white/[0.06] text-xs items-center font-bold">
                   <div className="col-span-1 text-zinc-500"></div>
-                  <div className="col-span-7 text-indigo-400 uppercase tracking-wider font-extrabold text-[10px]">Laba Kotor Usaha (Gross Profit)</div>
+                  <div className="col-span-7 text-indigo-400 uppercase tracking-[0.1em] font-extrabold text-[10px]">Laba Kotor Usaha (Gross Profit)</div>
                   <div className="col-span-4 text-right font-black font-mono text-indigo-400">
                     {formatCurrency(currentCalc.labaKotor, currency)}
                   </div>
                 </div>
 
                 {/* Entry 3 */}
-                <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-[#06060f] border-b border-white/[0.06] text-xs items-center">
+                <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-[#050510] border-b border-white/[0.06] text-xs items-center">
                   <div className="col-span-1 text-zinc-500 font-black">A.3</div>
                   <div className="col-span-7 font-bold text-zinc-300">Biaya Operasional & Overhead Kantor (OPEX)</div>
                   <div className="col-span-4 text-right font-black font-mono text-zinc-400">
@@ -1104,14 +1104,14 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                 {/* EBT / Net Profit Fiskal */}
                 <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-zinc-900/30 border-b border-white/[0.06] text-xs items-center font-bold">
                   <div className="col-span-1 text-zinc-500"></div>
-                  <div className="col-span-7 text-violet-400 uppercase tracking-wider font-extrabold text-[10px]">Penghasilan Netto Fiskal (Laba Bersih Kena Pajak)</div>
+                  <div className="col-span-7 text-violet-400 uppercase tracking-[0.1em] font-extrabold text-[10px]">Penghasilan Netto Fiskal (Laba Bersih Kena Pajak)</div>
                   <div className="col-span-4 text-right font-black font-mono text-violet-400">
                     {formatCurrency(currentCalc.labaBersih, currency)}
                   </div>
                 </div>
 
                 {/* Entry 4: Facility classification */}
-                <div className="grid grid-cols-12 gap-2 px-4 py-3.5 bg-[#06060f] border-b border-white/[0.06] text-xs items-start">
+                <div className="grid grid-cols-12 gap-2 px-4 py-3.5 bg-[#050510] border-b border-white/[0.06] text-xs items-start">
                   <div className="col-span-1 text-zinc-500 font-black">B.1</div>
                   <div className="col-span-7 space-y-1">
                     <span className="font-bold text-zinc-300 block">Kategori Aturan Tarif Kepatuhan Pajak</span>
@@ -1133,7 +1133,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                 {/* Tax Owed result */}
                 <div className="grid grid-cols-12 gap-2 px-4 py-3 bg-[#0a0a1a]/80 border-b border-white/[0.06] text-xs items-center font-bold">
                   <div className="col-span-1 text-zinc-500">C.1</div>
-                  <div className="col-span-7 text-rose-400 uppercase tracking-wider font-extrabold text-[10px]">Taksiran PPh Badan Terutang (Form 1771-I)</div>
+                  <div className="col-span-7 text-rose-400 uppercase tracking-[0.1em] font-extrabold text-[10px]">Taksiran PPh Badan Terutang (Form 1771-I)</div>
                   <div className="col-span-4 text-right font-black font-mono text-rose-400 text-sm animate-pulse">
                     {formatCurrency(currentCalc.calculatedTax, currency)}
                   </div>
@@ -1142,7 +1142,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
                 {/* EAT Net profit after tax */}
                 <div className="grid grid-cols-12 gap-2 px-4 py-3.5 bg-[#0a0a1a] text-xs items-center font-bold">
                   <div className="col-span-1 text-zinc-500">D.1</div>
-                  <div className="col-span-7 text-emerald-400 uppercase tracking-wider font-extrabold text-[10px]">Laba Bersih Setelah Pajak (Earnings After Tax)</div>
+                  <div className="col-span-7 text-emerald-400 uppercase tracking-[0.1em] font-extrabold text-[10px]">Laba Bersih Setelah Pajak (Earnings After Tax)</div>
                   <div className="col-span-4 text-right font-black font-mono text-emerald-400 text-sm">
                     {formatCurrency(currentCalc.netProfitAfterTax, currency)}
                   </div>
@@ -1170,11 +1170,11 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
       </div>
 
       {/* SECTION: visual rules cards explaining brackets (Pasal 31E UU HPP) */}
-      <div className="bg-[#06060f]/80 border border-white/[0.08] rounded-2xl p-5 shadow-xl">
+      <div className="bg-[#050510]/80 border border-white/[0.08] rounded-2xl p-5 shadow-xl">
         <div className="border-b border-white/[0.06] pb-3 mb-4">
           <div className="flex items-center gap-1.5">
             <Award className="w-5 h-5 text-amber-500" />
-            <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest">
+            <h3 className="text-xs font-black text-zinc-100 uppercase tracking-[0.15em]">
               PANDUAN & ATURAN HUKUM PPh BADAN INDONESIA
             </h3>
           </div>
@@ -1187,7 +1187,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
         <div className="flex border-b border-white/[0.06] gap-1 pb-2">
           <button
             onClick={() => setActiveExplainTab('pasal31e')}
-            className={`px-4 py-2 text-[10px] font-black rounded-lg uppercase tracking-wider transition-colors cursor-pointer ${
+            className={`px-4 py-2 text-[10px] font-black rounded-lg uppercase tracking-[0.1em] transition-all duration-200 cursor-pointer ${
               activeExplainTab === 'pasal31e' ? 'bg-zinc-800 text-amber-400 border border-white/[0.1]' : 'text-zinc-500 hover:text-zinc-300'
             }`}
           >
@@ -1195,7 +1195,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
           </button>
           <button
             onClick={() => setActiveExplainTab('tarifnormal')}
-            className={`px-4 py-2 text-[10px] font-black rounded-lg uppercase tracking-wider transition-colors cursor-pointer ${
+            className={`px-4 py-2 text-[10px] font-black rounded-lg uppercase tracking-[0.1em] transition-all duration-200 cursor-pointer ${
               activeExplainTab === 'tarifnormal' ? 'bg-zinc-800 text-indigo-400 border border-white/[0.1]' : 'text-zinc-500 hover:text-zinc-300'
             }`}
           >
@@ -1203,7 +1203,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
           </button>
           <button
             onClick={() => setActiveExplainTab('spt1771')}
-            className={`px-4 py-2 text-[10px] font-black rounded-lg uppercase tracking-wider transition-colors cursor-pointer ${
+            className={`px-4 py-2 text-[10px] font-black rounded-lg uppercase tracking-[0.1em] transition-all duration-200 cursor-pointer ${
               activeExplainTab === 'spt1771' ? 'bg-zinc-800 text-violet-400 border border-white/[0.1]' : 'text-zinc-500 hover:text-zinc-300'
             }`}
           >
@@ -1218,8 +1218,8 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
               <p className="text-zinc-400 text-xs">
                 Sesuai dengan **Pasal 31E Undang-Undang Nomor 36 Tahun 2008** (diperbarui dalam UU HPP), Wajib Pajak Badan dalam negeri dengan peredaran bruto (omzet) sampai dengan **Rp 50.000.000.000 (lima puluh miliar rupiah)** mendapatkan fasilitas berupa pengurangan tarif sebesar **50% (lima puluh persen)** dari tarif normal 22% (sehingga tarif efektifnya menjadi **11%**) yang dikenakan atas Penghasilan Kena Pajak dari bagian peredaran bruto sampai dengan **Rp 4.800.000.000**.
               </p>
-              <div className="p-3 bg-zinc-900 border border-white/[0.08] rounded-xl space-y-1.5 text-[11px] text-zinc-300">
-                <span className="font-extrabold text-amber-400 uppercase tracking-wider block text-[9px]">CONTOH FORMULA KEUANGAN:</span>
+              <div className="p-3 bg-black/40 border border-white/[0.08] rounded-xl space-y-1.5 text-[11px] text-zinc-300">
+                <span className="font-extrabold text-amber-400 uppercase tracking-[0.1em] block text-[9px]">CONTOH FORMULA KEUANGAN:</span>
                 <p>• Jika omzet di bawah Rp 4,8 Miliar: Seluruh Laba Bersih dikalikan tarif **11%**.</p>
                 <p>• Jika omzet di antara Rp 4,8 Miliar dan Rp 50 Miliar: Dilakukan pembagian proporsional laba kena fasilitas (11%) dan laba non-fasilitas (22%).</p>
               </div>
@@ -1232,7 +1232,7 @@ Dokumen ini merupakan estimasi otomatis berbasis database ERP internal.
               <p className="text-zinc-400 text-xs">
                 Wajib Pajak Badan yang memiliki total peredaran bruto di atas **Rp 50.000.000.000 (lima puluh miliar rupiah)** dalam satu tahun buku dikategorikan sebagai Badan Usaha Skala Besar (Non-UMKM) dan **tidak mendapatkan fasilitas pengurangan tarif**. Seluruh penghasilan kena pajak (Laba Bersih Fiskal) langsung dikenakan tarif normal sebesar **22%**.
               </p>
-              <div className="p-3 bg-zinc-900 border border-white/[0.08] rounded-xl flex items-center gap-3">
+              <div className="p-3 bg-black/40 border border-white/[0.08] rounded-xl flex items-center gap-3">
                 <AlertTriangle className="w-5 h-5 text-rose-400 shrink-0" />
                 <span className="text-[11px] text-zinc-300">
                   Perusahaan dengan skala omzet di atas Rp 50 Miliar wajib melakukan pembukuan penuh yang sangat detail dan diaudit akuntan publik sebelum menyertakan draft SPT 1771 ke kantor pajak.

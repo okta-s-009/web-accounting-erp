@@ -103,7 +103,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen flex flex-col font-sans antialiased transition-colors duration-300 bg-[#06060f] text-zinc-100 overflow-hidden">
+    <div className="h-screen flex flex-col font-sans antialiased transition-all duration-200 duration-300 bg-[#050510] text-zinc-100 overflow-hidden">
       {/* Navigation Top Header */}
       <Header 
         db={db} 
@@ -117,9 +117,9 @@ export default function App() {
       <div className="flex-1 flex overflow-hidden">
         
         {/* Persistent Desktop Sidebar (Visible only on Laptop/Desktop) */}
-        <aside id="erp-sidebar" className="w-64 p-5 flex-col justify-between hidden lg:flex shadow-sm transition-colors duration-300 bg-[#06060f] border-r border-white/[0.06] text-zinc-300 shadow-black/40 overflow-y-auto">
+        <aside id="erp-sidebar" className="w-64 p-5 flex-col justify-between hidden lg:flex shadow-sm transition-all duration-200 duration-300 bg-[#050510] border-r border-white/[0.06] text-zinc-300 shadow-black/40 overflow-y-auto">
           <div className="space-y-2">
-            <p className="text-[10px] font-extrabold uppercase tracking-wider px-3 mb-2.5 text-zinc-500">Menu Navigasi</p>
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.1em] px-3 mb-2.5 text-zinc-500">Menu Navigasi</p>
             {menuItems.map((item) => {
               const Icon = item.icon;
               const active = activeTab === item.id;
@@ -169,7 +169,7 @@ export default function App() {
                 animate={{ opacity: 0.4 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="fixed inset-0 bg-slate-950 z-40 lg:hidden"
+                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 lg:hidden"
               />
 
               {/* Slide-out Drawer */}
@@ -178,7 +178,7 @@ export default function App() {
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-                className="fixed top-0 left-0 bottom-0 w-80 bg-[#06060f] shadow-2xl z-50 p-5 overflow-y-auto flex flex-col justify-between lg:hidden border-r border-white/[0.06] text-zinc-100"
+                className="fixed top-0 left-0 bottom-0 w-80 bg-[#050510] shadow-2xl z-50 p-5 overflow-y-auto flex flex-col justify-between lg:hidden border-r border-white/[0.06] text-zinc-100"
               >
                 <div className="space-y-6">
                   {/* Close button and branding */}
@@ -189,7 +189,7 @@ export default function App() {
                     </div>
                     <button
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="p-1.5 hover:bg-white/[0.04] rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors"
+                      className="p-1.5 hover:bg-white/[0.04] rounded-lg text-zinc-400 hover:text-zinc-100 transition-all duration-200"
                     >
                       <X className="w-5 h-5" />
                     </button>
@@ -197,7 +197,7 @@ export default function App() {
 
                   {/* Navigation Links inside Mobile Drawer */}
                   <div className="space-y-1.5">
-                    <p className="text-[9px] font-extrabold text-zinc-500 uppercase tracking-wider px-3 mb-1.5">Daftar Modul</p>
+                    <p className="text-[9px] font-extrabold text-zinc-500 uppercase tracking-[0.1em] px-3 mb-1.5">Daftar Modul</p>
                     {menuItems.map((item) => {
                       const Icon = item.icon;
                       const active = activeTab === item.id;
@@ -231,7 +231,7 @@ export default function App() {
 
                   {/* Global Setup Selectors inside Mobile Drawer */}
                   <div className="space-y-4 pt-4 border-t border-white/[0.06]">
-                    <p className="text-[9px] font-extrabold text-zinc-500 uppercase tracking-wider px-3">Konfigurasi Sistem</p>
+                    <p className="text-[9px] font-extrabold text-zinc-500 uppercase tracking-[0.1em] px-3">Konfigurasi Sistem</p>
                     
                     {/* Currency */}
                     <div className="space-y-1 px-3">
@@ -241,12 +241,12 @@ export default function App() {
                       </label>
                       <select
                         id="mob-currency-selector"
-                        className="w-full text-xs font-bold text-zinc-300 bg-zinc-900 border border-white/[0.08] rounded-lg p-2.5 focus:outline-none"
+                        className="w-full text-xs font-bold text-zinc-300 bg-black/40 border border-white/[0.08] rounded-lg p-2.5 focus:outline-none"
                         value={db.activeCurrency}
                         onChange={(e) => handleCurrencyChange(e.target.value as any)}
                       >
                         {CURRENCIES.map((c) => (
-                          <option key={c} value={c} className="bg-[#06060f] text-zinc-200">{c}</option>
+                          <option key={c} value={c} className="bg-[#050510] text-zinc-200">{c}</option>
                         ))}
                       </select>
                     </div>
@@ -259,12 +259,12 @@ export default function App() {
                       </label>
                       <select
                         id="mob-role-selector"
-                        className="w-full text-xs font-bold text-zinc-300 bg-zinc-900 border border-white/[0.08] rounded-lg p-2.5 focus:outline-none"
+                        className="w-full text-xs font-bold text-zinc-300 bg-black/40 border border-white/[0.08] rounded-lg p-2.5 focus:outline-none"
                         value={ROLES.findIndex((r) => r.role === db.userSession.role)}
                         onChange={(e) => handleRoleChange(ROLES[Number(e.target.value)].role)}
                       >
                         {ROLES.map((r, i) => (
-                          <option key={r.role} value={i} className="bg-[#06060f] text-zinc-200">{r.role} ({r.name})</option>
+                          <option key={r.role} value={i} className="bg-[#050510] text-zinc-200">{r.role} ({r.name})</option>
                         ))}
                       </select>
                     </div>
@@ -273,7 +273,7 @@ export default function App() {
                 </div>
 
                 {/* Sidebar Mobile Footer */}
-                <div className="bg-zinc-900 border border-white/[0.08] rounded-xl p-3 text-center shadow-sm mt-6">
+                <div className="bg-black/40 border border-white/[0.08] rounded-xl p-3 text-center shadow-sm mt-6">
                   <p className="text-[9px] font-black text-zinc-300 uppercase tracking-wide">Web ERP Accounting</p>
                   <p className="text-[8px] text-zinc-500 font-bold mt-0.5">Mobile-Optimized Layout</p>
                 </div>

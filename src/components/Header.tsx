@@ -66,9 +66,9 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header id="erp-header" className={`sticky top-0 z-50 px-4 md:px-6 py-3 shadow-sm flex items-center justify-between transition-colors duration-300 ${
+    <header id="erp-header" className={`sticky top-0 z-50 px-4 md:px-6 py-3 shadow-sm flex items-center justify-between transition-all duration-200 duration-300 ${
       darkMode 
-        ? 'bg-[#06060f] border-b border-white/[0.06] text-zinc-100 shadow-zinc-950/20' 
+        ? 'bg-[#050510] border-b border-white/[0.06] text-zinc-100 shadow-zinc-950/20' 
         : 'bg-white border-b border-white/[0.06] text-zinc-200'
     }`}>
       {/* Left side: Hamburger menu & Brand */}
@@ -78,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({
           id="btn-mobile-menu"
           onClick={onToggleMobileMenu}
           aria-label="Toggle mobile menu"
-          className={`p-2 rounded-lg transition-colors lg:hidden focus:outline-none ${
+          className={`p-2 rounded-lg transition-all duration-200 lg:hidden focus:outline-none ${
             darkMode 
               ? 'hover:bg-white/[0.04] text-zinc-400 hover:text-zinc-100' 
               : 'hover:bg-white/[0.03] text-zinc-400 hover:text-zinc-100'
@@ -93,8 +93,8 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Brand Logo & Name */}
         <div className="flex items-center space-x-2.5">
-          <div className={`p-0.5 rounded-lg flex items-center justify-center shadow-sm border transition-colors ${
-            darkMode ? 'bg-zinc-900 border-white/[0.08]' : 'bg-white border-white/[0.06]'
+          <div className={`p-0.5 rounded-lg flex items-center justify-center shadow-sm border transition-all duration-200 ${
+            darkMode ? 'bg-black/40 border-white/[0.08]' : 'bg-white border-white/[0.06]'
           }`}>
             <CVLogo className="w-9 h-9" />
           </div>
@@ -112,8 +112,8 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Selectors Panel (Visible only on Desktop/Laptop view, hidden on Tablet/Mobile) */}
       <div className="hidden lg:flex items-center space-x-3.5">
         {/* Currency Selector */}
-        <div className={`flex items-center space-x-1.5 border rounded-lg px-2.5 py-1.5 shadow-sm transition-colors duration-300 ${
-          darkMode ? 'bg-zinc-900 border-white/[0.08]' : 'bg-white/[0.02] border-white/[0.06]'
+        <div className={`flex items-center space-x-1.5 border rounded-lg px-2.5 py-1.5 shadow-sm transition-all duration-200 duration-300 ${
+          darkMode ? 'bg-black/40 border-white/[0.08]' : 'bg-white/[0.02] border-white/[0.06]'
         }`}>
           <Coins className={`w-3.5 h-3.5 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`} />
           <select
@@ -125,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({
             onChange={(e) => handleCurrencyChange(e.target.value as any)}
           >
             {CURRENCIES.map((c) => (
-              <option key={c} value={c} className={darkMode ? 'bg-[#06060f] text-zinc-200' : 'bg-white text-zinc-200'}>
+              <option key={c} value={c} className={darkMode ? 'bg-[#050510] text-zinc-200' : 'bg-white text-zinc-200'}>
                 {c}
               </option>
             ))}
@@ -134,11 +134,11 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* User Role Matrix Switcher */}
         <div className={`flex items-center space-x-2 border-l pl-3.5 ${darkMode ? 'border-white/[0.08]' : 'border-white/[0.06]'}`}>
-          <div className={`flex items-center space-x-2.5 border rounded-lg px-3 py-1.5 shadow-sm transition-colors duration-300 ${
-            darkMode ? 'bg-zinc-900 border-white/[0.08] hover:bg-zinc-850' : 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.03]'
+          <div className={`flex items-center space-x-2.5 border rounded-lg px-3 py-1.5 shadow-sm transition-all duration-200 duration-300 ${
+            darkMode ? 'bg-black/40 border-white/[0.08] hover:bg-zinc-850' : 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.03]'
           }`}>
             <div className={`w-6.5 h-6.5 rounded-full font-extrabold text-xs flex items-center justify-center shadow-sm ${
-              darkMode ? 'bg-zinc-800 text-zinc-100' : 'bg-slate-950 text-white'
+              darkMode ? 'bg-zinc-800 text-zinc-100' : 'bg-black/80 backdrop-blur-sm text-white'
             }`}>
               {db.userSession.avatar}
             </div>
@@ -146,7 +146,7 @@ export const Header: React.FC<HeaderProps> = ({
               <p className={`text-xs font-bold leading-none ${darkMode ? 'text-zinc-200' : 'text-zinc-200'}`}>{db.userSession.name}</p>
               <div className="flex items-center space-x-1 mt-0.5">
                 <Shield className="w-3 h-3 text-emerald-500" />
-                <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-wider">
+                <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-[0.1em]">
                   {db.userSession.role}
                 </span>
               </div>
@@ -160,7 +160,7 @@ export const Header: React.FC<HeaderProps> = ({
               onChange={(e) => handleRoleChange(Number(e.target.value))}
             >
               {ROLES.map((r, i) => (
-                <option key={r.role} value={i} className={darkMode ? 'bg-[#06060f] text-zinc-200' : 'bg-white text-zinc-200'}>
+                <option key={r.role} value={i} className={darkMode ? 'bg-[#050510] text-zinc-200' : 'bg-white text-zinc-200'}>
                   Ubah Peran ({r.role})
                 </option>
               ))}
@@ -170,8 +170,8 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Mini Profile Indicator on Tablet/Mobile to show current user */}
-      <div className={`flex lg:hidden items-center space-x-2 border rounded-lg px-2.5 py-1.5 shadow-sm transition-colors ${
-        darkMode ? 'bg-zinc-900 border-white/[0.08] text-zinc-200' : 'bg-white/[0.02] border-white/[0.06] text-zinc-300'
+      <div className={`flex lg:hidden items-center space-x-2 border rounded-lg px-2.5 py-1.5 shadow-sm transition-all duration-200 ${
+        darkMode ? 'bg-black/40 border-white/[0.08] text-zinc-200' : 'bg-white/[0.02] border-white/[0.06] text-zinc-300'
       }`}>
         <div className={`w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center ${
           darkMode ? 'bg-zinc-800 text-zinc-100' : 'bg-slate-900 text-white'

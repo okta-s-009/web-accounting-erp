@@ -1016,7 +1016,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
       {/* PANEL FILTER & KONTROL CETAK (Berlaku untuk Semua Laporan) */}
       <div className="bg-white border border-white/[0.06] rounded-xl p-5 shadow-sm space-y-4 max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.04] pb-3 gap-3">
-          <div className="flex items-center space-x-2 text-zinc-200 font-extrabold text-xs uppercase tracking-wider">
+          <div className="flex items-center space-x-2 text-zinc-200 font-extrabold text-xs uppercase tracking-[0.1em]">
             <Filter className="w-4 h-4 text-indigo-600" />
             <span>Filter & Cetak Laporan - {
               reportMode === 'income' ? 'Laba Rugi' :
@@ -1034,7 +1034,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                   onDeleteAllTransactions?.();
                 }
               }}
-              className="flex items-center space-x-1.5 px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg shadow-sm transition-colors text-xs font-bold mr-2"
+              className="flex items-center space-x-1.5 px-3 py-1.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 shadow-lg shadow-rose-500/20 text-white rounded-lg shadow-sm transition-all duration-200 text-xs font-bold mr-2"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Hapus Semua Data</span>
@@ -1208,21 +1208,21 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
             <div className="flex flex-col sm:flex-row justify-between items-center border-b border-white/[0.04] pb-5 gap-3">
               <div className="text-center sm:text-left">
                 <h3 className="text-lg font-black text-zinc-100 tracking-tight uppercase">Laporan Laba Rugi</h3>
-                <p className="text-xs text-zinc-500 font-bold mt-1 uppercase tracking-wider">
+                <p className="text-xs text-zinc-500 font-bold mt-1 uppercase tracking-[0.1em]">
                   {db.activeBranch} | {startDate || endDate ? `Periode ${startDate || 'Awal'} s.d ${endDate || 'Akhir'}` : 'Seluruh Periode 2026'}
                 </p>
               </div>
               <div className="flex items-center gap-2 no-print">
                 <button
                   onClick={() => handlePrint('LAPORAN LABA RUGI')}
-                  className="px-2.5 py-1.5 bg-slate-800 text-white rounded-lg text-[10px] font-black hover:bg-slate-900 transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm uppercase tracking-wider"
+                  className="px-2.5 py-1.5 bg-slate-800 text-white rounded-lg text-[10px] font-black hover:bg-slate-900 transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm uppercase tracking-[0.1em]"
                 >
                   <Printer className="w-3 h-3" />
                   <span>PDF</span>
                 </button>
                 <button
                   onClick={() => handleExportExcel('income')}
-                  className="px-2.5 py-1.5 bg-emerald-600 text-white rounded-lg text-[10px] font-black hover:bg-emerald-700 transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm uppercase tracking-wider"
+                  className="px-2.5 py-1.5 bg-emerald-600 text-white rounded-lg text-[10px] font-black hover:bg-emerald-700 transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm uppercase tracking-[0.1em]"
                 >
                   <FileSpreadsheet className="w-3 h-3" />
                   <span>Excel</span>
@@ -1251,7 +1251,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
               <>
             {/* PENDAPATAN */}
             <div className="space-y-2">
-              <h4 className="font-extrabold text-zinc-100 uppercase text-[10px] tracking-wider text-zinc-500">1. Pendapatan Operasional</h4>
+              <h4 className="font-extrabold text-zinc-100 uppercase text-[10px] tracking-[0.1em] text-zinc-500">1. Pendapatan Operasional</h4>
               {incomeStatement.revenue.map((item, idx) => (
                 <div key={idx} className="flex justify-between pl-4 text-zinc-300 font-semibold">
                   <span>[{item.code}] {item.name}</span>
@@ -1266,7 +1266,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
 
             {/* HARGA POKOK PENJUALAN */}
             <div className="space-y-2 pt-2">
-              <h4 className="font-extrabold text-zinc-100 uppercase text-[10px] tracking-wider text-zinc-500">2. Harga Pokok Penjualan (HPP)</h4>
+              <h4 className="font-extrabold text-zinc-100 uppercase text-[10px] tracking-[0.1em] text-zinc-500">2. Harga Pokok Penjualan (HPP)</h4>
               {incomeStatement.cogs.map((item, idx) => (
                 <div key={idx} className="flex justify-between pl-4 text-zinc-300 font-semibold">
                   <span>[{item.code}] {item.name}</span>
@@ -1287,7 +1287,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
 
             {/* BEBAN OPERASIONAL */}
             <div className="space-y-2">
-              <h4 className="font-extrabold text-zinc-100 uppercase text-[10px] tracking-wider text-zinc-500">3. Beban Operasional</h4>
+              <h4 className="font-extrabold text-zinc-100 uppercase text-[10px] tracking-[0.1em] text-zinc-500">3. Beban Operasional</h4>
               {incomeStatement.expenses.length === 0 ? (
                 <p className="text-[11px] text-zinc-500 pl-4 font-medium italic">Belum ada pengeluaran operasional.</p>
               ) : (
@@ -1306,7 +1306,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
 
             {/* LABA BERSIH */}
             <div className={`flex justify-between border-t-2 border-b-4 border-double border-slate-950 py-4 font-black text-sm uppercase ${
-              incomeStatement.netProfit >= 0 ? 'bg-emerald-50 text-emerald-800' : 'bg-rose-50 text-rose-800'
+              incomeStatement.netProfit >= 0 ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/20' : 'bg-rose-500/15 text-rose-300 border border-rose-500/20'
             } -mx-8 px-8`}>
               <span>Laba Bersih Setelah Pajak (Net Profit):</span>
               <span className="font-extrabold">{formatCurrency(incomeStatement.netProfit, db.activeCurrency)}</span>
@@ -1323,21 +1323,21 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
             <div className="flex flex-col sm:flex-row justify-between items-center border-b border-white/[0.04] pb-5 gap-3">
               <div className="text-center sm:text-left">
                 <h3 className="text-lg font-black text-zinc-100 tracking-tight uppercase">Laporan Posisi Keuangan (Neraca)</h3>
-                <p className="text-xs text-zinc-500 font-bold mt-1 uppercase tracking-wider">
+                <p className="text-xs text-zinc-500 font-bold mt-1 uppercase tracking-[0.1em]">
                   {db.activeBranch} | {endDate ? `Per Tanggal ${endDate}` : 'Seluruh Posisi Keuangan'}
                 </p>
               </div>
               <div className="flex items-center gap-2 no-print">
                 <button
                   onClick={() => handlePrint('LAPORAN NERACA / POSISI KEUANGAN')}
-                  className="px-2.5 py-1.5 bg-slate-800 text-white rounded-lg text-[10px] font-black hover:bg-slate-900 transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm uppercase tracking-wider"
+                  className="px-2.5 py-1.5 bg-slate-800 text-white rounded-lg text-[10px] font-black hover:bg-slate-900 transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm uppercase tracking-[0.1em]"
                 >
                   <Printer className="w-3.5 h-3.5" />
                   <span>PDF</span>
                 </button>
                 <button
                   onClick={() => handleExportExcel('balance')}
-                  className="px-2.5 py-1.5 bg-emerald-600 text-white rounded-lg text-[10px] font-black hover:bg-emerald-700 transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm uppercase tracking-wider"
+                  className="px-2.5 py-1.5 bg-emerald-600 text-white rounded-lg text-[10px] font-black hover:bg-emerald-700 transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm uppercase tracking-[0.1em]"
                 >
                   <FileSpreadsheet className="w-3.5 h-3.5" />
                   <span>Excel</span>
@@ -1455,7 +1455,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <Coins className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Total Penjualan</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Total Penjualan</p>
                 <h4 className="text-sm font-black text-zinc-100 mt-1">{formatCurrency(totalSalesVal, db.activeCurrency)}</h4>
               </div>
             </div>
@@ -1465,7 +1465,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <Wallet className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Total Pembayaran Diterima</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Total Pembayaran Diterima</p>
                 <h4 className="text-sm font-black text-zinc-100 mt-1">{formatCurrency(totalSalesPaidVal, db.activeCurrency)}</h4>
               </div>
             </div>
@@ -1475,7 +1475,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <FileText className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Sisa Piutang Usaha</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Sisa Piutang Usaha</p>
                 <h4 className="text-sm font-black text-zinc-100 mt-1">{formatCurrency(totalSalesRemainingVal, db.activeCurrency)}</h4>
               </div>
             </div>
@@ -1485,7 +1485,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <Receipt className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Total PPN Keluaran</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Total PPN Keluaran</p>
                 <h4 className="text-sm font-black text-zinc-100 mt-1">{formatCurrency(totalSalesTaxVal, db.activeCurrency)}</h4>
               </div>
             </div>
@@ -1496,7 +1496,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
             <div className="px-5 py-4 border-b border-white/[0.04] flex justify-between items-center bg-white/[0.02]">
               <div className="flex items-center space-x-2">
                 <Receipt className="w-5 h-5 text-amber-600" />
-                <h3 className="font-extrabold text-xs text-zinc-100 uppercase tracking-wider">Daftar Invoice Penjualan Lengkap</h3>
+                <h3 className="font-extrabold text-xs text-zinc-100 uppercase tracking-[0.1em]">Daftar Invoice Penjualan Lengkap</h3>
               </div>
               <div className="flex items-center gap-2 no-print">
                 <button
@@ -1578,7 +1578,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                       
                       return (
                         <React.Fragment key={invoice.id}>
-                          <tr className={`hover:bg-white/[0.02] transition-colors ${isExpanded ? 'bg-white/[0.02]/50' : ''}`}>
+                          <tr className={`hover:bg-white/[0.02] transition-all duration-200 ${isExpanded ? 'bg-white/[0.02]/50' : ''}`}>
                             <td className="py-3.5 px-4 text-zinc-100 font-bold whitespace-nowrap">{invoice.date}</td>
                             <td className="py-3.5 px-4 font-mono font-bold text-zinc-100">{highlightText(invoice.invoiceNo, searchTerm)}</td>
                             <td className="py-3.5 px-4">{highlightText(customerName, searchTerm)}</td>
@@ -1614,7 +1614,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                               </button>
                             </td>
                             <td className="py-3.5 px-4 text-center no-print">
-                              <button onClick={(e) => { e.stopPropagation(); if (window.confirm('Yakin ingin menghapus tagihan ini secara permanen? Jurnal dan stok barang akan ikut ditarik.')) onDeleteTransaction?.('Sales', invoice.id); }} className="text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 p-1.5 rounded-md transition-colors">
+                              <button onClick={(e) => { e.stopPropagation(); if (window.confirm('Yakin ingin menghapus tagihan ini secara permanen? Jurnal dan stok barang akan ikut ditarik.')) onDeleteTransaction?.('Sales', invoice.id); }} className="text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 p-1.5 rounded-md transition-all duration-200">
                                 <Trash2 className="w-4 h-4" />
                               </button>
                             </td>
@@ -1624,7 +1624,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                               <td colSpan={10} className="p-4 border-t border-b border-white/[0.06]/50">
                                 <div className="max-w-2xl bg-white border border-white/[0.06] rounded-lg p-4 shadow-sm space-y-3 mx-auto">
                                   <div className="flex justify-between items-center border-b border-white/[0.04] pb-2">
-                                    <h5 className="font-bold text-[11px] text-zinc-500 uppercase tracking-wider">Rincian Item Penjualan</h5>
+                                    <h5 className="font-bold text-[11px] text-zinc-500 uppercase tracking-[0.1em]">Rincian Item Penjualan</h5>
                                     <span className="text-[10px] font-bold text-zinc-500 font-mono">ID: {invoice.id}</span>
                                   </div>
                                   <div className="space-y-2">
@@ -1693,7 +1693,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <Receipt className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Total Pembelian</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Total Pembelian</p>
                 <h4 className="text-sm font-black text-zinc-100 mt-1">{formatCurrency(totalPurchasesVal, db.activeCurrency)}</h4>
               </div>
             </div>
@@ -1703,7 +1703,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <Wallet className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Total Pembayaran Dibayar</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Total Pembayaran Dibayar</p>
                 <h4 className="text-sm font-black text-zinc-100 mt-1">{formatCurrency(totalPurchasesPaidVal, db.activeCurrency)}</h4>
               </div>
             </div>
@@ -1713,7 +1713,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <FileText className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Sisa Hutang Usaha</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Sisa Hutang Usaha</p>
                 <h4 className="text-sm font-black text-zinc-100 mt-1">{formatCurrency(totalPurchasesRemainingVal, db.activeCurrency)}</h4>
               </div>
             </div>
@@ -1723,7 +1723,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <Coins className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Total PPN Masukan</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Total PPN Masukan</p>
                 <h4 className="text-sm font-black text-zinc-100 mt-1">{formatCurrency(totalPurchasesTaxVal, db.activeCurrency)}</h4>
               </div>
             </div>
@@ -1734,7 +1734,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
             <div className="px-5 py-4 border-b border-white/[0.04] flex justify-between items-center bg-white/[0.02]">
               <div className="flex items-center space-x-2">
                 <Receipt className="w-5 h-5 text-rose-600" />
-                <h3 className="font-extrabold text-xs text-zinc-100 uppercase tracking-wider">Daftar Invoice Pembelian Lengkap</h3>
+                <h3 className="font-extrabold text-xs text-zinc-100 uppercase tracking-[0.1em]">Daftar Invoice Pembelian Lengkap</h3>
               </div>
               <div className="flex items-center gap-2 no-print">
                 <button
@@ -1816,7 +1816,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                       
                       return (
                         <React.Fragment key={invoice.id}>
-                          <tr className={`hover:bg-white/[0.02] transition-colors ${isExpanded ? 'bg-white/[0.02]/50' : ''}`}>
+                          <tr className={`hover:bg-white/[0.02] transition-all duration-200 ${isExpanded ? 'bg-white/[0.02]/50' : ''}`}>
                             <td className="py-3.5 px-4 text-zinc-100 font-bold whitespace-nowrap">{invoice.date}</td>
                             <td className="py-3.5 px-4 font-mono font-bold text-zinc-100">{highlightText(invoice.invoiceNo, searchTerm)}</td>
                             <td className="py-3.5 px-4">{highlightText(supplierName, searchTerm)}</td>
@@ -1852,7 +1852,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                               </button>
                             </td>
                             <td className="py-3.5 px-4 text-center no-print">
-                              <button onClick={(e) => { e.stopPropagation(); if (window.confirm('Yakin ingin menghapus tagihan ini secara permanen? Jurnal dan stok barang akan ikut ditarik.')) onDeleteTransaction?.('Purchase', invoice.id); }} className="text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 p-1.5 rounded-md transition-colors">
+                              <button onClick={(e) => { e.stopPropagation(); if (window.confirm('Yakin ingin menghapus tagihan ini secara permanen? Jurnal dan stok barang akan ikut ditarik.')) onDeleteTransaction?.('Purchase', invoice.id); }} className="text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 p-1.5 rounded-md transition-all duration-200">
                                 <Trash2 className="w-4 h-4" />
                               </button>
                             </td>
@@ -1862,7 +1862,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                               <td colSpan={10} className="p-4 border-t border-b border-white/[0.06]/50">
                                 <div className="max-w-2xl bg-white border border-white/[0.06] rounded-lg p-4 shadow-sm space-y-3 mx-auto">
                                   <div className="flex justify-between items-center border-b border-white/[0.04] pb-2">
-                                    <h5 className="font-bold text-[11px] text-zinc-500 uppercase tracking-wider">Rincian Item Pembelian</h5>
+                                    <h5 className="font-bold text-[11px] text-zinc-500 uppercase tracking-[0.1em]">Rincian Item Pembelian</h5>
                                     <span className="text-[10px] font-bold text-zinc-500 font-mono">ID: {invoice.id}</span>
                                   </div>
                                   <div className="space-y-2">
@@ -1931,7 +1931,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <Coins className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Total Kas Masuk (Inflow)</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Total Kas Masuk (Inflow)</p>
                 <h4 className="text-sm font-black text-zinc-100 mt-1">{formatCurrency(totalCashInflow, db.activeCurrency)}</h4>
               </div>
             </div>
@@ -1941,7 +1941,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <Wallet className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Total Kas Keluar (Expense/Outflow)</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Total Kas Keluar (Expense/Outflow)</p>
                 <h4 className="text-sm font-black text-rose-900 mt-1">{formatCurrency(totalCashOutflow, db.activeCurrency)}</h4>
               </div>
             </div>
@@ -1951,7 +1951,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                 <FileText className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Selisih Operasional Net</p>
+                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.1em]">Selisih Operasional Net</p>
                 <h4 className={`text-sm font-black mt-1 ${totalCashInflow - totalCashOutflow >= 0 ? 'text-emerald-700' : 'text-rose-700'}`}>
                   {formatCurrency(totalCashInflow - totalCashOutflow, db.activeCurrency)}
                 </h4>
@@ -1964,7 +1964,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
             <div className="px-5 py-4 border-b border-white/[0.04] flex justify-between items-center bg-white/[0.02]">
               <div className="flex items-center space-x-2">
                 <Wallet className="w-5 h-5 text-purple-600" />
-                <h3 className="font-extrabold text-xs text-zinc-100 uppercase tracking-wider">{reportMode === 'cashbook' ? 'Buku Kas & Pengeluaran Operasional Detil' : 'Buku Jurnal Umum'}</h3>
+                <h3 className="font-extrabold text-xs text-zinc-100 uppercase tracking-[0.1em]">{reportMode === 'cashbook' ? 'Buku Kas & Pengeluaran Operasional Detil' : 'Buku Jurnal Umum'}</h3>
               </div>
               <div className="flex items-center gap-2 no-print">
                 <button
@@ -2007,7 +2007,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                   ) : (
                     paginatedLedger.filter(e => reportMode === 'general_ledger' || (reportMode === 'cashbook' && (e.type !== 'Jurnal Umum' || e.details.some(d => d.coaCode.startsWith('11') || d.coaCode.startsWith('12'))))).map((entry) => {
                       return (
-                        <tr key={entry.id} className="hover:bg-white/[0.02] transition-colors">
+                        <tr key={entry.id} className="hover:bg-white/[0.02] transition-all duration-200">
                           <td className="py-3 px-4 text-slate-950 font-bold whitespace-nowrap align-top">{entry.date}</td>
                           <td className="py-3 px-4 font-mono font-bold text-zinc-100 whitespace-nowrap align-top">{highlightText(entry.reference, searchTerm)}</td>
                           <td className="py-3 px-4 align-top whitespace-nowrap">
@@ -2038,7 +2038,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
                             {formatCurrency(entry.amount, db.activeCurrency)}
                           </td>
                           <td className="py-3 px-4 text-center align-top">
-                            <button onClick={(e) => { e.stopPropagation(); if (window.confirm('Yakin ingin menghapus jurnal ini secara permanen? Saldo otomatis menyesuaikan.')) onDeleteTransaction?.(entry.type === 'Jurnal Umum' ? 'Journal' : 'Cash', entry.id); }} className="text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 p-1.5 rounded-md transition-colors">
+                            <button onClick={(e) => { e.stopPropagation(); if (window.confirm('Yakin ingin menghapus jurnal ini secara permanen? Saldo otomatis menyesuaikan.')) onDeleteTransaction?.(entry.type === 'Jurnal Umum' ? 'Journal' : 'Cash', entry.id); }} className="text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 p-1.5 rounded-md transition-all duration-200">
                               <Trash2 className="w-4 h-4" />
                             </button>
                           </td>

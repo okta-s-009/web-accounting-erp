@@ -172,7 +172,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
             setInvoiceError('');
             setIsCreateOpen(true);
           }}
-          className="flex items-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow-md transition-colors"
+          className="flex items-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-black/80 backdrop-blur-sm hover:bg-slate-900 rounded-lg shadow-md transition-all duration-200"
         >
           <Plus className="w-4 h-4" />
           <span>Beli Barang</span>
@@ -209,7 +209,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                   invoices.map((inv) => (
                     <tr 
                       key={inv.id} 
-                      className={`hover:bg-white/[0.01] cursor-pointer transition-colors ${
+                      className={`hover:bg-white/[0.01] cursor-pointer transition-all duration-200 ${
                         selectedInvoice?.id === inv.id ? 'bg-white/[0.03] border-l-4 border-l-slate-900' : ''
                       }`}
                       onClick={() => setSelectedInvoice(inv)}
@@ -218,7 +218,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                       <td className="px-5 py-4 text-zinc-500">{inv.date}</td>
                       <td className="px-5 py-4 text-zinc-200">{getSupplierName(inv.supplierId)}</td>
                       <td className="px-5 py-4">
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-extrabold ${inv.paymentMethod === 'CASH' ? 'bg-emerald-50 text-emerald-800' : 'bg-amber-50 text-amber-800'}`}>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-extrabold ${inv.paymentMethod === 'CASH' ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/20' : 'bg-amber-500/15 text-amber-300 border border-amber-500/20'}`}>
                           {inv.paymentMethod}
                         </span>
                       </td>
@@ -240,7 +240,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                         {inv.status === 'Unpaid' && (
                           <button
                             onClick={() => handleOpenPayModal(inv)}
-                            className="px-2 py-1 text-[10px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md shadow-sm transition-colors"
+                            className="px-2 py-1 text-[10px] font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md shadow-sm transition-all duration-200"
                           >
                             Bayar Hutang
                           </button>
@@ -331,7 +331,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                     Double-Entry Journal Postings (Otomatis)
                   </h4>
                   <div className="border border-white/[0.04] rounded-lg overflow-hidden shadow-sm bg-white/[0.02]/10">
-                    <div className="bg-slate-950 text-white px-3 py-1.5 flex items-center justify-between text-[10px] font-bold">
+                    <div className="bg-black/80 backdrop-blur-sm text-white px-3 py-1.5 flex items-center justify-between text-[10px] font-bold">
                       <span>No Jurnal: {selectedJournal.journalNo}</span>
                       <span>{selectedJournal.date}</span>
                     </div>
@@ -378,7 +378,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
 
       {/* Invoice Creator Modal */}
       {isCreateOpen && (
-        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col max-h-[90vh]">
             <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
               <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide">Faktur Pembelian Baru</h3>
@@ -530,7 +530,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow"
+                  className="px-4 py-2 text-xs font-bold text-white bg-black/80 backdrop-blur-sm hover:bg-slate-900 rounded-lg shadow"
                 >
                   Post Jurnal & Tambah Stok
                 </button>
@@ -542,7 +542,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
 
       {/* Payment Processing Modal */}
       {isPayOpen && selectedInvoice && (
-        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-md overflow-hidden flex flex-col">
             <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
               <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide">Pembayaran Hutang Supplier</h3>
@@ -619,7 +619,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow"
+                  className="px-4 py-2 text-xs font-bold text-white bg-black/80 backdrop-blur-sm hover:bg-slate-900 rounded-lg shadow"
                 >
                   Konfirmasi Pembayaran
                 </button>
@@ -629,7 +629,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
         </div>
       )}
       {invoiceToDelete && (
-        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
           <div className="bg-white rounded-xl border border-white/[0.06] shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
             <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between bg-white/[0.02]">
               <h3 className="text-sm font-bold text-zinc-100 uppercase tracking-wide flex items-center gap-2">
@@ -657,7 +657,7 @@ export const PurchaseTab: React.FC<PurchaseTabProps> = ({ db, onUpdateDb }) => {
               <button
                 type="button"
                 onClick={executeDeleteInvoice}
-                className="px-4 py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-lg shadow"
+                className="px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 shadow-lg shadow-rose-500/20 rounded-lg shadow"
               >
                 Hapus
               </button>

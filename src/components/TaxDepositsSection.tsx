@@ -401,9 +401,9 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Total Paid */}
-        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-emerald-500/40">
+        <div className="bg-[#050510]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-emerald-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">Total Pajak Disetor</span>
+            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.1em]">Total Pajak Disetor</span>
             <div className="p-1.5 bg-emerald-500/10 text-emerald-400 rounded-lg">
               <CheckCircle2 className="w-4 h-4" />
             </div>
@@ -418,9 +418,9 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
         </div>
 
         {/* PPh Badan (MAP 411125/411126) */}
-        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-amber-500/40">
+        <div className="bg-[#050510]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-amber-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">Angsuran PPh Badan</span>
+            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.1em]">Angsuran PPh Badan</span>
             <div className="p-1.5 bg-amber-500/10 text-amber-400 rounded-lg">
               <Percent className="w-4 h-4" />
             </div>
@@ -435,9 +435,9 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
         </div>
 
         {/* Pajak Lainnya */}
-        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-indigo-500/40">
+        <div className="bg-[#050510]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-indigo-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">PPN & Pajak Lainnya</span>
+            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.1em]">PPN & Pajak Lainnya</span>
             <div className="p-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg">
               <Coins className="w-4 h-4" />
             </div>
@@ -452,9 +452,9 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
         </div>
 
         {/* Kualitas Kepatuhan */}
-        <div className="bg-[#06060f]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-violet-500/40">
+        <div className="bg-[#050510]/70 border border-white/[0.08] rounded-xl p-4 shadow-lg hover:border-white/[0.1] transition-all border-l-violet-500/40">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-wider">Slip Setoran</span>
+            <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.1em]">Slip Setoran</span>
             <div className="p-1.5 bg-violet-500/10 text-violet-400 rounded-lg">
               <ShieldCheck className="w-4 h-4" />
             </div>
@@ -475,7 +475,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
         
         {/* Left Col: Catat Setoran Baru */}
         <div className="lg:col-span-5 space-y-6">
-          <div id="ssp-section-form-container" className="bg-[#06060f] border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4">
+          <div id="ssp-section-form-container" className="bg-[#050510] border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4">
             <div className="border-b border-white/[0.06] pb-3 flex items-center gap-2">
               {editingDepositId ? (
                 <Edit2 className="w-5 h-5 text-amber-500 animate-pulse" />
@@ -483,7 +483,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                 <Plus className="w-5 h-5 text-amber-500" />
               )}
               <div>
-                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest">
+                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-[0.15em]">
                   {editingDepositId ? 'Edit Setoran Pajak' : 'Catat Setoran Pajak Baru (SSP)'}
                 </h3>
                 <p className="text-[9px] text-zinc-500 font-bold uppercase mt-0.5">
@@ -501,7 +501,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                   <select
                     value={depMonth}
                     onChange={(e) => setDepMonth(e.target.value)}
-                    className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                    className="w-full text-xs font-bold text-zinc-100 bg-black/40 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                   >
                     {['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'].map(m => (
                       <option key={m} value={m}>{m}</option>
@@ -514,7 +514,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                   <select
                     value={depYear}
                     onChange={(e) => setDepYear(Number(e.target.value))}
-                    className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                    className="w-full text-xs font-bold text-zinc-100 bg-black/40 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                   >
                     {[2025, 2026, 2027].map(y => (
                       <option key={y} value={y}>{y}</option>
@@ -534,7 +534,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                 <select
                   value={depTaxType}
                   onChange={(e) => setDepTaxType(e.target.value)}
-                  className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                  className="w-full text-xs font-bold text-zinc-100 bg-black/40 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
                   <option value="PPh Pasal 25 (Angsuran PPh Badan)">PPh Pasal 25 (Angsuran PPh Badan)</option>
                   <option value="PPh Pasal 29 (PPh Badan Kurang Bayar Tahunan)">PPh Pasal 29 (PPh Badan Kurang Bayar Tahunan)</option>
@@ -559,7 +559,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                   placeholder="Contoh: 8271A9283748C6B1"
                   value={depNtpn}
                   onChange={(e) => setDepNtpn(e.target.value.toUpperCase())}
-                  className="w-full text-xs font-mono font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 uppercase"
+                  className="w-full text-xs font-mono font-bold text-zinc-100 bg-black/40 border border-white/[0.08] rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 uppercase"
                 />
                 {depNtpn.length === 15 && /^\d+$/.test(depNtpn) && (
                   <div className="mt-1.5 p-2.5 bg-amber-500/10 border border-amber-500/20 rounded-lg text-[10px] text-amber-400 font-medium leading-relaxed">
@@ -589,7 +589,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                           setDepAmount('');
                         }
                       }}
-                      className="w-full text-xs font-mono font-black text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg pl-9 pr-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                      className="w-full text-xs font-mono font-black text-zinc-100 bg-black/40 border border-white/[0.08] rounded-lg pl-9 pr-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
                     />
                   </div>
                 </div>
@@ -601,7 +601,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                     required
                     value={depDate}
                     onChange={(e) => setDepDate(e.target.value)}
-                    className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                    className="w-full text-xs font-bold text-zinc-100 bg-black/40 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                   />
                 </div>
               </div>
@@ -612,7 +612,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                 <select
                   value={depBank}
                   onChange={(e) => setDepBank(e.target.value)}
-                  className="w-full text-xs font-bold text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                  className="w-full text-xs font-bold text-zinc-100 bg-black/40 border border-white/[0.08] rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
                   <option value="Bank Mandiri">Bank Mandiri (Persero)</option>
                   <option value="Bank BNI">Bank BNI (Persero)</option>
@@ -630,7 +630,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                   rows={2}
                   value={depNotes}
                   onChange={(e) => setDepNotes(e.target.value)}
-                  className="w-full text-xs font-medium text-zinc-100 bg-zinc-900 border border-white/[0.08] rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                  className="w-full text-xs font-medium text-zinc-100 bg-black/40 border border-white/[0.08] rounded-lg px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-amber-500"
                 />
               </div>
 
@@ -687,14 +687,14 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                       setDepAttachmentName('');
                       triggerNotification('Edit dibatalkan.', 'info');
                     }}
-                    className="flex-1 py-3 bg-zinc-850 hover:bg-white/[0.06] text-zinc-300 text-xs font-black uppercase rounded-xl tracking-wider shadow-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer mt-2"
+                    className="flex-1 py-3 bg-zinc-850 hover:bg-white/[0.06] text-zinc-300 text-xs font-black uppercase rounded-xl tracking-[0.1em] shadow-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer mt-2"
                   >
                     Batal
                   </button>
                 )}
                 <button
                   type="submit"
-                  className={`${editingDepositId ? 'flex-1' : 'w-full'} py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-zinc-950 text-xs font-black uppercase rounded-xl tracking-wider shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer mt-2`}
+                  className={`${editingDepositId ? 'flex-1' : 'w-full'} py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-zinc-950 text-xs font-black uppercase rounded-xl tracking-[0.1em] shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer mt-2`}
                 >
                   {editingDepositId ? (
                     <>
@@ -714,12 +714,12 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
 
         {/* Right Col: Log List of Payments */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="bg-[#06060f] border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4">
+          <div className="bg-[#050510] border border-white/[0.08] rounded-2xl p-5 shadow-xl space-y-4">
             
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.06] pb-3 gap-3">
               <div>
-                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest flex items-center gap-1.5">
+                <h3 className="text-xs font-black text-zinc-100 uppercase tracking-[0.15em] flex items-center gap-1.5">
                   <FileSpreadsheet className="w-4.5 h-4.5 text-indigo-400" />
                   Buku Register Penyetoran Pajak Negara
                 </h3>
@@ -727,7 +727,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                   Riwayat Surat Setoran Pajak (SSP) yang Berhasil Direkonsiliasi
                 </p>
               </div>
-              <span className="text-[9px] font-black text-zinc-400 bg-zinc-900 border border-white/[0.08] px-2.5 py-1 rounded-lg shrink-0">
+              <span className="text-[9px] font-black text-zinc-400 bg-black/40 border border-white/[0.08] px-2.5 py-1 rounded-lg shrink-0">
                 {filteredDeposits.length} Catatan Pajak
               </span>
             </div>
@@ -745,7 +745,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                   placeholder="Cari NTPN..."
                   value={filterSearch}
                   onChange={(e) => setFilterSearch(e.target.value)}
-                  className="w-full text-[11px] font-bold text-zinc-200 bg-[#06060f] border border-white/[0.08] rounded-lg pl-8.5 pr-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                  className="w-full text-[11px] font-bold text-zinc-200 bg-[#050510] border border-white/[0.08] rounded-lg pl-8.5 pr-3 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500"
                 />
               </div>
 
@@ -754,7 +754,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                 <select
                   value={filterMonth}
                   onChange={(e) => setFilterMonth(e.target.value)}
-                  className="w-full text-[11px] font-bold text-zinc-200 bg-[#06060f] border border-white/[0.08] rounded-lg px-2.5 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                  className="w-full text-[11px] font-bold text-zinc-200 bg-[#050510] border border-white/[0.08] rounded-lg px-2.5 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
                   <option value="Semua">Bulan: Semua</option>
                   {['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'].map(m => (
@@ -768,7 +768,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                 <select
                   value={filterYear}
                   onChange={(e) => setFilterYear(e.target.value)}
-                  className="w-full text-[11px] font-bold text-zinc-200 bg-[#06060f] border border-white/[0.08] rounded-lg px-2.5 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
+                  className="w-full text-[11px] font-bold text-zinc-200 bg-[#050510] border border-white/[0.08] rounded-lg px-2.5 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500 cursor-pointer"
                 >
                   <option value="Semua">Tahun: Semua</option>
                   <option value="2026">Tahun: 2026</option>
@@ -793,7 +793,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                       setFilterMonth('Semua');
                       setFilterYear('2026');
                     }}
-                    className="px-3 py-1.5 bg-zinc-900 border border-white/[0.08] hover:bg-zinc-850 rounded-lg text-[9px] font-black uppercase text-amber-400 tracking-wider transition-colors cursor-pointer"
+                    className="px-3 py-1.5 bg-black/40 border border-white/[0.08] hover:bg-zinc-850 rounded-lg text-[9px] font-black uppercase text-amber-400 tracking-[0.1em] transition-all duration-200 cursor-pointer"
                   >
                     Reset Filter
                   </button>
@@ -846,7 +846,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                       
                       {/* Amount */}
                       <div className="text-left sm:text-right">
-                        <span className="text-[8px] text-zinc-500 font-black block uppercase tracking-wider">Jumlah Disetor</span>
+                        <span className="text-[8px] text-zinc-500 font-black block uppercase tracking-[0.1em]">Jumlah Disetor</span>
                         <span className="text-sm font-black font-mono text-emerald-400">
                           {formatCurrency(item.amount, currency).split(',')[0]}
                         </span>
@@ -859,7 +859,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                         <div 
                           onClick={() => handleCopyNtpn(item.ntpn)}
                           title="Klik untuk menyalin NTPN"
-                          className="px-2.5 py-1 bg-[#06060f] hover:bg-white/[0.04] border border-white/[0.08] rounded-lg text-[9px] font-mono font-black text-zinc-400 hover:text-zinc-200 cursor-pointer flex items-center gap-1.5 transition-all"
+                          className="px-2.5 py-1 bg-[#050510] hover:bg-white/[0.04] border border-white/[0.08] rounded-lg text-[9px] font-mono font-black text-zinc-400 hover:text-zinc-200 cursor-pointer flex items-center gap-1.5 transition-all"
                         >
                           <span>NTPN:</span>
                           <span className="text-zinc-200">{item.ntpn.substring(0, 8)}...</span>
@@ -874,7 +874,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                         <button
                           onClick={() => setSelectedReceipt(item)}
                           title="Buka Lembar BPN Resmi Negara"
-                          className="p-1.5 bg-zinc-900 hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/[0.1] text-zinc-400 hover:text-zinc-100 rounded-lg transition-colors cursor-pointer"
+                          className="p-1.5 bg-zinc-900 hover:bg-white/[0.06] border border-white/[0.08] hover:border-white/[0.1] text-zinc-400 hover:text-zinc-100 rounded-lg transition-all duration-200 cursor-pointer"
                         >
                           <Eye className="w-3.5 h-3.5" />
                         </button>
@@ -883,7 +883,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                         <button
                           onClick={() => handleEditDepositClick(item)}
                           title="Edit Bukti Setor"
-                          className="p-1.5 bg-zinc-900 hover:bg-amber-500/10 border border-white/[0.08] hover:border-amber-500/20 text-amber-400 hover:text-amber-300 rounded-lg transition-colors cursor-pointer"
+                          className="p-1.5 bg-zinc-900 hover:bg-amber-500/10 border border-white/[0.08] hover:border-amber-500/20 text-amber-400 hover:text-amber-300 rounded-lg transition-all duration-200 cursor-pointer"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>
@@ -892,7 +892,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                         <button
                           onClick={() => setDepositToDelete(item)}
                           title="Hapus Bukti Setor"
-                          className="p-1.5 bg-zinc-900 hover:bg-rose-500/10 border border-white/[0.08] hover:border-rose-500/20 text-rose-400 hover:text-rose-300 rounded-lg transition-colors cursor-pointer"
+                          className="p-1.5 bg-zinc-900 hover:bg-rose-500/10 border border-white/[0.08] hover:border-rose-500/20 text-rose-400 hover:text-rose-300 rounded-lg transition-all duration-200 cursor-pointer"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -929,7 +929,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
               initial={{ scale: 0.95, y: 15 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 15 }}
-              className="bg-[#06060f] border border-white/[0.08] rounded-3xl p-6 md:p-8 max-w-2xl w-full shadow-2xl relative overflow-hidden text-zinc-200"
+              className="bg-[#050510] border border-white/[0.08] rounded-3xl p-6 md:p-8 max-w-2xl w-full shadow-2xl relative overflow-hidden text-zinc-200"
             >
               {/* Watermark in background */}
               <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
@@ -941,12 +941,12 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
               {/* BPN Header Printout */}
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/[0.08] pb-5 gap-4 relative z-10">
                 <div className="space-y-1 text-left">
-                  <p className="text-[9px] font-black text-zinc-500 uppercase tracking-widest leading-none">REPUBLIK INDONESIA</p>
-                  <p className="text-[11px] font-black text-zinc-300 uppercase tracking-wider">DIREKTORAT JENDERAL PAJAK</p>
+                  <p className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.15em] leading-none">REPUBLIK INDONESIA</p>
+                  <p className="text-[11px] font-black text-zinc-300 uppercase tracking-[0.1em]">DIREKTORAT JENDERAL PAJAK</p>
                   <p className="text-[9px] font-bold text-zinc-400">KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</p>
                 </div>
                 <div className="text-left md:text-right">
-                  <span className="text-[8px] font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded uppercase tracking-wider">
+                  <span className="text-[8px] font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded uppercase tracking-[0.1em]">
                     Sistem MPN G3 Terverifikasi
                   </span>
                   <p className="text-xs font-mono font-black text-zinc-200 mt-1.5">No. Dokumen: BPN-{selectedReceipt.id}</p>
@@ -955,7 +955,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
 
               {/* Receipt Title */}
               <div className="text-center py-5 relative z-10">
-                <h3 className="text-base font-black tracking-widest text-zinc-100 uppercase">
+                <h3 className="text-base font-black tracking-[0.15em] text-zinc-100 uppercase">
                   BUKTI PENERIMAAN NEGARA (BPN)
                 </h3>
                 <p className="text-[9px] text-zinc-400 font-bold uppercase mt-1">
@@ -1006,7 +1006,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
 
                 <div className="grid grid-cols-12 gap-2 pb-2.5 border-b border-white/[0.06] text-left">
                   <span className="col-span-4 text-zinc-500 font-bold uppercase">KODE NTPN:</span>
-                  <span className="col-span-8 text-amber-400 font-black tracking-widest select-all text-left">
+                  <span className="col-span-8 text-amber-400 font-black tracking-[0.15em] select-all text-left">
                     {selectedReceipt.ntpn}
                   </span>
                 </div>
@@ -1034,13 +1034,13 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
                   onClick={() => {
                     triggerNotification(`Mengunduh berkas bukti resmi NTPN ${selectedReceipt.ntpn}...`);
                   }}
-                  className="flex-1 py-3 bg-zinc-900 hover:bg-white/[0.06] border border-white/[0.08] rounded-xl text-xs font-black uppercase text-amber-400 tracking-wider flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  className="flex-1 py-3 bg-zinc-900 hover:bg-white/[0.06] border border-white/[0.08] rounded-xl text-xs font-black uppercase text-amber-400 tracking-[0.1em] flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer"
                 >
                   <Download className="w-4 h-4" /> Cetak / Unduh Dokumen BPN
                 </button>
                 <button
                   onClick={() => setSelectedReceipt(null)}
-                  className="flex-1 py-3 bg-zinc-850 hover:bg-white/[0.06] text-zinc-300 text-xs font-black uppercase rounded-xl tracking-wider transition-all cursor-pointer"
+                  className="flex-1 py-3 bg-zinc-850 hover:bg-white/[0.06] text-zinc-300 text-xs font-black uppercase rounded-xl tracking-[0.1em] transition-all cursor-pointer"
                 >
                   Tutup Rincian
                 </button>
@@ -1061,14 +1061,14 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-[#06060f] border border-white/[0.08] rounded-2xl p-6 max-w-sm w-full space-y-4 shadow-2xl"
+              className="bg-[#050510] border border-white/[0.08] rounded-2xl p-6 max-w-sm w-full space-y-4 shadow-2xl"
             >
               <div className="flex items-center gap-3 border-b border-white/[0.06] pb-3">
                 <div className="p-2 bg-rose-500/10 text-rose-400 rounded-xl">
                   <Trash2 className="w-5 h-5 animate-bounce" />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-xs font-black text-zinc-100 uppercase tracking-widest">
+                  <h3 className="text-xs font-black text-zinc-100 uppercase tracking-[0.15em]">
                     Hapus Bukti Setor?
                   </h3>
                   <p className="text-[9px] text-zinc-500 font-bold uppercase mt-0.5">
@@ -1079,7 +1079,7 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
 
               <div className="text-left space-y-2 text-xs text-zinc-400 font-bold">
                 <p>Apakah Anda yakin ingin menghapus catatan penyetoran pajak berikut?</p>
-                <div className="p-3 bg-[#0a0a1a] border border-white/[0.08] rounded-xl space-y-1">
+                <div className="p-3 bg-[#0a0a1a]/80 backdrop-blur-xl border border-white/[0.08] rounded-xl space-y-1">
                   <p className="text-[10px] text-zinc-500 uppercase">Jenis Setoran:</p>
                   <p className="text-zinc-100 font-black">{depositToDelete.taxType}</p>
                   <p className="text-[10px] text-zinc-500 uppercase mt-2">Jumlah Disetor:</p>
@@ -1095,13 +1095,13 @@ export const TaxDepositsSection: React.FC<TaxDepositsSectionProps> = ({ currency
               <div className="flex gap-2.5 pt-2">
                 <button
                   onClick={() => setDepositToDelete(null)}
-                  className="flex-1 py-2.5 bg-zinc-900 hover:bg-zinc-850 border border-white/[0.08] text-zinc-300 text-xs font-black uppercase rounded-xl tracking-wider transition-colors cursor-pointer"
+                  className="flex-1 py-2.5 bg-zinc-900 hover:bg-zinc-850 border border-white/[0.08] text-zinc-300 text-xs font-black uppercase rounded-xl tracking-[0.1em] transition-all duration-200 cursor-pointer"
                 >
                   Batal
                 </button>
                 <button
                   onClick={executeDeleteDeposit}
-                  className="flex-1 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-black uppercase rounded-xl tracking-wider shadow-lg transition-colors cursor-pointer"
+                  className="flex-1 py-2.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 shadow-lg shadow-rose-500/20 text-white text-xs font-black uppercase rounded-xl tracking-[0.1em] shadow-lg transition-all duration-200 cursor-pointer"
                 >
                   Hapus
                 </button>

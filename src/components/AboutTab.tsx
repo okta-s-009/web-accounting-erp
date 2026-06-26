@@ -171,7 +171,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
               </div>
               <div>
                 <h3 className="text-base font-bold text-zinc-100">Oktavianus Eko Haryanto</h3>
-                <p className="text-xs font-bold text-indigo-600 uppercase tracking-wider mt-0.5">Full Stack Developer</p>
+                <p className="text-xs font-bold text-indigo-600 uppercase tracking-[0.1em] mt-0.5">Full Stack Developer</p>
                 <p className="text-sm text-zinc-500 mt-2 leading-relaxed font-medium">
                   Arsitek dan pengembang utama di balik sistem ERP ini. Mengkhususkan diri dalam pengembangan antarmuka web modern, manajemen state aplikasi yang kompleks, dan sistem basis data lokal berbasis peramban (browser-based persistence).
                 </p>
@@ -180,7 +180,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
             
             <div className="pt-4 border-t border-white/[0.04] grid grid-cols-1 sm:grid-cols-2 gap-4">
               <a href="mailto:oktavianus.eko11@gmail.com" className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.06] transition-all group shadow-sm">
-                <div className="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors shrink-0">
+                <div className="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-all duration-200 shrink-0">
                   <Mail className="w-4 h-4 text-rose-600" />
                 </div>
                 <div className="overflow-hidden">
@@ -190,7 +190,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
               </a>
               
               <a href="https://wa.me/6289665120396" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.06] transition-all group shadow-sm">
-                <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center group-hover:bg-emerald-100 transition-colors shrink-0">
+                <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center group-hover:bg-emerald-100 transition-all duration-200 shrink-0">
                   <Phone className="w-4 h-4 text-emerald-600" />
                 </div>
                 <div>
@@ -267,7 +267,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
         </div>
         
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-900/50">
-          <div className="bg-[#131a2b] border border-slate-800/80 rounded-xl p-5 hover:border-emerald-500/50 transition-colors">
+          <div className="bg-[#131a2b] border border-slate-800/80 rounded-xl p-5 hover:border-emerald-500/50 transition-all duration-200">
             <h3 className="text-slate-200 font-bold text-sm mb-2 flex items-center gap-2">
               <DownloadCloud className="w-4 h-4 text-emerald-400" /> Ekspor (Backup)
             </h3>
@@ -276,13 +276,13 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
             </p>
             <button 
               onClick={handleExport}
-              className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-lg text-sm transition-colors shadow-lg shadow-emerald-500/20"
+              className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-lg text-sm transition-all duration-200 shadow-lg shadow-emerald-500/20"
             >
               Unduh Backup Sekarang
             </button>
           </div>
 
-          <div className="bg-[#131a2b] border border-slate-800/80 rounded-xl p-5 hover:border-rose-500/50 transition-colors relative">
+          <div className="bg-[#131a2b] border border-slate-800/80 rounded-xl p-5 hover:border-rose-500/50 transition-all duration-200 relative">
             <h3 className="text-slate-200 font-bold text-sm mb-2 flex items-center gap-2">
               <UploadCloud className="w-4 h-4 text-rose-400" /> Impor (Restore)
             </h3>
@@ -298,7 +298,7 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
             />
             <button 
               onClick={() => fileInputRef.current?.click()}
-              className="w-full py-2.5 bg-slate-800 hover:bg-rose-600 text-slate-200 hover:text-white font-bold rounded-lg text-sm transition-colors border border-slate-700 hover:border-rose-500"
+              className="w-full py-2.5 bg-slate-800 hover:bg-rose-600 text-slate-200 hover:text-white font-bold rounded-lg text-sm transition-all duration-200 border border-slate-700 hover:border-rose-500"
             >
               Pilih File Backup (.json)
             </button>
@@ -327,8 +327,8 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
 
         <div className="divide-y divide-slate-800/50">
           {WORKFLOW_PHASES.map((w) => (
-            <div key={w.phase} className="p-8 sm:p-10 hover:bg-[#0f1525] transition-colors group relative">
-              <div className="absolute top-8 right-10 text-zinc-200 font-black text-6xl opacity-30 select-none group-hover:text-indigo-900/40 transition-colors">
+            <div key={w.phase} className="p-8 sm:p-10 hover:bg-[#0f1525] transition-all duration-200 group relative">
+              <div className="absolute top-8 right-10 text-zinc-200 font-black text-6xl opacity-30 select-none group-hover:text-indigo-900/40 transition-all duration-200">
                 0{w.phase}
               </div>
               
@@ -349,20 +349,20 @@ export const AboutTab: React.FC<AboutTabProps> = ({ db, onImportDatabase }) => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                   {w.techs.map((tech, idx) => (
-                    <div key={idx} className="bg-[#131a2b] border border-slate-800/80 rounded-xl p-5 hover:border-slate-700 transition-colors">
+                    <div key={idx} className="bg-[#131a2b] border border-slate-800/80 rounded-xl p-5 hover:border-slate-700 transition-all duration-200">
                       <h4 className="text-slate-200 font-bold text-sm mb-1">{tech.name}</h4>
                       <p className="text-zinc-500 text-xs leading-relaxed">{tech.desc}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="bg-[#131a2b]/80 border-l-2 border-emerald-500 rounded-r-xl p-4 flex gap-4 items-start relative overflow-hidden group-hover:bg-[#131a2b] transition-colors">
+                <div className="bg-[#131a2b]/80 border-l-2 border-emerald-500 rounded-r-xl p-4 flex gap-4 items-start relative overflow-hidden group-hover:bg-[#131a2b] transition-all duration-200">
                   <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
                     <Lightbulb className="w-24 h-24" />
                   </div>
                   <Lightbulb className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-[10px] font-black tracking-widest text-emerald-500 uppercase mb-1 block">Pro Tip</span>
+                    <span className="text-[10px] font-black tracking-[0.15em] text-emerald-500 uppercase mb-1 block">Pro Tip</span>
                     <p className="text-zinc-600 text-xs leading-relaxed font-medium">{w.tip}</p>
                   </div>
                   <div className="ml-auto shrink-0 self-end opacity-20 text-[10px] font-mono text-zinc-500 group-hover:opacity-100 transition-opacity">
