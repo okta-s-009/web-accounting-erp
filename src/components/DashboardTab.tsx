@@ -499,10 +499,10 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({ db }) => {
           title: 'Analitik Kinerja Operasional CV. Toras Benaunt',
           type: 'consolidated',
           metrics: [
-            { label: 'Armada Cor Operasional', value: '17 / 21 Aktif', desc: 'Kesehatan Unit Distribusi', icon: Truck, progress: 81, color: 'from-emerald-500 to-teal-500', textClass: 'text-emerald-600' },
-            { label: 'Produksi Beton', value: '800 m³', desc: 'Output Volume Terkini', icon: Gauge, progress: 80, color: 'from-indigo-500 to-violet-500', textClass: 'text-indigo-600' },
-            { label: 'Agregat & Semen Utama', value: '81% Rata-rata', desc: 'Pasokan Material Utama', icon: Layers3, progress: 81, color: 'from-blue-500 to-sky-500', textClass: 'text-blue-600' },
-            { label: 'ERP Data Link', value: '100% Terhubung', desc: 'Kecepatan Sinkronisasi Jurnal', icon: Globe, progress: 100, color: 'from-emerald-500 to-teal-500', textClass: 'text-emerald-600' },
+            { label: 'Armada Cor Operasional', value: '0 / 0 Unit', desc: 'Kesehatan Unit Distribusi', icon: Truck, progress: 0, color: 'from-zinc-500 to-zinc-600', textClass: 'text-zinc-600' },
+            { label: 'Produksi Beton', value: '0 m³', desc: 'Output Volume Terkini', icon: Gauge, progress: 0, color: 'from-zinc-500 to-zinc-600', textClass: 'text-zinc-600' },
+            { label: 'Agregat & Semen Utama', value: '0% Rata-rata', desc: 'Pasokan Material Utama', icon: Layers3, progress: 0, color: 'from-zinc-500 to-zinc-600', textClass: 'text-zinc-600' },
+            { label: 'ERP Data Link', value: 'Sensor Offline', desc: 'Menunggu Koneksi Telemetri', icon: Globe, progress: 0, color: 'from-zinc-500 to-zinc-600', textClass: 'text-zinc-600' },
           ]
         };
     }
