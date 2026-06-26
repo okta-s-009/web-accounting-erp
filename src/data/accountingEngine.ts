@@ -1883,30 +1883,6 @@ export function loadDatabase(): ERPDatabase {
         saveDatabase(parsed);
       }
 
-      // Clean up old consolidated journal entries from local storage to prevent duplicate/stale records and show rich, unpacked rows!
-      const obsoleteIds = new Set(['je-4', 'je-5', 'je-6', 'je-7', 'je-9', 'je-10']);
-      const activeJournals = parsed.journals.filter(j => !obsoleteIds.has(j.id));
-      const existingJournalIds = new Set(activeJournals.map(j => j.id));
-      const missingJournals = INITIAL_JOURNALS.filter(j => !existingJournalIds.has(j.id));
-      if (missingJournals.length > 0 || parsed.journals.length !== activeJournals.length) {
-        parsed.journals = [...activeJournals, ...missingJournals];
-        saveDatabase(parsed);
-      }
-
-      const existingSalesIds = new Set(parsed.salesInvoices.map(s => s.id));
-      const missingSales = INITIAL_SALES.filter(s => !existingSalesIds.has(s.id));
-      if (missingSales.length > 0) {
-        parsed.salesInvoices = [...parsed.salesInvoices, ...missingSales];
-        saveDatabase(parsed);
-      }
-
-      const existingPurchaseIds = new Set(parsed.purchaseInvoices.map(p => p.id));
-      const missingPurchases = INITIAL_PURCHASES.filter(p => !existingPurchaseIds.has(p.id));
-      if (missingPurchases.length > 0) {
-        parsed.purchaseInvoices = [...parsed.purchaseInvoices, ...missingPurchases];
-        saveDatabase(parsed);
-      }
-
       return parsed;
     } catch (e) {
       console.error('Failed to parse database, resetting to initial', e);
