@@ -1,0 +1,677 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import React, { useState } from 'react';
+import { ERPDatabase, addSalesInvoice, payCustomerInvoice, SalesInvoice, saveDatabase } from '../data/accountingEngine';
+import { formatCurrency } from '../utils/format';
+import { DatePicker } from './DatePicker';
+import { 
+  FileText, Plus, Receipt, CircleDollarSign, Calendar, Eye, 
+  Trash2, X, CheckCircle, AlertTriangle, Landmark
+} from 'lucide-react';
+
+interface SalesTabProps {
+  db: ERPDatabase;
+  onUpdateDb: (db: ERPDatabase) => void;
+}
+
+export const SalesTab: React.FC<SalesTabProps> = ({ db, onUpdateDb }) => {
+  const [invoices, setInvoices] = useState<SalesInvoice[]>(db.salesInvoices);
+  const [selectedInvoice, setSelectedInvoice] = useState<SalesInvoice | null>(null);
+  const [invoiceToDelete, setInvoiceToDelete] = useState<string | null>(null);
+
+  const executeDeleteInvoice = () => {
+    if (!invoiceToDelete) return;
+    const updatedInvoices = db.salesInvoices.filter(inv => inv.id !== invoiceToDelete);
+    const updated = { ...db, salesInvoices: updatedInvoices };
+    onUpdateDb(updated);
+    saveDatabase(updated);
+    setInvoiceToDelete(null);
+    if (selectedInvoice?.id === invoiceToDelete) {
+      setSelectedInvoice(null);
+    }
+  };
+
+  // Modal control states
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isPayOpen, setIsPayOpen] = useState(false);
+
+  // New Invoice form states
+  const [customerId, setCustomerId] = useState(db.customers[0]?.id || '');
+  const [invoiceDate, setInvoiceDate] = useState(new Date().toISOString().split('T')[0]);
+  const [paymentMethod, setPaymentMethod] = useState<'CASH' | 'CREDIT'>('CREDIT');
+  const [lineItems, setLineItems] = useState<{ productId: string; qty: number; price: number }[]>([
+    { productId: db.products[0]?.id || '', qty: 1, price: db.products[0]?.sellingPrice || 0 }
+  ]);
+  const [taxRate, setTaxRate] = useState<number>(0); // Default to Non-PPN (0%) for CV. TB
+  const [invoiceError, setInvoiceError] = useState('');
+
+  // Payment form states
+  const [payAmount, setPayAmount] = useState(0);
+  const [payDate, setPayDate] = useState(new Date().toISOString().split('T')[0]);
+  const [payBankCoa, setPayBankCoa] = useState('1200'); // Default to Bank Kalbar / Mandiri
+  const [payError, setPayError] = useState('');
+
+  // Synchronize state from database changes
+  React.useEffect(() => {
+    setInvoices(db.salesInvoices);
+  }, [db.salesInvoices]);
+
+  const handleProductChange = (index: number, productId: string) => {
+    const product = db.products.find(p => p.id === productId);
+    const updated = [...lineItems];
+    updated[index] = {
+      productId,
+      qty: 1,
+      price: product ? product.sellingPrice : 0
+    };
+    setLineItems(updated);
+  };
+
+  const handleQtyChange = (index: number, qty: number) => {
+    const updated = [...lineItems];
+    updated[index].qty = Math.max(1, qty);
+    setLineItems(updated);
+  };
+
+  const handlePriceChange = (index: number, price: number) => {
+    const updated = [...lineItems];
+    updated[index].price = Math.max(0, price);
+    setLineItems(updated);
+  };
+
+  const addLineItem = () => {
+    setLineItems([...lineItems, { productId: db.products[0]?.id || '', qty: 1, price: db.products[0]?.sellingPrice || 0 }]);
+  };
+
+  const removeLineItem = (index: number) => {
+    if (lineItems.length > 1) {
+      setLineItems(lineItems.filter((_, i) => i !== index));
+    }
+  };
+
+  // Compute live subtotal/tax/totals for draft invoice
+  const draftSubtotal = lineItems.reduce((sum, item) => sum + (item.qty * item.price), 0);
+  const draftTax = Math.round(draftSubtotal * taxRate);
+  const draftTotal = draftSubtotal + draftTax;
+
+  const handlePostInvoice = (e: React.FormEvent) => {
+    e.preventDefault();
+    setInvoiceError('');
+
+    if (!customerId) {
+      setInvoiceError('Silakan pilih customer.');
+      return;
+    }
+
+    const result = addSalesInvoice(db, customerId, invoiceDate, lineItems, paymentMethod, taxRate);
+    if (result.success && result.db) {
+      onUpdateDb(result.db);
+      setIsCreateOpen(false);
+      // Reset
+      setLineItems([{ productId: db.products[0]?.id || '', qty: 1, price: db.products[0]?.sellingPrice || 0 }]);
+      setTaxRate(0); // reset to default 0%
+    } else {
+      setInvoiceError(result.error || 'Gagal membuat invoice.');
+    }
+  };
+
+  const handleOpenPayModal = (invoice: SalesInvoice) => {
+    setSelectedInvoice(invoice);
+    setPayAmount(invoice.total - invoice.amountPaid);
+    setPayError('');
+    const availableCoas = db.coa.filter(acc => acc.category === 'Asset' && (acc.code.startsWith('11') || acc.code.startsWith('12')));
+    if (availableCoas.length > 0) {
+      setPayBankCoa(availableCoas[0].id);
+    } else {
+      setPayBankCoa('1200');
+    }
+    setIsPayOpen(true);
+  };
+
+  const handlePostPayment = (e: React.FormEvent) => {
+    e.preventDefault();
+    setPayError('');
+    if (!selectedInvoice) return;
+
+    const result = payCustomerInvoice(db, selectedInvoice.id, payAmount, payBankCoa, payDate);
+    if (result.success && result.db) {
+      onUpdateDb(result.db);
+      setIsPayOpen(false);
+      setSelectedInvoice(null);
+    } else {
+      setPayError(result.error || 'Gagal memproses pelunasan.');
+    }
+  };
+
+  const getCustomerName = (id: string) => {
+    return db.customers.find(c => c.id === id)?.name || 'Unknown Customer';
+  };
+
+  const getProductName = (id: string) => {
+    return db.products.find(p => p.id === id)?.name || 'Unknown Product';
+  };
+
+  // Get corresponding journal for selected invoice
+  const selectedJournal = selectedInvoice 
+    ? db.journals.find(j => j.sourceId === selectedInvoice.id)
+    : null;
+
+  return (
+    <div className="space-y-6">
+      {/* Top action section */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-base font-bold text-slate-900">Modul Penjualan & Piutang</h2>
+          <p className="text-xs text-slate-500 font-medium">Buat invoice penjualan, kelola piutang, dan proses pelunasan secara real-time</p>
+        </div>
+        <button
+          id="btn-new-sales-invoice"
+          onClick={() => {
+            setInvoiceError('');
+            setIsCreateOpen(true);
+          }}
+          className="flex items-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow-md transition-colors"
+        >
+          <Plus className="w-4 h-4" />
+          <span>Invoice Baru</span>
+        </button>
+      </div>
+
+      {/* Main Grid: List of Invoices & Active Viewer */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        {/* Invoice List Panel */}
+        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden flex flex-col">
+          <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/70">
+            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wide">Daftar Sales Invoice</h3>
+          </div>
+          
+          <div className="overflow-x-auto flex-1">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-50/30 border-b border-slate-200 text-xs font-bold text-slate-500">
+                  <th className="px-5 py-3">No. Invoice</th>
+                  <th className="px-5 py-3">Tanggal</th>
+                  <th className="px-5 py-3">Customer</th>
+                  <th className="px-5 py-3">Pembayaran</th>
+                  <th className="px-5 py-3 text-right">Total Tagihan</th>
+                  <th className="px-5 py-3 text-center">Status</th>
+                  <th className="px-5 py-3 text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-xs text-slate-700 font-semibold">
+                {invoices.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="text-center py-8 text-slate-400 font-medium">Belum ada invoice penjualan.</td>
+                  </tr>
+                ) : (
+                  invoices.map((inv) => (
+                    <tr 
+                      key={inv.id} 
+                      className={`hover:bg-slate-50/30 cursor-pointer transition-colors ${
+                        selectedInvoice?.id === inv.id ? 'bg-slate-50/70 border-l-4 border-l-slate-900' : ''
+                      }`}
+                      onClick={() => setSelectedInvoice(inv)}
+                    >
+                      <td className="px-5 py-4 font-bold text-slate-950">{inv.invoiceNo}</td>
+                      <td className="px-5 py-4 text-slate-500">{inv.date}</td>
+                      <td className="px-5 py-4 text-slate-800">{getCustomerName(inv.customerId)}</td>
+                      <td className="px-5 py-4">
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-extrabold ${inv.paymentMethod === 'CASH' ? 'bg-emerald-50 text-emerald-800' : 'bg-amber-50 text-amber-800'}`}>
+                          {inv.paymentMethod}
+                        </span>
+                      </td>
+                      <td className="px-5 py-4 text-right font-extrabold text-slate-900">
+                        {formatCurrency(inv.total, db.activeCurrency)}
+                      </td>
+                      <td className="px-5 py-4 text-center">
+                        <span className={`px-2.5 py-1 rounded text-[10px] font-extrabold ${inv.status === 'Paid' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`}>
+                          {inv.status}
+                        </span>
+                      </td>
+                      <td className="px-5 py-4 text-center space-x-2" onClick={(e) => e.stopPropagation()}>
+                        <button
+                          onClick={() => setSelectedInvoice(inv)}
+                          className="p-1 hover:bg-slate-100 text-slate-600 hover:text-slate-900 rounded-lg inline-flex items-center"
+                        >
+                          <Eye className="w-4 h-4" />
+                        </button>
+                        {inv.status === 'Unpaid' && (
+                          <button
+                            onClick={() => handleOpenPayModal(inv)}
+                            className="px-2 py-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-md shadow-sm transition-colors"
+                          >
+                            Pelunasan
+                          </button>
+                        )}
+                        <button
+                          onClick={() => setInvoiceToDelete(inv.id)}
+                          className="p-1 hover:bg-rose-50 text-rose-600 hover:text-rose-700 rounded-lg inline-flex items-center"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Invoice Detail & Real Ledger Mapping Panel */}
+        <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-6 flex flex-col space-y-6">
+          {selectedInvoice ? (
+            <>
+              {/* PDF Mock Receipt representation */}
+              <div className="border border-slate-200 rounded-lg p-5 space-y-4 shadow-sm bg-slate-50/20">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wide">Faktur Penjualan</h4>
+                    <p className="text-[10px] font-bold text-slate-500 mt-0.5">{selectedInvoice.invoiceNo}</p>
+                  </div>
+                  <Receipt className="w-5 h-5 text-slate-400" />
+                </div>
+
+                <div className="text-[11px] grid grid-cols-2 gap-y-1.5 text-slate-600 font-semibold">
+                  <span>Customer:</span>
+                  <span className="text-slate-900 font-bold text-right">{getCustomerName(selectedInvoice.customerId)}</span>
+                  <span>Tanggal:</span>
+                  <span className="text-slate-900 text-right">{selectedInvoice.date}</span>
+                  <span>Tipe Pembayaran:</span>
+                  <span className="text-slate-900 text-right font-bold">{selectedInvoice.paymentMethod}</span>
+                  <span>Status:</span>
+                  <span className="text-right">
+                    <span className={`px-1.5 py-0.5 rounded font-extrabold ${selectedInvoice.status === 'Paid' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`}>
+                      {selectedInvoice.status}
+                    </span>
+                  </span>
+                </div>
+
+                <div className="border-t border-b border-slate-100 py-2.5 my-1.5 space-y-2">
+                  {selectedInvoice.items.map((item, idx) => (
+                    <div key={idx} className="flex justify-between text-[11px] font-medium text-slate-700">
+                      <div className="max-w-[140px] truncate">
+                        <span className="font-bold text-slate-900">{getProductName(item.productId)}</span>
+                        <p className="text-[10px] text-slate-400 font-semibold">{item.qty} Pcs @ {formatCurrency(item.price, db.activeCurrency)}</p>
+                      </div>
+                      <span className="font-bold text-slate-900">{formatCurrency(item.subtotal, db.activeCurrency)}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="text-[11px] space-y-1 text-slate-600 font-semibold">
+                  <div className="flex justify-between">
+                    <span>Subtotal:</span>
+                    <span className="text-slate-900">{formatCurrency(selectedInvoice.subtotal, db.activeCurrency)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>PPN:</span>
+                    <span className="text-slate-900">{formatCurrency(selectedInvoice.tax, db.activeCurrency)}</span>
+                  </div>
+                  <div className="flex justify-between border-t border-slate-100 pt-1.5 text-xs font-bold text-slate-900">
+                    <span>Total Tagihan:</span>
+                    <span className="text-slate-950 font-extrabold">{formatCurrency(selectedInvoice.total, db.activeCurrency)}</span>
+                  </div>
+                  {selectedInvoice.amountPaid > 0 && (
+                    <div className="flex justify-between text-emerald-600 font-bold">
+                      <span>Sudah Dibayar:</span>
+                      <span>{formatCurrency(selectedInvoice.amountPaid, db.activeCurrency)}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Automated Ledger Posting representation */}
+              {selectedJournal && (
+                <div className="space-y-3">
+                  <h4 className="text-xs font-bold text-slate-800 flex items-center">
+                    <CheckCircle className="w-4 h-4 text-emerald-600 mr-1.5" />
+                    Double-Entry Journal Postings (Otomatis)
+                  </h4>
+                  <div className="border border-slate-100 rounded-lg overflow-hidden shadow-sm bg-slate-50/10">
+                    <div className="bg-slate-950 text-white px-3 py-1.5 flex items-center justify-between text-[10px] font-bold">
+                      <span>No Jurnal: {selectedJournal.journalNo}</span>
+                      <span>{selectedJournal.date}</span>
+                    </div>
+                    <table className="w-full text-left text-[10px] border-collapse">
+                      <thead>
+                        <tr className="bg-slate-100 text-slate-600 border-b border-slate-200 font-bold">
+                          <th className="px-3 py-1.5">Kode / Akun</th>
+                          <th className="px-3 py-1.5 text-right">Debit</th>
+                          <th className="px-3 py-1.5 text-right">Kredit</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 text-slate-700 font-semibold">
+                        {selectedJournal.details.map((detail, idx) => {
+                          const acc = db.coa.find(a => a.id === detail.coaId);
+                          return (
+                            <tr key={idx}>
+                              <td className={`px-3 py-2 ${detail.credit > 0 ? 'pl-6 text-slate-500' : 'text-slate-900 font-bold'}`}>
+                                <span className="font-mono text-slate-400 mr-1">[{acc?.code}]</span>
+                                {acc?.name}
+                              </td>
+                              <td className="px-3 py-2 text-right font-bold text-slate-800">
+                                {detail.debit > 0 ? formatCurrency(detail.debit, db.activeCurrency) : '-'}
+                              </td>
+                              <td className="px-3 py-2 text-right font-bold text-slate-800">
+                                {detail.credit > 0 ? formatCurrency(detail.credit, db.activeCurrency) : '-'}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full text-center py-16 space-y-3">
+              <FileText className="w-8 h-8 text-slate-300" />
+              <p className="text-xs text-slate-500 font-medium">Pilih invoice untuk melihat struk visual dan audit jurnal ledger akuntansi otomatis.</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Invoice Creator Modal */}
+      {isCreateOpen && (
+        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">Buat Sales Invoice Baru</h3>
+              <button onClick={() => setIsCreateOpen(false)} className="p-1 hover:bg-slate-200/60 rounded-lg">
+                <X className="w-4 h-4 text-slate-500" />
+              </button>
+            </div>
+
+            <form onSubmit={handlePostInvoice} className="p-6 space-y-4 overflow-y-auto flex-1">
+              {invoiceError && (
+                <div className="text-xs text-rose-600 bg-rose-50 p-3 rounded-lg border border-rose-100 font-bold">
+                  {invoiceError}
+                </div>
+              )}
+
+              {/* Form details */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Customer *</label>
+                  <select
+                    id="invoice-customer"
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white"
+                    value={customerId}
+                    onChange={(e) => setCustomerId(e.target.value)}
+                  >
+                    <option value="">Pilih Customer</option>
+                    {db.customers.map(c => (
+                      <option key={c.id} value={c.id}>{c.name}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Tanggal Transaksi</label>
+                  <DatePicker
+                    value={invoiceDate}
+                    onChange={(val) => setInvoiceDate(val)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Metode Pembayaran</label>
+                  <select
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white"
+                    value={paymentMethod}
+                    onChange={(e) => setPaymentMethod(e.target.value as any)}
+                  >
+                    <option value="CREDIT">Kredit (Piutang 30 Hari)</option>
+                    <option value="CASH">Tunai (Kas & Bank)</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Pajak (PPN)</label>
+                  <select
+                    className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white font-bold"
+                    value={taxRate}
+                    onChange={(e) => setTaxRate(Number(e.target.value))}
+                  >
+                    <option value="0">Non-PPN (0%)</option>
+                    <option value="0.12">PPN (12%)</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Line Items Editor */}
+              <div className="space-y-2 border-t border-slate-100 pt-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wide">Rincian Barang</h4>
+                  <button
+                    type="button"
+                    onClick={addLineItem}
+                    className="text-[10px] font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 px-2.5 py-1.5 rounded"
+                  >
+                    + Tambah Baris
+                  </button>
+                </div>
+
+                <div className="space-y-3">
+                  {lineItems.map((item, index) => {
+                    const selProduct = db.products.find(p => p.id === item.productId);
+                    return (
+                      <div key={index} className="grid grid-cols-12 gap-3 items-center border border-slate-100 p-3 rounded-lg bg-slate-50/30">
+                        <div className="col-span-5">
+                          <label className="block text-[9px] font-bold text-slate-400 uppercase mb-0.5">Produk</label>
+                          <select
+                            className="w-full text-xs px-2.5 py-1.5 border border-slate-200 rounded focus:outline-none bg-white"
+                            value={item.productId}
+                            onChange={(e) => handleProductChange(index, e.target.value)}
+                          >
+                            {db.products.map(p => (
+                              <option key={p.id} value={p.id}>{p.name} (Stok: {p.stock})</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div className="col-span-2">
+                          <label className="block text-[9px] font-bold text-slate-400 uppercase mb-0.5">Qty</label>
+                          <input
+                            type="number"
+                            min="1"
+                            className="w-full text-xs px-2.5 py-1.5 border border-slate-200 rounded focus:outline-none text-center font-bold"
+                            value={item.qty}
+                            onChange={(e) => handleQtyChange(index, Number(e.target.value))}
+                          />
+                        </div>
+                        <div className="col-span-3">
+                          <label className="block text-[9px] font-bold text-slate-400 uppercase mb-0.5">Harga Satuan (Rp)</label>
+                          <input
+                            type="number"
+                            className="w-full text-xs px-2.5 py-1.5 border border-slate-200 rounded focus:outline-none font-bold text-right"
+                            value={item.price}
+                            onChange={(e) => handlePriceChange(index, Number(e.target.value))}
+                          />
+                        </div>
+                        <div className="col-span-2 flex items-center justify-end space-x-2 pt-4">
+                          <span className="text-[11px] font-bold text-slate-700">
+                            {formatCurrency(item.qty * item.price, db.activeCurrency)}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => removeLineItem(index)}
+                            disabled={lineItems.length === 1}
+                            className="p-1 hover:bg-rose-50 text-slate-400 hover:text-rose-600 rounded disabled:opacity-40"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Totals Section */}
+              <div className="border-t border-slate-100 pt-4 flex flex-col items-end text-xs font-semibold text-slate-600 space-y-1">
+                <div className="flex justify-between w-48">
+                  <span>Subtotal:</span>
+                  <span className="text-slate-900">{formatCurrency(draftSubtotal, db.activeCurrency)}</span>
+                </div>
+                <div className="flex justify-between w-48">
+                  <span>PPN:</span>
+                  <span className="text-slate-900">{formatCurrency(draftTax, db.activeCurrency)}</span>
+                </div>
+                <div className="flex justify-between w-48 border-t border-slate-100 pt-1.5 font-bold text-slate-950 text-sm">
+                  <span>Grand Total:</span>
+                  <span className="font-extrabold">{formatCurrency(draftTotal, db.activeCurrency)}</span>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-end space-x-3 bg-slate-50 -mx-6 -mb-6 px-6 py-4">
+                <button
+                  type="button"
+                  onClick={() => setIsCreateOpen(false)}
+                  className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 bg-white rounded-lg"
+                >
+                  Batal
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow"
+                >
+                  Post Jurnal & Simpan Invoice
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Payment Processing Modal */}
+      {isPayOpen && selectedInvoice && (
+        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-md overflow-hidden flex flex-col">
+            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide">Penerimaan Pembayaran Piutang</h3>
+              <button onClick={() => setIsPayOpen(false)} className="p-1 hover:bg-slate-200/60 rounded-lg">
+                <X className="w-4 h-4 text-slate-500" />
+              </button>
+            </div>
+
+            <form onSubmit={handlePostPayment} className="p-6 space-y-4">
+              {payError && (
+                <div className="text-xs text-rose-600 bg-rose-50 p-3 rounded-lg border border-rose-100 font-bold">
+                  {payError}
+                </div>
+              )}
+
+              <div className="bg-slate-50 border border-slate-100 p-3.5 rounded-lg text-xs space-y-1.5 text-slate-600 font-semibold">
+                <div className="flex justify-between">
+                  <span>Invoice No:</span>
+                  <span className="text-slate-950 font-bold">{selectedInvoice.invoiceNo}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Customer:</span>
+                  <span className="text-slate-950 font-bold">{getCustomerName(selectedInvoice.customerId)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Sisa Tagihan:</span>
+                  <span className="text-rose-600 font-extrabold">{formatCurrency(selectedInvoice.total - selectedInvoice.amountPaid, db.activeCurrency)}</span>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Setor ke Akun (Kas/Bank) *</label>
+                <select
+                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 bg-white"
+                  value={payBankCoa}
+                  onChange={(e) => setPayBankCoa(e.target.value)}
+                >
+                  {db.coa
+                    .filter(acc => acc.category === 'Asset' && (acc.code.startsWith('11') || acc.code.startsWith('12')))
+                    .map(acc => (
+                      <option key={acc.id} value={acc.id}>
+                        {acc.name} ({acc.code})
+                      </option>
+                    ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Tanggal Penerimaan</label>
+                <DatePicker
+                  value={payDate}
+                  onChange={(val) => setPayDate(val)}
+                />
+              </div>
+
+              <div>
+                <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">Jumlah Pembayaran (Rp) *</label>
+                <input
+                  type="number"
+                  className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-slate-800 font-bold"
+                  value={payAmount}
+                  onChange={(e) => setPayAmount(Number(e.target.value))}
+                  max={selectedInvoice.total - selectedInvoice.amountPaid}
+                />
+              </div>
+
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-end space-x-3 bg-slate-50 -mx-6 -mb-6 px-6 py-4">
+                <button
+                  type="button"
+                  onClick={() => setIsPayOpen(false)}
+                  className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 bg-white rounded-lg"
+                >
+                  Batal
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 text-xs font-bold text-white bg-slate-950 hover:bg-slate-900 rounded-lg shadow"
+                >
+                  Konfirmasi Penerimaan Uang
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      {invoiceToDelete && (
+        <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-sm overflow-hidden flex flex-col">
+            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" /> Konfirmasi Hapus Invoice
+              </h3>
+              <button onClick={() => setInvoiceToDelete(null)} className="p-1 hover:bg-slate-200/60 rounded-lg">
+                <X className="w-4 h-4 text-slate-500" />
+              </button>
+            </div>
+            <div className="p-6 text-xs text-slate-600 space-y-3">
+              <p>Apakah Anda yakin ingin menghapus invoice penjualan ini?</p>
+              <div className="bg-slate-50 p-3 rounded-lg border border-slate-100 font-bold text-slate-900">
+                {invoices.find(inv => inv.id === invoiceToDelete)?.invoiceNo || 'Invoice'}
+              </div>
+              <p className="text-[10px] text-slate-400">Tindakan ini tidak dapat dibatalkan.</p>
+            </div>
+            <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-end space-x-3 bg-slate-50">
+              <button
+                type="button"
+                onClick={() => setInvoiceToDelete(null)}
+                className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 border border-slate-200 bg-white rounded-lg"
+              >
+                Batal
+              </button>
+              <button
+                type="button"
+                onClick={executeDeleteInvoice}
+                className="px-4 py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-lg shadow"
+              >
+                Hapus
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};

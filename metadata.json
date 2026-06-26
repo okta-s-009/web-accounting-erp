@@ -1,0 +1,6 @@
+{
+  "name": "Web Accounting ERP",
+  "description": "Sistem ERP Accounting kustom untuk CV. Toras Benaunt (CV. TB) - Spesialis Ready Mix & Pengecoran Jalan Pasar Tayan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

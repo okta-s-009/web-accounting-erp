@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;750;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* ==========================================
+   MODERN BLACK/DARK THEME SYSTEM OVERRIDES
+   ========================================== */
+
+body {
+  background-color: #09090b !important;
+  color: #f4f4f5 !important;
+}
+
+/* Ensure any light background wrappers are transformed to deep black/zinc */
+#root, main {
+  background-color: #09090b !important;
+  color: #f4f4f5 !important;
+}
+
+/* Cards & Elevated Containers Overrides */
+.bg-white {
+  background-color: #09090b !important;
+  color: #f4f4f5 !important;
+}
+
+.bg-slate-50, 
+.bg-slate-100, 
+.bg-slate-50\/70, 
+.bg-slate-50\/30 {
+  background-color: #18181b !important;
+}
+
+/* Borders and separators */
+.border-slate-100,
+.border-slate-150,
+.border-slate-200 {
+  border-color: #27272a !important;
+}
+
+/* Table dividing lines */
+.divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+.divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #27272a !important;
+}
+
+/* Text color transformations for modern high-contrast readability */
+.text-slate-950,
+.text-slate-900,
+.text-slate-800,
+.text-slate-700 {
+  color: #f4f4f5 !important;
+}
+
+.text-slate-600,
+.text-slate-500 {
+  color: #a1a1aa !important;
+}
+
+.text-slate-400 {
+  color: #71717a !important;
+}
+
+/* Highlight tags or badges with faint slate background */
+.bg-slate-100\/70,
+.bg-slate-100\/80 {
+  background-color: #27272a !important;
+  color: #e4e4e7 !important;
+}
+
+/* Interactive elements: Inputs, Select boxes, and Textareas */
+input, 
+select, 
+textarea {
+  background-color: #18181b !important;
+  color: #f4f4f5 !important;
+  border-color: #27272a !important;
+}
+
+input:focus, 
+select:focus, 
+textarea:focus {
+  border-color: #6366f1 !important;
+  outline: none !important;
+}
+
+/* Dropdown select options styling in browser */
+select option {
+  background-color: #18181b !important;
+  color: #f4f4f5 !important;
+}
+
+/* Modern Hover States */
+.hover\:bg-slate-50\/30:hover,
+.hover\:bg-slate-50\/70:hover,
+.hover\:bg-slate-100\/70:hover,
+.hover\:bg-slate-50:hover,
+.hover\:bg-slate-100:hover,
+.hover\:bg-slate-150:hover {
+  background-color: #1e1b4b/20 !important; /* Indigo accent highlight tint */
+  color: #f4f4f5 !important;
+}
+
+/* Table header standard highlight */
+thead tr, 
+tr.bg-slate-50\/70, 
+tr.bg-slate-50, 
+tr.bg-slate-100 {
+  background-color: #18181b !important;
+}
+
+/* Primary buttons with slate themes */
+.bg-slate-950 {
+  background-color: #3f3f46 !important;
+  color: #ffffff !important;
+}
+
+.bg-slate-950:hover {
+  background-color: #52525b !important;
+}
+
+/* Secondary ghost buttons */
+.text-slate-600.border-slate-200.bg-white {
+  background-color: #18181b !important;
+  color: #e4e4e7 !important;
+  border-color: #27272a !important;
+}
+
+.text-slate-600.border-slate-200.bg-white:hover {
+  background-color: #27272a !important;
+}
+
+/* Alert notifications background */
+.bg-rose-50 {
+  background-color: rgba(244, 63, 94, 0.1) !important;
+  border-color: rgba(244, 63, 94, 0.2) !important;
+  color: #f43f5e !important;
+}
+
+.bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+  color: #10b981 !important;
+}
+
+/* Modals overlays & backdrops */
+.fixed.inset-0.bg-slate-950\/40,
+.fixed.inset-0.bg-slate-950\/50,
+.fixed.inset-0.bg-slate-900\/50 {
+  background-color: rgba(9, 9, 11, 0.8) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* ==========================================
+   VIEWPORT LOCK & SCROLLBAR
+   ========================================== */
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Custom dark scrollbar for main content */
+main::-webkit-scrollbar,
+aside::-webkit-scrollbar {
+  width: 6px;
+}
+
+main::-webkit-scrollbar-track,
+aside::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+main::-webkit-scrollbar-thumb,
+aside::-webkit-scrollbar-thumb {
+  background-color: #27272a;
+  border-radius: 3px;
+}
+
+main::-webkit-scrollbar-thumb:hover,
+aside::-webkit-scrollbar-thumb:hover {
+  background-color: #3f3f46;
+}
+
+/* Firefox scrollbar */
+main, aside {
+  scrollbar-width: thin;
+  scrollbar-color: #27272a transparent;
+}
+
+/* Smooth scroll behavior */
+main {
+  scroll-behavior: smooth;
+}
+
+/* Prevent horizontal overflow on all content */
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+  min-width: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive table wrapper */
+table {
+  max-width: 100%;
+}
+
+/* Ensure all images and media respect container */
+img, video, svg, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Print styles - remove viewport lock */
+@media print {
+  html, body, #root {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
