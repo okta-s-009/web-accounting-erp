@@ -71,7 +71,13 @@ export default function App() {
     const newDb = deleteAllTransactions(db);
     setDb(newDb);
     saveDatabase(newDb);
+    
+    // Clear other standalone local storage keys
+    localStorage.removeItem('tb_tax_deposits_registry');
+    localStorage.removeItem('tb_saved_tax_simulations');
+    
     alert('Seluruh data transaksi dan Master Data berhasil dihapus secara permanen.');
+    window.location.reload();
   };
 
   const handleImportDatabase = (importedDb: ERPDatabase) => {
