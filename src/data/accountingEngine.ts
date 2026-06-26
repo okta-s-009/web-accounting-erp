@@ -2241,9 +2241,9 @@ export function deleteAllTransactions(db: ERPDatabase): ERPDatabase {
   newDb.cashTransactions = [];
   newDb.journals = [];
   
-  newDb.customers = newDb.customers.map(c => ({ ...c, balance: 0 }));
-  newDb.suppliers = newDb.suppliers.map(s => ({ ...s, balance: 0 }));
-  newDb.products = newDb.products.map(p => ({ ...p, stock: 0 })); // Note: To keep opening stock, we might need a separate field. But 0 is safe for now.
+  newDb.customers = [];
+  newDb.suppliers = [];
+  newDb.products = [];
   
   newDb = recalculateBalances(newDb);
   saveDatabase(newDb);

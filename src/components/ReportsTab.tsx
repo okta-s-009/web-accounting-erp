@@ -1030,7 +1030,7 @@ export const ReportsTab: React.FC<ReportsTabProps> = ({ db, onDeleteTransaction,
           <div className="flex items-center gap-2">
             <button
               onClick={() => {
-                if (window.confirm('PERINGATAN: Apakah Anda yakin ingin menghapus SELURUH histori transaksi (Penjualan, Pembelian, Kas, dan Jurnal)?\n\nData master (Pelanggan/Produk/Supplier) akan dipertahankan, namun saldo akan di-reset menjadi 0.\nTindakan ini tidak bisa dibatalkan!')) {
+                if (window.confirm('PERINGATAN: Apakah Anda yakin ingin menghapus SELURUH histori transaksi beserta SELURUH DATA MASTER (Pelanggan, Supplier, Produk)?\n\nDatabase akan kembali bersih (kosong) sepenuhnya!\nTindakan ini tidak bisa dibatalkan!')) {
                   onDeleteAllTransactions?.();
                 }
               }}

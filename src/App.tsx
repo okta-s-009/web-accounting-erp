@@ -71,7 +71,7 @@ export default function App() {
     const newDb = deleteAllTransactions(db);
     setDb(newDb);
     saveDatabase(newDb);
-    alert('Seluruh data transaksi berhasil dihapus.');
+    alert('Seluruh data transaksi dan Master Data berhasil dihapus secara permanen.');
   };
 
   const handleImportDatabase = (importedDb: ERPDatabase) => {
